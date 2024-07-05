@@ -1,1 +1,1 @@
-# VBayesMM
+# VBayesMM: Variational Bayesian microbiome multiomics
