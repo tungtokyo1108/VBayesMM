@@ -13,7 +13,7 @@ Tung Dang, Artem Lysenko and Tatsuhiko Tsunoda. "VBayesMM: Variational Bayesian 
 ### Data
 
 - Please follow instructions in the [Haddad_osa github repo](https://github.com/knightlab-analyses/haddad_osa/) to get OTU tables, metabolome and microbiome phylogenetic tree for dataset A.
-- - Please follow instructions in the [Multiomic-cooccurences github repo](https://github.com/knightlab-analyses/multiomic-cooccurrences) to get OTU tables, metabolome and microbiome phylogenetic tree for dataset B. 
+- Please follow instructions in the [Multiomic-cooccurences github repo](https://github.com/knightlab-analyses/multiomic-cooccurrences) to get OTU tables, metabolome and microbiome phylogenetic tree for dataset B. 
 - Please follow instructions in the [Microbiome-metabolome curated data github repo](https://github.com/borenstein-lab/microbiome-metabolome-curated-data/wiki) to get OTU tables, metabolome and microbiome phylogenetic tree for datasets C and D. 
 
 ### Source code
