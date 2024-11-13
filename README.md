@@ -6,7 +6,7 @@ Tung Dang, Artem Lysenko and Tatsuhiko Tsunoda. "VBayesMM: Variational Bayesian 
 
 ## The workflow of the algorithm
 
-<img src="VBayesMM_method.png" width="1000" height="900">
+<img src="VBayesMM_method.png" width="1000" height="500">
 
 ## Directory structure
 
