@@ -25,8 +25,9 @@ import tensorflow as tf
 from VBayesMM import VBayesMM
 ```
 
-- Loading and preparing data in  ```example/ ```
-  Let us first load a subsampled version of the obstructive sleep apnea (OSA) in mice dataset described in Tripathi et al. (2018). VBayesMM supports for loading arbitrary ```csv```, ```tsvBIOM```, and ```biom```
+- Loading and preparing data in  ```examples/ ```
+  
+  Let us first load a subsampled version of the obstructive sleep apnea (OSA) in mice dataset described in Tripathi et al. (2018). VBayesMM supports for loading arbitrary ```csv```, ```tsv```, and ```biom```
   
 ```
 microbes = load_table("microbes.biom")
