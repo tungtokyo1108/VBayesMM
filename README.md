@@ -4,7 +4,7 @@
 Tung Dang, Artem Lysenko and Tatsuhiko Tsunoda. "VBayesMM: Variational Bayesian neural network to prioritize important relationships of high-dimensional microbiome multiomics data" bioRxiv (2024): 2024-
 
 
-## The workflow of the algorithm
+## The workflow of VBayesMM
 
 <img src="VBayesMM_method.png" width="1000" height="500">
 
