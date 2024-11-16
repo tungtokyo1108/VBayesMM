@@ -8,6 +8,23 @@ Tung Dang, Artem Lysenko and Tatsuhiko Tsunoda. "VBayesMM: Variational Bayesian 
 
 <img src="VBayesMM_method.png" width="1000" height="500">
 
+## How To Use 
+
+- Import packages 
+```
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import biom
+from biom import load_table, Table
+from scipy.stats import entropy, spearmanr
+from scipy.sparse import coo_matrix
+
+import tensorflow as tf
+from VBayesMM_v1 import VBayesMM
+```
+
 ## Directory structure
 
 ### Data
