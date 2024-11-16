@@ -62,7 +62,8 @@ model = VBayesMM()
 config = tf.compat.v1.ConfigProto()
 
 with tf.Graph().as_default(), tf.compat.v1.Session(config=config) as session:
-    model(session, train_microbes_coo, train_metabolites_df.values, test_microbes_coo, test_metabolites_df.values)
+    model(session, train_microbes_coo, train_metabolites_df.values,
+          test_microbes_coo, test_metabolites_df.values)
     ELBO, MAE, SMAPE = model.fit(epoch=5000) 
 ```
 
