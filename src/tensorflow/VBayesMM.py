@@ -5,7 +5,6 @@
 @author: tungbioinfo
 """
 
-
 import os
 import time
 from tqdm import tqdm
@@ -13,6 +12,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 import scipy.sparse as sp
 from tqdm import tqdm
+import pandas as pd 
+from scipy.spatial.distance import pdist
+from skbio.stats.composition import clr, centralize, clr_inv
 import tensorflow as tf
 from tensorflow.compat.v1.distributions import Multinomial, Normal
 from tensorflow_probability import distributions as tfd
@@ -30,28 +32,14 @@ def sigmoid(z):
 def logit(z):
     return tf.math.log(z/(1. - z))
 
-def gumbel_softmax(logits, U, temperature=0.5, hard=False, threshold=0.5, eps=1e-8):
-    z = logits + tf.math.log(U + eps) - tf.math.log(1 - U + eps)
-    #y = tf.math.sigmoid(z / temperature)
-    y = tf.math.sigmoid(-z / temperature)
-    if not hard:
-        return y
-    y_hard = tf.cast(y > threshold, tf.float32)
-    
-    # Set gradients w.r.t. y_hard as gradients w.r.t. y
-    y_hard = tf.stop_gradient(y_hard - y) + y
-    return y_hard
-
 def sample_gumbel(shape, eps=1e-8):
     U = tf.random.uniform(shape, minval=0, maxval=1)
     return -tf.math.log(-tf.math.log(U + eps) + eps)
 
-def gumbel_softmax_r(logits, temperature=0.5, hard=False):
+def gumbel_softmax(logits, temperature=0.5, hard=False):
     
     gumbel_softmax_sample = logits + sample_gumbel(tf.shape(logits))
-    #y = tf.nn.softmax(gumbel_softmax_sample / temperature)
-    y = tf.math.sigmoid((-gumbel_softmax_sample) / temperature)
-    #y = tf.math.sigmoid((gumbel_softmax_sample) / temperature)
+    y = tf.math.sigmoid((gumbel_softmax_sample) / temperature)
 
     if hard:
         k = tf.shape(logits)[-1]
@@ -73,19 +61,49 @@ class VBayesMM(object):
     
     Parameters
     ----------
-
-    trainX : sparse array in coo format for microbiome data
-    trainY : np.array for metabolite data
-    testX : sparse array in coo format for microbiome data
-    testY : np.array for metabolite data
+    latent_dim : int, default=3 
+        The number of latent dimensions.
+        
+    temperature : float, default=0.5
+        The temperature parameter of reparameterization of categorical variables
+        
+    hard : bool, default=False
+        If set to false, in the backward pass to enable the calculation for gradient in gumbel-softmax-approximation. 
+        
+    learning_rate : float, default=0.1
+    
+    Variational parameters \Theta = {\alpha_{U}, \beta_{U}, \Xi, \alpha_{V}, \beta_{V}} 
+    
+    mu01 : int, default=0 
+        The mean of normal distribution prior for \alpha_{U}
+        
+    mu02 : int, default=1
+        The variance of normal distribution prior for \alpha_{U}
+        
+    rho01 : int, default=0 
+        The mean of normal distribution prior for \beta_{U}
+        
+    rho02 : int, default=1
+        The variance of normal distribution prior for \beta_{U}
+        
+    lambda01 : int, default=0 
+        The minimum of uniform distribution prior for \Xi
+        
+    lambda02 : int, default=1
+        The maximum of uniform distribution prior for \Xi
+    
+    v_mean : int, default=0 
+        The mean of normal distribution prior for \alpha_{V}, \beta_{V}
+        
+    v_scale : int, default=1 
+        The variance of normal distribution prior for \alpha_{V}, \beta_{V}
+    
     
     """
 
-    def __init__(self, u_mean=0, u_scale=1, v_mean=0, v_scale=1,
-                 batch_size=50, latent_dim=3, err = "normal", errstd_v=0.01,
-                 learning_rate=0.1, beta_1=0.8, beta_2=0.9,
-                 temperature = 0.5, mu01 = -0.6, mu02 = 0.6, rho01=-6., rho02=-6., lambda01=0, lambda02=1, 
-                 hard = False, threshold = 0.5, ssprior = "normal", errstd_epsilon=0.01, 
+    def __init__(self, batch_size=50, latent_dim=3, learning_rate=0.1, v_mean=0, v_scale=1,
+                 temperature = 0.5, mu01 = 0, mu02 = 1, rho01=0, rho02=1, lambda01=0, lambda02=0.3, 
+                 hard = False, threshold = 0.5, 
                  clipnorm=10., device_name='/cpu:0', save_path=None):
         
         
@@ -97,24 +115,17 @@ class VBayesMM(object):
             save_path = "_".join([basename, suffix])
 
         self.p = p
-        self.u_mean = u_mean
-        self.u_scale = u_scale
-        self.v_mean = v_mean
-        self.v_scale = v_scale
         self.batch_size = batch_size
         self.latent_dim = latent_dim
-        self.err = err
-        self.errstd_v = errstd_v
 
         # Parameter for optimization
         self.learning_rate = learning_rate
-        self.beta_1 = beta_1
-        self.beta_2 = beta_2
+        self.beta_1 = 0.8
+        self.beta_2 = 0.9
         
         # Parameter for Spike-and-slab variational prior
         self.temp = temperature
         self.hard = hard
-        self.ssprior = ssprior
         self.mu01 = mu01
         self.mu02 = mu02 
         self.rho01 = rho01
@@ -122,12 +133,26 @@ class VBayesMM(object):
         self.lambda01 = lambda01
         self.lambda02 = lambda02
         self.threshold = threshold
-        self.errstd_epsilon = errstd_epsilon
+        
+        self.v_mean = v_mean
+        self.v_scale = v_scale
         
         self.clipnorm = clipnorm
         self.save_path = save_path
 
     def __call__(self, session, trainX, trainY, testX, testY):
+        
+        """ Variational Bayesian microbiome multiomics 
+        
+        Parameters
+        ----------
+        
+        trainX : sparse array in coo format for microbiome data
+        trainY : np.array for metabolite data
+        testX : sparse array in coo format for microbiome data
+        testY : np.array for metabolite data
+        
+        """
         
         self.session = session
         self.nnz = len(trainX.data)
@@ -178,27 +203,15 @@ class VBayesMM(object):
             
             # Spike-and-slab variational prior
             
-            if self.ssprior == "uniform":
-                self.qUmain_mean_w_mu = tf.Variable(tf.random.uniform(shape=[self.d1, self.p], minval=self.mu01, maxval=self.mu02), name='qUmain_mean_w_mu', trainable=True)
-                self.qUmain_mean_w_rho = tf.Variable(tf.random.uniform(shape=[self.d1, self.p], minval=self.rho01, maxval=self.rho02), name='qUmain_mean_w_rho', trainable=True)
-                self.qUmain_mean_w_theta = tf.Variable(logit(tf.random.uniform(shape=[self.d1, self.p], minval=self.lambda01, maxval=self.lambda02)), name='qUmain_mean_w_theta', trainable=True)
-                self.qUmain_mean_gamma = None
+            self.qUmain_mean_w_mu = tf.Variable(tf.random.normal(shape=[self.d1, self.p], mean=self.mu01, stddev=self.mu02), name='qUmain_mean_w_mu', trainable=True)
+            self.qUmain_mean_w_rho = tf.Variable(tf.random.normal(shape=[self.d1, self.p], mean=self.rho01, stddev=self.rho02), name='qUmain_mean_w_rho', trainable=True)
+            self.qUmain_mean_w_theta = tf.Variable(logit(tf.random.uniform(shape=[self.d1, self.p], minval=self.lambda01, maxval=self.lambda02)), name='qUmain_mean_w_theta', trainable=True)
+            self.qUmain_mean_gamma = None
                 
-                self.qUbias_mean_w_mu = tf.Variable(tf.random.uniform(shape=[self.d1, 1], minval=self.mu01, maxval=self.mu02), name='qUbias_mean_w_mu', trainable=True)
-                self.qUbias_mean_w_rho = tf.Variable(tf.random.uniform(shape=[self.d1, 1], minval=self.rho01, maxval=self.rho02), name='qUbias_mean_w_rho', trainable=True)
-                self.qUbias_mean_w_theta = tf.Variable(logit(tf.random.uniform(shape=[self.d1, 1], minval=self.lambda01, maxval=self.lambda02)), name='qUbias_mean_w_theta', trainable=True)
-                self.qUbias_mean_gamma = None
-                
-            else:
-                self.qUmain_mean_w_mu = tf.Variable(tf.random.normal(shape=[self.d1, self.p], mean=self.mu01, stddev=self.mu02), name='qUmain_mean_w_mu', trainable=True)
-                self.qUmain_mean_w_rho = tf.Variable(tf.random.normal(shape=[self.d1, self.p], mean=self.rho01, stddev=self.rho02), name='qUmain_mean_w_rho', trainable=True)
-                self.qUmain_mean_w_theta = tf.Variable(logit(tf.random.uniform(shape=[self.d1, self.p], minval=self.lambda01, maxval=self.lambda02)), name='qUmain_mean_w_theta', trainable=True)
-                self.qUmain_mean_gamma = None
-                
-                self.qUbias_mean_w_mu = tf.Variable(tf.random.normal(shape=[self.d1, 1], mean=self.mu01, stddev=self.mu02), name='qUbias_mean_w_mu', trainable=True)
-                self.qUbias_mean_w_rho = tf.Variable(tf.random.normal(shape=[self.d1, 1], mean=self.rho01, stddev=self.rho02), name='qUbias_mean_w_rho', trainable=True)
-                self.qUbias_mean_w_theta = tf.Variable(logit(tf.random.uniform(shape=[self.d1, 1], minval=self.lambda01, maxval=self.lambda02)), name='qUbias_mean_w_theta', trainable=True)
-                self.qUbias_mean_gamma = None
+            self.qUbias_mean_w_mu = tf.Variable(tf.random.normal(shape=[self.d1, 1], mean=self.mu01, stddev=self.mu02), name='qUbias_mean_w_mu', trainable=True)
+            self.qUbias_mean_w_rho = tf.Variable(tf.random.normal(shape=[self.d1, 1], mean=self.rho01, stddev=self.rho02), name='qUbias_mean_w_rho', trainable=True)
+            self.qUbias_mean_w_theta = tf.Variable(logit(tf.random.uniform(shape=[self.d1, 1], minval=self.lambda01, maxval=self.lambda02)), name='qUbias_mean_w_theta', trainable=True)
+            self.qUbias_mean_gamma = None
             
             
             # Sample Spike-and-slab variational prior
@@ -209,14 +222,12 @@ class VBayesMM(object):
             
             qUmain_mean_u_w = tf.random.uniform(shape=self.qUmain_mean_w_theta.shape, minval=0, maxval=1)
             qUbias_mean_u_w = tf.random.uniform(shape=self.qUbias_mean_w_theta.shape, minval=0, maxval=1)
-            #self.qUmain_mean_gamma = gumbel_softmax(self.qUmain_mean_w_theta, qUmain_mean_u_w, temperature=self.temp, hard=self.hard, threshold = self.threshold)
-            #self.qUbias_mean_gamma = gumbel_softmax(self.qUbias_mean_w_theta, qUbias_mean_u_w, temperature=self.temp, hard=self.hard, threshold = self.threshold)
             
-            self.qUmain_mean_gamma = gumbel_softmax_r(self.qUmain_mean_w_theta, temperature=self.temp, hard=self.hard)
-            self.qUbias_mean_gamma = gumbel_softmax_r(self.qUbias_mean_w_theta, temperature=self.temp, hard=self.hard)
+            self.qUmain_mean_gamma = gumbel_softmax(self.qUmain_mean_w_theta, temperature=self.temp, hard=self.hard)
+            self.qUbias_mean_gamma = gumbel_softmax(self.qUbias_mean_w_theta, temperature=self.temp, hard=self.hard)
             
-            qUmain_mean_epsilon_w = tf.random.normal(shape=self.qUmain_mean_w_mu.shape, mean=0, stddev=self.errstd_epsilon)
-            qUbias_mean_epsilon_w = tf.random.normal(shape=self.qUbias_mean_w_mu.shape, mean=0, stddev=self.errstd_epsilon)
+            qUmain_mean_epsilon_w = tf.random.normal(shape=self.qUmain_mean_w_mu.shape, mean=0, stddev=0.001)
+            qUbias_mean_epsilon_w = tf.random.normal(shape=self.qUbias_mean_w_mu.shape, mean=0, stddev=0.001)
             
             # Variational distributions for V matrix
             
@@ -225,17 +236,11 @@ class VBayesMM(object):
             self.qVbias_mean = tf.Variable(tf.random.normal([1, self.d2-1]), name='qVbias_mean', trainable=True)
             self.qVbias_std = tf.Variable(tf.random.normal([1, self.d2-1]), name='qVbias_std', trainable=True)
             
-            if self.err == "uniform":
-                self.qUmain  = self.qUmain_mean_gamma * (self.qUmain_mean_w_mu + qUmain_mean_epsilon_w * qUmain_mean_sigma_w)
-                self.qUbias = self.qUbias_mean_gamma * (self.qUbias_mean_w_mu + qUbias_mean_epsilon_w * qUbias_mean_sigma_w)
-                self.qVmain = self.qVmain_mean + (tf.exp(self.qVmain_std * 0.5) * tf.random.uniform(shape=self.qVmain_std.shape, minval=-0.1, maxval=0.1))
-                self.qVbias = self.qVbias_mean + (tf.exp(self.qVbias_std * 0.5) * tf.random.uniform(shape=self.qVbias_std.shape, minval=-0.1, maxval=0.1))
-            else:
                 
-                self.qUmain  = self.qUmain_mean_gamma * (self.qUmain_mean_w_mu + qUmain_mean_epsilon_w * qUmain_mean_sigma_w)
-                self.qUbias = self.qUbias_mean_gamma * (self.qUbias_mean_w_mu + qUbias_mean_epsilon_w * qUbias_mean_sigma_w)
-                self.qVmain = self.qVmain_mean + (tf.exp(self.qVmain_std * 0.5) * tf.random.normal(shape=self.qVmain_std.shape, mean=0, stddev=self.errstd_v))
-                self.qVbias = self.qVbias_mean + (tf.exp(self.qVbias_std * 0.5) * tf.random.normal(shape=self.qVbias_std.shape, mean=0, stddev=self.errstd_v))
+            self.qUmain  = self.qUmain_mean_gamma * (self.qUmain_mean_w_mu + qUmain_mean_epsilon_w * qUmain_mean_sigma_w)
+            self.qUbias = self.qUbias_mean_gamma * (self.qUbias_mean_w_mu + qUbias_mean_epsilon_w * qUbias_mean_sigma_w)
+            self.qVmain = self.qVmain_mean + (tf.exp(self.qVmain_std * 0.5) * tf.random.normal(shape=self.qVmain_std.shape, mean=0, stddev=0.001))
+            self.qVbias = self.qVbias_mean + (tf.exp(self.qVbias_std * 0.5) * tf.random.normal(shape=self.qVbias_std.shape, mean=0, stddev=0.001))
 
 
             qU = tf.concat(
@@ -332,16 +337,47 @@ class VBayesMM(object):
                     zip(self.gradients, self.variables))
 
         tf.compat.v1.global_variables_initializer().run()
+    
+    def relationship(self, top_selected_microbes=20, top_selected_metabolites=20):
+        
+        
+        U_ = np.hstack((np.ones((self.U.shape[0],1)),self.Ubias.reshape(-1,1), self.U))
+        V_ = np.vstack((self.Vbias.reshape(1,-1),np.ones((1,self.V.shape[1])), self.V))
+        ranks = pd.DataFrame(clr(centralize(clr_inv(np.hstack((np.zeros((self.U.shape[0], 1)), U_ @ V_))))))
+        
+        Umain_mean_gamma = self.U_mean_gamma
+        top_microbes = Umain_mean_gamma[:top_selected_microbes]
+        
+        top_metabolites = dict.fromkeys(m for x in [ranks.loc[f].sort_values(
+            ascending=False)[:top_selected_metabolites].index
+            for f in top_microbes] for m in x).keys()
+        
+        ranks_sel = ranks[top_metabolites]
+        ranks_sel = ranks_sel.loc[top_microbes]
+        
+        return ranks_sel
+        
 
     def fit(self, epoch=10, summary_interval=1000, checkpoint_interval=3600,
             testX=None, testY=None):
         
-        iterations = epoch * self.nnz // self.batch_size
+        """ Variational Bayesian microbiome multiomics 
+        
+        Parameters
+        ----------
+        
+        trainX : sparse array in coo format for microbiome data
+        trainY : np.array for metabolite data
+        testX : sparse array in coo format for microbiome data
+        testY : np.array for metabolite data
+        
+        """
+        
         losses, cvs, SMAPE = [], [], []
         cv = None
         last_checkpoint_time = 0
         last_summary_time = 0
-        #saver = tf.compat.v1.train.Saver()
+
         now = time.time()
         for i in tqdm(range(0, epoch)):
             
