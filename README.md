@@ -77,11 +77,10 @@ latent_microbiome_matrix = model.U
 
 microbial_species_selection = model.U_mean_gamma
 microbial_species_selection_mean = np.sort(np.mean(microbial_species_selection, axis=1))[::-1]
-
 ```
 | Latent microbiome matrix | Microbial species selection | 
 | ----------------------------------- |:---------------------------------------------:|
-| <img src="examples/Posterior_distribution_of_latent_microbiome_matrix.png" width="250" height="250">|<img src="examples/Posterior_distribution_of_microbial_species_selection.png" width="250" height="250">| 
+| <img src="examples/Posterior_distribution_of_latent_microbiome_matrix.png" width="400" height="400">|<img src="examples/Posterior_distribution_of_microbial_species_selection.png" width="400" height="400">| 
 
 
 ## Directory structure
