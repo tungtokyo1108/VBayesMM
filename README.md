@@ -54,7 +54,7 @@ train_microbes_coo = coo_matrix(train_microbes_df.values)
 test_microbes_coo = coo_matrix(test_microbes_df.values)
 ```
 
-- Creating and training a model
+- Creating, training and testing a model
 
 ```
 model = VBayesMM()
