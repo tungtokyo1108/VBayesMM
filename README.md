@@ -1,7 +1,7 @@
 # VBayesMM: Variational Bayesian microbiome multiomics
 
 ## Publication
-Tung Dang, Artem Lysenko and Tatsuhiko Tsunoda. "VBayesMM: Variational Bayesian neural network to prioritize important relationships of high-dimensional microbiome multiomics data" 
+Tung Dang, Artem Lysenko, Keith A. Boroevich and Tatsuhiko Tsunoda. "VBayesMM: Variational Bayesian neural network to prioritize important relationships of high-dimensional microbiome multiomics data" 
 
 
 ## The workflow of VBayesMM
