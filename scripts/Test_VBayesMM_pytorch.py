@@ -66,69 +66,30 @@ model = VBayesMM(d1=d1, d2=d2, num_samples=n, batch_size=n, device='cpu',
                  temperature = 0.5, mu01 = -0.6, mu02 = 0.6, rho01=-6., rho02=-6., lambda01=0.99, lambda02=0.99, ssprior = "uniform",
                  hard=False, threshold = 0.5)
 
-losses, val_losses = model.fit(train_microbes_coo, trainY_torch, test_microbes_coo, testY_torch, epochs=5000)
+losses, val_losses, val_SMAPE = model.fit(train_microbes_coo, trainY_torch, test_microbes_coo, testY_torch, epochs=5000)
 
 plt.plot(losses, "green")
 
 plt.plot(val_losses, "red")
 
+# Microbiome U and metabolite V matrices 
 
+u_mean = np.array(model.qUmain_mean.weight.data.detach())
+u_bias = np.array(model.qUbias_mean.weight.data.detach())
 
+plt.figure(figsize=(6, 6))
+sns.histplot(np.ravel(u_mean), bins=50, kde=True, color='red')
 
+def kl_div(mu, log_var):
+    return 1 + log_var - mu**2 - np.exp(log_var)
 
+u_mean_mu = np.ravel(model.qUmain_mean.weight.data.detach())
+u_mean_logvar = np.ravel(model.qUmain_std.weight.data.detach())
+plt.figure(figsize=(6, 6))
+sns.histplot(kl_div(u_mean_mu, u_mean_logvar), bins=50, kde=True, color='red')
 
+u_gamma_mean = np.array(model.qUmain_mean_gamma.detach())
+Umain_mean_gamma_mean = np.sort(np.mean(u_gamma_mean, axis=1))[::-1]
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+plt.figure(figsize=(6, 6))
+sns.histplot(Umain_mean_gamma_mean , bins=50, kde=True, color='red', stat="count", alpha=0.5)
