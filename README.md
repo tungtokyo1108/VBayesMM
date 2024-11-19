@@ -27,7 +27,7 @@ from VBayesMM import VBayesMM
 
 - Loading and preparing data in  ```examples/ ```
   
-  Let us first load a subsampled version of the obstructive sleep apnea (OSA) in mice dataset described in Tripathi et al. (2018). VBayesMM supports for loading arbitrary ```csv```, ```tsv```, and ```biom```
+  Let us first load a subsampled version of the obstructive sleep apnea (OSA) in mice dataset described in Tripathi et al. (2018). VBayesMM supports for loading arbitrary ```biom```, ```tsv```, and ```csv```
   
 ```
 microbes = load_table("microbes.biom")
@@ -70,7 +70,7 @@ with tf.Graph().as_default(), tf.compat.v1.Session(config=config) as session:
 | ----------------------------------- |:---------------------------------------------:|
 | <img src="examples/ELBO.png" width="500" height="300">|<img src="examples/SMAPE.png" width="500" height="300">| 
 
-- Visualizing the posterior distributions
+- Visualizing the posterior distributions of model outputs
 
 ```
 latent_microbiome_matrix = model.U
