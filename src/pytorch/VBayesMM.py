@@ -416,16 +416,18 @@ class VBayesMM(nn.Module):
         pred = holdout_count_reshaped * softmax_result
         
         cv = torch.mean(torch.abs(pred.squeeze() - Y_batch))
-        #MAE = nn.L1Loss()
-        #cv = MAE(pred.squeeze(), Y_batch)
         
-        return cv
+        SMAPE = torch.mean(
+            torch.abs(pred.squeeze() - Y_batch + 1e-6)/(torch.abs(Y_batch)+torch.abs(pred.squeeze()) + 1e-6))
+        
+        return cv, SMAPE
     
 
     def fit(self, trainX, trainY, valX, valY, epochs=10):
         """ Fit the model """
         losses = []
         val_losses = []
+        val_SMAPE = []
         
         for epoch in range(epochs):
             self.optimizer.zero_grad()
@@ -438,12 +440,13 @@ class VBayesMM(nn.Module):
             # Evaluate on validation data
             with torch.no_grad():
                 self.eval()  # Set the model to evaluation mode
-                val_loss = self.validate(valX, valY)
+                val_loss, val_smape = self.validate(valX, valY)
                 val_losses.append(val_loss.item())
+                val_SMAPE.append(val_smape.item())
                 self.train()  # Set the model back to training mode
 
-            print(f'Epoch {epoch + 1}, Loss: {loss.item()}, Validation Loss: {val_loss.item()}')
+            print(f'Epoch {epoch + 1}, Loss: {loss.item()}, Validation Loss: {val_smape.item()}')
         
         
-        return losses, val_losses
+        return losses, val_losses, val_SMAPE
 
