@@ -54,7 +54,7 @@ train_microbes_coo = coo_matrix(train_microbes_df.values)
 test_microbes_coo = coo_matrix(test_microbes_df.values)
 ```
 
-- Creating, training and testing a model
+- Creating, training, and testing a model
 
 ```
 model = VBayesMM()
@@ -69,6 +69,20 @@ with tf.Graph().as_default(), tf.compat.v1.Session(config=config) as session:
 | Train data | Test data | 
 | ----------------------------------- |:---------------------------------------------:|
 | <img src="examples/ELBO.png" width="500" height="250">|<img src="examples/SMAPE.png" width="500" height="250">| 
+
+- Visualizing the posterior distributions
+
+```
+latent_microbiome_matrix = model.U
+
+microbial_species_selection = model.U_mean_gamma
+microbial_species_selection_mean = np.sort(np.mean(microbial_species_selection, axis=1))[::-1]
+
+```
+| Latent microbiome matrix | Microbial species selection | 
+| ----------------------------------- |:---------------------------------------------:|
+| <img src="examples/Posterior_distribution_of_latent_microbiome_matrix.png" width="250" height="250">|<img src="examples/Posterior_distribution_of_microbial_species_selection.png" width="250" height="250">| 
+
 
 ## Directory structure
 
