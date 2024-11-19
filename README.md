@@ -68,7 +68,7 @@ with tf.Graph().as_default(), tf.compat.v1.Session(config=config) as session:
 ```
 | Train data | Test data | 
 | ----------------------------------- |:---------------------------------------------:|
-| <img src="examples/ELBO.png" width="500" height="250">|<img src="examples/SMAPE.png" width="500" height="250">| 
+| <img src="examples/ELBO.png" width="500" height="300">|<img src="examples/SMAPE.png" width="500" height="300">| 
 
 - Visualizing the posterior distributions
 
