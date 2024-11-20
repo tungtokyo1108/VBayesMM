@@ -95,7 +95,7 @@ microbial_species_selection_mean = np.sort(np.mean(microbial_species_selection, 
 ```
 | Latent microbiome matrix | Microbial species selection | 
 | ----------------------------------- |:---------------------------------------------:|
-| <img src="examples/Posterior_distribution_of_latent_microbiome_matrix.png" width="400" height="400">|<img src="examples/Posterior_distribution_of_microbial_species_selection.png" width="400" height="400">| 
+| <img src="examples/Posterior_distribution_of_latent_microbiome_matrix_pt.png" width="400" height="400">|<img src="examples/Posterior_distribution_of_microbial_species_selection_pt.png" width="400" height="400">| 
 
 
 ## Directory structure
