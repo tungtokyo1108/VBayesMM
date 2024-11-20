@@ -9,7 +9,7 @@ Tung Dang, Artem Lysenko, Keith A. Boroevich and Tatsuhiko Tsunoda. "VBayesMM: V
 <img src="VBayesMM_method.png" width="1000" height="500">
 
 ## Quick start
-
+### TensorFlow
 - Import packages 
 ```
 import pandas as pd
@@ -76,6 +76,21 @@ with tf.Graph().as_default(), tf.compat.v1.Session(config=config) as session:
 latent_microbiome_matrix = model.U
 
 microbial_species_selection = model.U_mean_gamma
+microbial_species_selection_mean = np.sort(np.mean(microbial_species_selection, axis=1))[::-1]
+```
+| Latent microbiome matrix | Microbial species selection | 
+| ----------------------------------- |:---------------------------------------------:|
+| <img src="examples/Posterior_distribution_of_latent_microbiome_matrix.png" width="400" height="400">|<img src="examples/Posterior_distribution_of_microbial_species_selection.png" width="400" height="400">| 
+
+
+### PyTorch
+
+- Visualizing the posterior distributions of model outputs
+
+```
+latent_microbiome_matrix = np.array(model.qUmain_mean.weight.data.detach())
+
+microbial_species_selection = np.array(model.qUmain_mean_gamma.detach())
 microbial_species_selection_mean = np.sort(np.mean(microbial_species_selection, axis=1))[::-1]
 ```
 | Latent microbiome matrix | Microbial species selection | 
