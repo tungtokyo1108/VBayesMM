@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Thu May  2 10:41:19 2024
-
 @author: tungbioinfo
 """
 
@@ -64,7 +62,7 @@ class VBayesMM(nn.Module):
     def __init__(self, d1, d2, num_samples = 100, subsample_size = 500,
                  batch_size=50, latent_dim=3, unorm_type = 2.0, vnorm_type = 1.0,
                  learning_rate=0.1, beta_1=0.8, beta_2=0.9, 
-                 temperature = 0.5, mu01 = -0.6, mu02 = 0.6, rho01=-6., rho02=-6., lambda01=0.99, lambda02=0.99, 
+                 temperature = 0.5, mu01 = 0, mu02 = 1, rho01=0, rho02=1, lambda01=0, lambda02=1, 
                  hard = False, threshold = 0.5, ssprior = "normal",
                  clipnorm=10., device='cpu', save_path=None):
         
@@ -115,12 +113,6 @@ class VBayesMM(nn.Module):
         self.qUbias_mean = nn.Embedding(self.d1, 1, norm_type=self.Unorm_type)
         self.qUbias_std = nn.Embedding(self.d1, 1, norm_type=self.Unorm_type)
         
-        """
-        self.qUmain_mean = nn.Embedding(self.d1, self.p, norm_type=1.0)
-        self.qUmain_std = nn.Embedding(self.d1, self.p, norm_type=1.0)
-        self.qUbias_mean = nn.Embedding(self.d1, 1, norm_type=1.0)
-        self.qUbias_std = nn.Embedding(self.d1, 1, norm_type=1.0)
-        """
         
         if self.hard == True:
             self.qVmain_mean = nn.Linear(self.p, self.d2, dtype=torch.float64)
@@ -152,30 +144,6 @@ class VBayesMM(nn.Module):
             self.qUbias_std_w_theta = nn.Parameter(torch.logit(torch.Tensor(self.d1, 1).uniform_(self.lambda01, self.lambda02)))
             self.qUbias_std_gamma = None
             
-        elif self.ssprior == "gamma":
-            gamma_dist_mu = torch.distributions.Gamma(self.mu01, self.mu02)
-            gamma_dist_rho = torch.distributions.Gamma(self.rho01, self.rho02)
-            
-            self.qUmain_mean_w_mu = nn.Parameter(gamma_dist_mu.sample((self.d1, self.p)))
-            self.qUmain_mean_w_rho = nn.Parameter(gamma_dist_rho.sample((self.d1, self.p)))
-            self.qUmain_mean_w_theta = nn.Parameter(logit(torch.Tensor(self.d1, self.p).uniform_(self.lambda01, self.lambda02)))
-            self.qUmain_mean_gamma = None
-            
-            self.qUmain_std_w_mu = nn.Parameter(gamma_dist_mu.sample((self.d1, self.p)))
-            self.qUmain_std_w_rho = nn.Parameter(gamma_dist_rho.sample((self.d1, self.p)))
-            self.qUmain_std_w_theta = nn.Parameter(logit(torch.Tensor(self.d1, self.p).uniform_(self.lambda01, self.lambda02)))
-            self.qUmain_std_gamma = None
-            
-            self.qUbias_mean_w_mu = nn.Parameter(gamma_dist_mu.sample((self.d1, 1)))
-            self.qUbias_mean_w_rho = nn.Parameter(gamma_dist_rho.sample((self.d1, 1)))
-            self.qUbias_mean_w_theta = nn.Parameter(torch.logit(torch.Tensor(self.d1, 1).uniform_(self.lambda01, self.lambda02)))
-            self.qUbias_mean_gamma = None
-            
-            self.qUbias_std_w_mu = nn.Parameter(gamma_dist_mu.sample((self.d1, 1)))
-            self.qUbias_std_w_rho = nn.Parameter(gamma_dist_rho.sample((self.d1, 1)))
-            self.qUbias_std_w_theta = nn.Parameter(torch.logit(torch.Tensor(self.d1, 1).uniform_(self.lambda01, self.lambda02)))
-            self.qUbias_std_gamma = None
-            
         else:
             self.qUmain_mean_w_mu = nn.Parameter(torch.Tensor(self.d1, self.p).uniform_(self.mu01,self.mu02))
             self.qUmain_mean_w_rho = nn.Parameter(torch.Tensor(self.d1, self.p).uniform_(self.rho01, self.rho02))
@@ -199,7 +167,6 @@ class VBayesMM(nn.Module):
 
         # Optimizer setup
         self.optimizer = optim.AdamW(self.parameters(), lr=self.learning_rate)
-        #self.optimizer = optim.Adam(self.parameters(), lr=self.learning_rate)
 
     def forward(self, trainX, trainY):
         
@@ -445,7 +412,7 @@ class VBayesMM(nn.Module):
                 val_SMAPE.append(val_smape.item())
                 self.train()  # Set the model back to training mode
 
-            print(f'Epoch {epoch + 1}, Loss: {loss.item()}, Validation Loss: {val_smape.item()}')
+            print(f'Epoch {epoch + 1}, Train_ELBO: {loss.item()}, Validation_SMAPE: {val_smape.item()}')
         
         
         return losses, val_losses, val_SMAPE
