@@ -84,6 +84,54 @@ microbial_species_selection_mean = np.sort(np.mean(microbial_species_selection, 
 
 
 ### PyTorch
+- Import packages
+
+```
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import biom
+from biom import load_table, Table
+from scipy.stats import entropy, spearmanr
+from scipy.sparse import coo_matrix
+
+import tensorflow as tf
+from VBayesMM import VBayesMM
+```
+
+- Loading and preparing data
+
+```
+microbes = load_table("microbes.biom")
+metabolites = load_table("metabolites.biom")
+microbes_df = microbes.to_dataframe()
+metabolites_df = metabolites.to_dataframe()
+
+microbes_df = microbes_df.astype(pd.SparseDtype("float64",fill_value=0))
+metabolites_df = metabolites_df.astype(pd.SparseDtype("float64",fill_value=0))
+microbes_df, metabolites_df = microbes_df.align(metabolites_df, axis=0, join='inner')
+
+num_test = 20
+
+sample_ids = set(np.random.choice(microbes_df.index, size=num_test))
+sample_ids = np.array([(x in sample_ids) for x in microbes_df.index])
+
+train_microbes_df = microbes_df.loc[~sample_ids]
+test_microbes_df = microbes_df.loc[sample_ids]
+train_metabolites_df = metabolites_df.loc[~sample_ids]
+test_metabolites_df = metabolites_df.loc[sample_ids]
+
+n, d1 = train_microbes_df.shape
+n, d2 = train_metabolites_df.shape
+
+train_microbes_coo = coo_matrix(train_microbes_df.values)
+test_microbes_coo = coo_matrix(test_microbes_df.values)
+trainY_torch = torch.tensor(train_metabolites_df.to_numpy(), dtype=torch.float32)
+testY_torch = torch.tensor(test_metabolites_df.to_numpy(), dtype=torch.float32)
+```
+
+
 
 - Visualizing the posterior distributions of model outputs
 
