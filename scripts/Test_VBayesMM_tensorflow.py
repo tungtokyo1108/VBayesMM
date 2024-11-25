@@ -75,20 +75,11 @@ plt.plot(MAE, "red")
 plt.plot(SMAPE, "red")
 
 Umain = model.U
-Ubias = model.Ubias
-Umain_mean = model.U_mean
-
 plt.figure(figsize=(6, 6))
 sns.histplot(np.ravel(Umain), bins=50, kde=True, color='red', stat="count")
 
 
 Umain_mean_gamma = model.U_mean_gamma
-Umain_mean_gamma_df = pd.DataFrame(data=Umain_mean_gamma, index=train_microbes_df.columns)
-Umain_mean_gamma_df = Umain_mean_gamma_df.mean(axis=1).sort_values(ascending=False)
 Umain_mean_gamma_mean = np.sort(np.mean(Umain_mean_gamma, axis=1))[::-1]
-
 plt.figure(figsize=(6, 6))
 sns.histplot(Umain_mean_gamma_mean , bins=50, kde=True, color='red', stat="count", alpha=0.5)
-
-
-
