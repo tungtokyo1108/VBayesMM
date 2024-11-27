@@ -60,10 +60,10 @@ def log_gaussian(x, mu, sigma):
 
 class VBayesMM(nn.Module):
     
-    def __init__(self, d1, d2, num_samples = 100, subsample_size = 500,
+    def __init__(self, d1, d2, num_samples = 100, subsample_size = 10,
                  batch_size=50, latent_dim=3, unorm_type = 2.0, vnorm_type = 1.0,
                  learning_rate=0.1, beta_1=0.8, beta_2=0.9, 
-                 temperature = 0.5, mu01 = 0, mu02 = 1, rho01=0, rho02=1, lambda01=0, lambda02=0.1, 
+                 temperature = 0.5, mu01 = 0, mu02 = 1, rho01=0, rho02=1, lambda01=0, lambda02=1, 
                  hard = False, threshold = 0.5, ssprior = "normal",
                  clipnorm=10., device='cpu', save_path=None):
         
