@@ -134,7 +134,7 @@ testY_torch = torch.tensor(test_metabolites_df.to_numpy(), dtype=torch.float32)
 - Creating, training, and testing a model
 
 ```
-model = VBayesMM(d1=d1, d2=d2, num_samples=n, batch_size=n)
+model = VBayesMM(d1=d1, d2=d2, num_samples=n)
 ELBO, _, SMAPE = model.fit(train_microbes_coo, trainY_torch, test_microbes_coo, testY_torch, epochs=5000)
 ```
 | Train data | Test data | 
