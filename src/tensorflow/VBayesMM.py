@@ -5,6 +5,7 @@
 @author: tungbioinfo
 """
 
+
 import os
 import time
 from tqdm import tqdm
@@ -71,6 +72,9 @@ class VBayesMM(object):
         If set to false, in the backward pass to enable the calculation for gradient in gumbel-softmax-approximation. 
         
     learning_rate : float, default=0.1
+    
+    batch_size : int, default= Entire Training Set
+        The number of training samples used to update a model's parameters
     
     Variational parameters \Theta = {\alpha_{U}, \beta_{U}, \Xi, \alpha_{V}, \beta_{V}} 
     
