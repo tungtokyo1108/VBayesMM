@@ -15,11 +15,15 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import biom
 from biom import load_table, Table
+from biom.util import biom_open
+from skbio import OrdinationResults
+from skbio.stats.composition import clr, centralize, closure
+from skbio.stats.composition import clr_inv as softmax
 from scipy.stats import entropy, spearmanr
 from scipy.sparse import coo_matrix
 
 import tensorflow as tf
-from VBayesMM import VBayesMM
+from VBayesMM_v1 import VBayesMM
 
 #------------------------------------------------------------------------------
 ###################### Test performance with real data ########################
@@ -33,9 +37,7 @@ metabolites_df = metabolites.to_dataframe()
 microbes_df = microbes_df.astype(pd.SparseDtype("float64",fill_value=0))
 metabolites_df = metabolites_df.astype(pd.SparseDtype("float64",fill_value=0))
 
-microbes_df, metabolites_df = microbes_df.align(
-    metabolites_df, axis=0, join='inner'
-)
+microbes_df, metabolites_df = microbes_df.align(metabolites_df, axis=0, join='inner')
 
 num_test = 20
 
@@ -74,12 +76,15 @@ plt.plot(MAE, "red")
 
 plt.plot(SMAPE, "red")
 
+
 Umain = model.U
 plt.figure(figsize=(6, 6))
 sns.histplot(np.ravel(Umain), bins=50, kde=True, color='red', stat="count")
+plt.ylabel('Count', size=15)
 
 
 Umain_mean_gamma = model.U_mean_gamma
 Umain_mean_gamma_mean = np.sort(np.mean(Umain_mean_gamma, axis=1))[::-1]
 plt.figure(figsize=(6, 6))
 sns.histplot(Umain_mean_gamma_mean , bins=50, kde=True, color='red', stat="count", alpha=0.5)
+plt.ylabel('Count', size=15)
