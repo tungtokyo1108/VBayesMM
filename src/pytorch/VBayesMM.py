@@ -60,6 +60,47 @@ def log_gaussian(x, mu, sigma):
 
 class VBayesMM(nn.Module):
     
+    """ Variational Bayesian microbiome multiomics 
+    
+    Parameters
+    ----------
+    latent_dim : int, default=3 
+        The number of latent dimensions.
+        
+    temperature : float, default=0.5
+        The temperature parameter of reparameterization of categorical variables
+        
+    hard : bool, default=False
+        If set to false, in the backward pass to enable the calculation for gradient in gumbel-softmax-approximation. 
+        
+    learning_rate : float, default=0.1
+    
+    batch_size : int, default= Entire Training Set
+        The number of training samples used to update a model's parameters
+    
+    Variational parameters \Theta = {\alpha_{U}, \beta_{U}, \Xi, \alpha_{V}, \beta_{V}} 
+    
+    mu01 : int, default=0 
+        The mean of normal distribution prior for \alpha_{U}
+        
+    mu02 : int, default=1
+        The variance of normal distribution prior for \alpha_{U}
+        
+    rho01 : int, default=0 
+        The mean of normal distribution prior for \beta_{U}
+        
+    rho02 : int, default=1
+        The variance of normal distribution prior for \beta_{U}
+        
+    lambda01 : int, default=0 
+        The minimum of uniform distribution prior for \Xi
+        
+    lambda02 : int, default=1
+        The maximum of uniform distribution prior for \Xi
+        
+    
+    """
+    
     def __init__(self, d1, d2, num_samples = 100, 
                  batch_size=50, latent_dim=3, unorm_type = 2.0, vnorm_type = 0,
                  learning_rate=0.1, beta_1=0.8, beta_2=0.9, 
@@ -391,7 +432,19 @@ class VBayesMM(nn.Module):
     
 
     def fit(self, trainX, trainY, valX, valY, epochs=10):
-        """ Fit the model """
+        
+        """ Variational Bayesian microbiome multiomics 
+        
+        Parameters
+        ----------
+        
+        trainX : sparse array in coo format for microbiome data
+        trainY : array for metabolite data
+        testX : sparse array in coo format for microbiome data
+        testY : array for metabolite data
+        
+        """
+        
         losses = []
         val_losses = []
         val_SMAPE = []
