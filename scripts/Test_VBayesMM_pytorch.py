@@ -22,7 +22,7 @@ from skbio.stats.composition import clr, centralize, clr_inv
 from scipy.sparse import coo_matrix
 
 import torch
-from VBayesMM_v1 import VBayesMM
+from VBayesMM import VBayesMM
 
 
 #------------------------------------------------------------------------------
