@@ -33,7 +33,7 @@ from VBayesMM import VBayesMM
 
 - Loading and preparing data in  ```examples/ ```
   
-  Let us first load a subsampled version of the obstructive sleep apnea (OSA) in mice dataset described in Tripathi et al. (2018). VBayesMM supports for loading arbitrary ```biom```, ```tsv```, and ```csv```
+  Let us first load the simple sample data to see an example of the VBayesMM. VBayesMM supports for loading arbitrary ```biom```, ```tsv```, and ```csv```
   
 ```
 microbes = load_table("microbes.biom")
