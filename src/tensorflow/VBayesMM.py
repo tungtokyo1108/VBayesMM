@@ -312,12 +312,18 @@ class VBayesMM(object):
                     [self.qVbias, tf.ones([1, self.d2-1]), self.qVmain], axis=0)
                 
                 cv_du = tf.gather(qU_cv, X_cvbatch, axis=0, name='cv_du')
+                """
                 pred = tf.reshape(
                     holdout_count, [-1, 1]) * tf.nn.softmax(
                         tf.concat([tf.zeros([
                             cv_du.shape[0], 1]),
                                    cv_du @ qV_cv], axis=1, name='pred')
                     )
+                """
+                   
+                logits = tf.concat([tf.zeros([cv_du.shape[0], 1]), cv_du @ qV_cv], axis=1)
+                log_probs = tf.nn.log_softmax(logits, axis=1)  # shape: [batch, classes]
+                pred = tf.reshape(holdout_count, [-1, 1]) * tf.exp(log_probs)
 
                 self.cv = tf.reduce_mean(
                     tf.squeeze(tf.abs(pred - Y_cvbatch))
