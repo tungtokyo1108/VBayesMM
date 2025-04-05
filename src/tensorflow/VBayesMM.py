@@ -34,8 +34,11 @@ def logit(z):
     return tf.math.log(z/(1. - z))
 
 def sample_gumbel(shape, eps=1e-8):
+    #U = tf.random.uniform(shape, minval=0, maxval=1)
+    #return -tf.math.log(-tf.math.log(U + eps) + eps)
+
     U = tf.random.uniform(shape, minval=0, maxval=1)
-    return -tf.math.log(-tf.math.log(U + eps) + eps)
+    return tf.math.log(U + eps) - tf.math.log(1.0 - U + eps)
 
 def gumbel_softmax(logits, temperature=0.5, hard=False):
     
