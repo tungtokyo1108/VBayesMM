@@ -23,7 +23,7 @@ from scipy.stats import entropy, spearmanr
 from scipy.sparse import coo_matrix
 
 import tensorflow as tf
-from VBayesMM_v1 import VBayesMM
+from VBayesMM import VBayesMM
 
 #------------------------------------------------------------------------------
 ###################### Test performance with real data ########################
