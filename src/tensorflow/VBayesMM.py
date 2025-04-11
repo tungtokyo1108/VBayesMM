@@ -36,7 +36,6 @@ def logit(z):
 def sample_gumbel(shape, eps=1e-8):
     
     uniform = tf.random.uniform(shape, minval=0, maxval=1)
-
     # Clip uniform samples for numerical stability
     uniform = tf.clip_by_value(uniform, eps, 1.0 - eps)
     return -tf.math.log(-tf.math.log(uniform))
