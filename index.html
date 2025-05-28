@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VBayesMM - Variational Bayesian Neural Network for Microbiome Analysis</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+        }
+
+        .nav-links a:hover {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .hero {
+            padding: 120px 0 80px;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #667eea;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .section {
+            padding: 80px 0;
+            background: white;
+            margin: 2rem 0;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, #f5f7ff, #e8f2ff);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(102, 126, 234, 0.1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .methodology {
+            background: linear-gradient(135deg, #f8f9ff, #e8f2ff);
+        }
+
+        .methodology-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .step {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .step-number {
+            position: absolute;
+            top: -15px;
+            left: 2rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .code-section {
+            background: #1a1a1a;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .code-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .code-title {
+            color: #ffffff;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .copy-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .code-block {
+            background: #2d3142;
+            color: #e0e6ed;
+            padding: 1.5rem;
+            border-radius: 10px;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            line-height: 1.5;
+        }
+
+        .highlight {
+            color: #7dd3fc;
+        }
+
+        .keyword {
+            color: #f472b6;
+        }
+
+        .string {
+            color: #34d399;
+        }
+
+        .comment {
+            color: #9ca3af;
+            font-style: italic;
+        }
+
+        .applications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .application-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .application-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .card-body {
+            padding: 2rem;
+        }
+
+        .visualization-container {
+            background: #f8f9ff;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .placeholder-chart {
+            background: linear-gradient(135deg, #e0e7ff, #c7d2fe);
+            height: 300px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #667eea;
+            margin: 1rem 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        footer {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #667eea;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .features-grid,
+            .methodology-steps,
+            .applications-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">VBayesMM</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#methodology">Methodology</a></li>
+                <li><a href="#applications">Applications</a></li>
+                <li><a href="#examples">Examples</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>VBayesMM</h1>
+            <p>Variational Bayesian Neural Network to Prioritize Important Relationships of High-Dimensional Microbiome Multiomics Data</p>
+            <div class="cta-buttons">
+                <a href="https://github.com/tungtokyo1108/VBayesMM" class="btn btn-primary">
+                    <i class="fab fa-github"></i> View on GitHub
+                </a>
+                <a href="https://doi.org/10.1101/2024.11.27.625587" class="btn btn-secondary">
+                    <i class="fas fa-file-alt"></i> Read Paper
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="section">
+        <div class="container">
+            <h2>Key Features</h2>
+            <div class="features-grid">
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Variational Bayesian Networks</h3>
+                    <p>Advanced neural network architecture with Bayesian inference for handling uncertainty in high-dimensional microbiome data analysis.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-dna"></i>
+                    </div>
+                    <h3>Multiomics Integration</h3>
+                    <p>Seamlessly integrates microbiome and metabolome data to discover meaningful biological relationships and interactions.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Species Prioritization</h3>
+                    <p>Identifies and prioritizes important microbial species based on their relationships with metabolic profiles.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Dual Framework Support</h3>
+                    <p>Available for both TensorFlow and PyTorch users, providing flexibility in implementation and integration.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>Multiple Data Formats</h3>
+                    <p>Supports BIOM, TSV, and CSV formats for maximum compatibility with existing microbiome analysis pipelines.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-microscope"></i>
+                    </div>
+                    <h3>Disease Applications</h3>
+                    <p>Validated on multiple disease models including cancer, metabolic disorders, and sleep-related conditions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="methodology" class="section methodology">
+        <div class="container">
+            <h2>Methodology</h2>
+            <p style="text-align: center; font-size: 1.1rem; margin-bottom: 2rem; color: #666;">
+                VBayesMM employs a sophisticated variational Bayesian approach to model complex relationships between microbiome and metabolome data.
+            </p>
+            
+            <div class="methodology-steps">
+                <div class="step fade-in">
+                    <div class="step-number">1</div>
+                    <h3>Data Preprocessing</h3>
+                    <p>Load and align microbiome and metabolome data, handling sparse matrices and ensuring sample consistency across datasets.</p>
+                </div>
+                <div class="step fade-in">
+                    <div class="step-number">2</div>
+                    <h3>Model Architecture</h3>
+                    <p>Construct variational Bayesian neural network with latent representations capturing microbial-metabolic relationships.</p>
+                </div>
+                <div class="step fade-in">
+                    <div class="step-number">3</div>
+                    <h3>Bayesian Inference</h3>
+                    <p>Apply variational inference to learn posterior distributions over model parameters and latent variables.</p>
+                </div>
+                <div class="step fade-in">
+                    <div class="step-number">4</div>
+                    <h3>Species Selection</h3>
+                    <p>Identify important microbial species through learned gamma distributions and feature importance scoring.</p>
+                </div>
+            </div>
+
+            <div class="visualization-container">
+                <h3>Model Architecture Visualization</h3>
+                <div class="placeholder-chart">
+                    <div>
+                        <i class="fas fa-project-diagram" style="font-size: 3rem; margin-bottom: 1rem; display: block;"></i>
+                        <div>Microbiome → Latent Space → Metabolome</div>
+                        <div style="font-size: 0.9rem; margin-top: 0.5rem; opacity: 0.7;">Variational Bayesian Neural Network</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="applications" class="section">
+        <div class="container">
+            <h2>Applications & Datasets</h2>
+            <div class="applications-grid">
+                <div class="application-card fade-in">
+                    <div class="card-header">
+                        <h3><i class="fas fa-bed"></i> Sleep Disorders</h3>
+                    </div>
+                    <div class="card-body">
+                        <h4>Obstructive Sleep Apnea (OSA)</h4>
+                        <p>Analysis of microbiome-metabolome relationships in mouse models of sleep apnea using 16S rRNA sequencing and LC-MS/MS metabolomics.</p>
+                        <ul style="margin-top: 1rem; color: #666;">
+                            <li>16S rRNA gene sequencing</li>
+                            <li>LC-MS/MS metabolomics</li>
+                            <li>Mouse model validation</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="application-card fade-in">
+                    <div class="card-header">
+                        <h3><i class="fas fa-hamburger"></i> Metabolic Disorders</h3>
+                    </div>
+                    <div class="card-body">
+                        <h4>High-Fat Diet (HFD) Model</h4>
+                        <p>Investigation of diet-induced changes in microbiome-metabolome interactions in murine models of metabolic dysfunction.</p>
+                        <ul style="margin-top: 1rem; color: #666;">
+                            <li>Diet-induced obesity model</li>
+                            <li>Metabolic pathway analysis</li>
+                            <li>Longitudinal data support</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="application-card fade-in">
+                    <div class="card-header">
+                        <h3><i class="fas fa-user-md"></i> Cancer Research</h3>
+                    </div>
+                    <div class="card-body">
+                        <h4>Gastric & Colorectal Cancer</h4>
+                        <p>Clinical application in cancer patients using whole-genome shotgun sequencing and CE-TOFMS metabolomics.</p>
+                        <ul style="margin-top: 1rem; color: #666;">
+                            <li>WGS microbiome profiling</li>
+                            <li>CE-TOFMS metabolomics</li>
+                            <li>Stage 0-4 cancer patients</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">4</div>
+                    <div>Clinical Datasets</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">2</div>
+                    <div>Framework Support</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">3</div>
+                    <div>Data Formats</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">∞</div>
+                    <div>Possibilities</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="examples" class="section">
+        <div class="container">
+            <h2>Code Examples</h2>
+            
+            <div class="code-section">
+                <div class="code-header">
+                    <div class="code-title"><i class="fab fa-python"></i> TensorFlow Implementation</div>
+                    <button class="copy-btn" onclick="copyCode('tf-code')">
+                        <i class="fas fa-copy"></i> Copy
+                    </button>
+                </div>
+                <div class="code-block" id="tf-code">
+<span class="comment"># Import packages</span>
+<span class="keyword">import</span> <span class="highlight">pandas</span> <span class="keyword">as</span> pd
+<span class="keyword">import</span> <span class="highlight">numpy</span> <span class="keyword">as</span> np
+<span class="keyword">import</span> <span class="highlight">tensorflow</span> <span class="keyword">as</span> tf
+<span class="keyword">from</span> <span class="highlight">biom</span> <span class="keyword">import</span> load_table
+<span class="keyword">from</span> <span class="highlight">scipy.sparse</span> <span class="keyword">import</span> coo_matrix
+<span class="keyword">from</span> <span class="highlight">VBayesMM</span> <span class="keyword">import</span> VBayesMM
+
+<span class="comment"># Load and prepare data</span>
+microbes = load_table(<span class="string">"microbes.biom"</span>)
+metabolites = load_table(<span class="string">"metabolites.biom"</span>)
+
+<span class="comment"># Convert to DataFrame and align samples</span>
+microbes_df = microbes.to_dataframe()
+metabolites_df = metabolites.to_dataframe()
+microbes_df, metabolites_df = microbes_df.align(metabolites_df, axis=<span class="highlight">0</span>, join=<span class="string">'inner'</span>)
+
+<span class="comment"># Create and train model</span>
+model = VBayesMM()
+config = tf.compat.v1.ConfigProto()
+
+<span class="keyword">with</span> tf.Graph().as_default(), tf.compat.v1.Session(config=config) <span class="keyword">as</span> session:
+    model(session, train_microbes_coo, train_metabolites_df.values,
+          test_microbes_coo, test_metabolites_df.values)
+    ELBO, _, SMAPE = model.fit(epoch=<span class="highlight">5000</span>)
+                </div>
+            </div>
+
+            <div class="code-section">
+                <div class="code-header">
+                    <div class="code-title"><i class="fas fa-fire"></i> PyTorch Implementation</div>
+                    <button class="copy-btn" onclick="copyCode('torch-code')">
+                        <i class="fas fa-copy"></i> Copy
+                    </button>
+                </div>
+                <div class="code-block" id="torch-code">
+<span class="comment"># Import packages</span>
+<span class="keyword">import</span> <span class="highlight">torch</span>
+<span class="keyword">import</span> <span class="highlight">pandas</span> <span class="keyword">as</span> pd
+<span class="keyword">import</span> <span class="highlight">numpy</span> <span class="keyword">as</span> np
+<span class="keyword">from</span> <span class="highlight">biom</span> <span class="keyword">import</span> load_table
+<span class="keyword">from</span> <span class="highlight">scipy.sparse</span> <span class="keyword">import</span> coo_matrix
+<span class="keyword">from</span> <span class="highlight">VBayesMM</span> <span class="keyword">import</span> VBayesMM
+
+<span class="comment"># Prepare data for PyTorch</span>
+n, d1 = train_microbes_df.shape
+n, d2 = train_metabolites_df.shape
+
+train_microbes_coo = coo_matrix(train_microbes_df.values)
+trainY_torch = torch.tensor(train_metabolites_df.to_numpy(), dtype=torch.float32)
+testY_torch = torch.tensor(test_metabolites_df.to_numpy(), dtype=torch.float32)
+
+<span class="comment"># Create and train model</span>
+model = VBayesMM(d1=d1, d2=d2, num_samples=n)
+ELBO, _, SMAPE = model.fit(train_microbes_coo, trainY_torch, 
+                          test_microbes_coo, testY_torch, epochs=<span class="highlight">5000</span>)
+
+<span class="comment"># Extract results</span>
+latent_matrix = np.array(model.qUmain_mean.weight.data.detach())
+species_selection = np.array(model.qUmain_mean_gamma.detach())
+                </div>
+            </div>
+
+            <div class="visualization-container">
+                <h3>Model Performance Visualization</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 2rem 0;">
+                    <div class="placeholder-chart">
+                        <div>
+                            <i class="fas fa-chart-line" style="font-size: 2rem; margin-bottom: 1rem; display: block;"></i>
+                            <div>ELBO Convergence</div>
+                            <div style="font-size: 0.8rem; opacity: 0.7;">Training Progress</div>
+                        </div>
+                    </div>
+                    <div class="placeholder-chart">
+                        <div>
+                            <i class="fas fa-bullseye" style="font-size: 2rem; margin-bottom: 1rem; display: block;"></i>
+                            <div>SMAPE Score</div>
+                            <div style="font-size: 0.8rem; opacity: 0.7;">Prediction Accuracy</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="placeholder-chart">
+                    <div>
+                        <i class="fas fa-microscope" style="font-size: 2rem; margin-bottom: 1rem; display: block;"></i>
+                        <div>Microbial Species Selection</div>
+                        <div style="font-size: 0.8rem; opacity: 0.7;">Posterior Distribution Visualization</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>VBayesMM</h3>
+                    <p>Advancing microbiome research through sophisticated Bayesian neural networks and multiomics integration.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="https://github.com/tungtokyo1108/VBayesMM"><i class="fab fa-github"></i> GitHub Repository</a>
+                    <a href="https://doi.org/10.1101/2024.11.27.625587"><i class="fas fa-file-alt"></i> Research Paper</a>
+                    <a href="mailto:dangthanhtung91@vn-bml.com"><i class="fas fa-envelope"></i> Contact Author</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Citation</h3>
+                    <p style="font-size: 0.9rem; color: #ccc;">
+                        Dang, T., Lysenko, A., Boroevich, K.A., & Tsunoda, T. (2024). 
+                        VBayesMM: Variational Bayesian neural network to prioritize important relationships of high-dimensional microbiome multiomics data. 
+                        <em>bioRxiv</em>.
+                    </p>
+                </div>
+            </div>
+            <div style="border-top: 1px solid #333; padding-top: 2rem; margin-top: 2rem;">
+                <p>&copy; 2024 VBayesMM. Released under open source license.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Header background change on scroll
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+
+        // Copy code functionality
+        function copyCode(elementId) {
+            const codeElement = document.getElementById(elementId);
+            const text = codeElement.textContent;
+            
+            navigator.clipboard.writeText(text).then(function() {
+                // Visual feedback
+                const button = event.target.closest('.copy-btn');
+                const originalText = button.innerHTML;
+                button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                button.style.background = '#22c55e';
+                
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                    button.style.background = '#667eea';
+                }, 2000);
+            }).catch(function(err) {
+                console.error('Could not copy text: ', err);
+            });
+        }
+
+        // Add loading animation
+        window.addEventListener('load', function() {
+            document.body.style.opacity = '1';
+        });
+    </script>
+</body>
+</html>
