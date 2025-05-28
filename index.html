@@ -733,33 +733,6 @@ latent_matrix = np.array(model.qUmain_mean.weight.data.detach())
 species_selection = np.array(model.qUmain_mean_gamma.detach())
                 </div>
             </div>
-
-            <div class="visualization-container">
-                <h3>Model Performance Visualization</h3>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 2rem 0;">
-                    <div class="placeholder-chart">
-                        <div>
-                            <i class="fas fa-chart-line" style="font-size: 2rem; margin-bottom: 1rem; display: block;"></i>
-                            <div>ELBO Convergence</div>
-                            <div style="font-size: 0.8rem; opacity: 0.7;">Training Progress</div>
-                        </div>
-                    </div>
-                    <div class="placeholder-chart">
-                        <div>
-                            <i class="fas fa-bullseye" style="font-size: 2rem; margin-bottom: 1rem; display: block;"></i>
-                            <div>SMAPE Score</div>
-                            <div style="font-size: 0.8rem; opacity: 0.7;">Prediction Accuracy</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="placeholder-chart">
-                    <div>
-                        <i class="fas fa-microscope" style="font-size: 2rem; margin-bottom: 1rem; display: block;"></i>
-                        <div>Microbial Species Selection</div>
-                        <div style="font-size: 0.8rem; opacity: 0.7;">Posterior Distribution Visualization</div>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
 
