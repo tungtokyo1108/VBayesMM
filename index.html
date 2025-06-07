@@ -1449,6 +1449,322 @@ important_species = model.<span class="code-function">get_selected_features</spa
         </div>
     </section>
 
+    <section id="examples" class="section">
+        <div class="container">
+            <h2>Code Examples</h2>
+            <p style="text-align: center; color: #666; font-size: 1.1rem; margin-bottom: 3rem;">
+                Let us first load the simple sample data to see an example of the VBayesMM. VBayesMM supports for loading arbitrary 
+                <strong>biom</strong>, <strong>tsv</strong>, and <strong>csv</strong> formats.
+            </p>
+            
+            <!-- TensorFlow Example -->
+            <div class="example-framework fade-in" style="margin-bottom: 4rem;">
+                <div class="framework-header">
+                    <h3><i class="fab fa-google" style="color: #ff6f00;"></i> TensorFlow Implementation</h3>
+                </div>
+                
+                <div class="example-step">
+                    <h4>Import packages</h4>
+                    <div class="code-section">
+                        <div class="code-header">
+                            <div class="code-title"><i class="fab fa-python"></i> Python</div>
+                            <button class="copy-btn" onclick="copyCode('tf-imports')">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <div class="code-block" id="tf-imports">
+<span class="keyword">import</span> <span class="highlight">pandas</span> <span class="keyword">as</span> pd<br>
+<span class="keyword">import</span> <span class="highlight">numpy</span> <span class="keyword">as</span> np<br>
+<span class="keyword">import</span> <span class="highlight">matplotlib.pyplot</span> <span class="keyword">as</span> plt<br>
+<span class="keyword">import</span> <span class="highlight">seaborn</span> <span class="keyword">as</span> sns<br>
+<span class="keyword">import</span> <span class="highlight">biom</span><br>
+<span class="keyword">from</span> <span class="highlight">biom</span> <span class="keyword">import</span> load_table, Table<br>
+<span class="keyword">from</span> <span class="highlight">scipy.stats</span> <span class="keyword">import</span> entropy, spearmanr<br>
+<span class="keyword">from</span> <span class="highlight">scipy.sparse</span> <span class="keyword">import</span> coo_matrix<br>
+<span class="keyword">import</span> <span class="highlight">tensorflow</span> <span class="keyword">as</span> tf<br>
+<span class="keyword">from</span> <span class="highlight">VBayesMM</span> <span class="keyword">import</span> VBayesMM<br>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="example-step">
+                    <h4>Loading and preparing data in <code>examples/</code></h4>
+                    <div class="code-section">
+                        <div class="code-header">
+                            <div class="code-title"><i class="fab fa-python"></i> Data Preparation</div>
+                            <button class="copy-btn" onclick="copyCode('tf-data-prep')">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <div class="code-block" id="tf-data-prep">
+<span class="variable">microbes</span> = <span class="function">load_table</span>(<span class="string">"microbes.biom"</span>)<br>
+<span class="variable">metabolites</span> = <span class="function">load_table</span>(<span class="string">"metabolites.biom"</span>)<br>
+
+<span class="variable">microbes_df</span> = <span class="variable">microbes</span>.<span class="function">to_dataframe</span>()<br>
+<span class="variable">metabolites_df</span> = <span class="variable">metabolites</span>.<span class="function">to_dataframe</span>()<br>
+
+<span class="variable">microbes_df</span> = <span class="variable">microbes_df</span>.<span class="function">astype</span>(<span class="variable">pd</span>.<span class="function">SparseDtype</span>(<span class="string">"float64"</span>, <span class="variable">fill_value</span>=<span class="number">0</span>))<br>
+<span class="variable">metabolites_df</span> = <span class="variable">metabolites_df</span>.<span class="function">astype</span>(<span class="variable">pd</span>.<span class="function">SparseDtype</span>(<span class="string">"float64"</span>, <span class="variable">fill_value</span>=<span class="number">0</span>))<br>
+
+<span class="variable">microbes_df</span>, <span class="variable">metabolites_df</span> = <span class="variable">microbes_df</span>.<span class="function">align</span>(<span class="variable">metabolites_df</span>, <span class="variable">axis</span>=<span class="number">0</span>, <span class="variable">join</span>=<span class="string">'inner'</span>)<br>
+
+<span class="variable">num_test</span> = <span class="number">20</span><br>
+<span class="variable">sample_ids</span> = <span class="function">set</span>(<span class="variable">np</span>.<span class="variable">random</span>.<span class="function">choice</span>(<span class="variable">microbes_df</span>.<span class="variable">index</span>, <span class="variable">size</span>=<span class="variable">num_test</span>))<br>
+<span class="variable">sample_ids</span> = <span class="variable">np</span>.<span class="function">array</span>([(<span class="variable">x</span> <span class="keyword">in</span> <span class="variable">sample_ids</span>) <span class="keyword">for</span> <span class="variable">x</span> <span class="keyword">in</span> <span class="variable">microbes_df</span>.<span class="variable">index</span>])<br>
+
+<span class="variable">train_microbes_df</span> = <span class="variable">microbes_df</span>.<span class="variable">loc</span>[~<span class="variable">sample_ids</span>]<br>
+<span class="variable">test_microbes_df</span> = <span class="variable">microbes_df</span>.<span class="variable">loc</span>[<span class="variable">sample_ids</span>]<br>
+<span class="variable">train_metabolites_df</span> = <span class="variable">metabolites_df</span>.<span class="variable">loc</span>[~<span class="variable">sample_ids</span>]<br>
+<span class="variable">test_metabolites_df</span> = <span class="variable">metabolites_df</span>.<span class="variable">loc</span>[<span class="variable">sample_ids</span>]<br>
+
+<span class="variable">train_microbes_coo</span> = <span class="function">coo_matrix</span>(<span class="variable">train_microbes_df</span>.<span class="variable">values</span>)<br>
+<span class="variable">test_microbes_coo</span> = <span class="function">coo_matrix</span>(<span class="variable">test_microbes_df</span>.<span class="variable">values</span>)<br>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="example-step">
+                    <h4>Creating, training, and testing a model</h4>
+                    <div class="code-section">
+                        <div class="code-header">
+                            <div class="code-title"><i class="fab fa-python"></i> Model Training</div>
+                            <button class="copy-btn" onclick="copyCode('tf-training')">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <div class="code-block" id="tf-training">
+<span class="variable">model</span> = <span class="function">VBayesMM</span>()<br>
+<span class="variable">config</span> = <span class="variable">tf</span>.<span class="variable">compat</span>.<span class="variable">v1</span>.<span class="function">ConfigProto</span>()<br>
+
+<span class="keyword">with</span> <span class="variable">tf</span>.<span class="function">Graph</span>().<span class="function">as_default</span>(), <span class="variable">tf</span>.<span class="variable">compat</span>.<span class="variable">v1</span>.<span class="function">Session</span>(<span class="variable">config</span>=<span class="variable">config</span>) <span class="keyword">as</span> <span class="variable">session</span>:<br>
+    <span class="variable">model</span>(<span class="variable">session</span>, <span class="variable">train_microbes_coo</span>, <span class="variable">train_metabolites_df</span>.<span class="variable">values</span>,
+          <span class="variable">test_microbes_coo</span>, <span class="variable">test_metabolites_df</span>.<span class="variable">values</span>)<br>
+    <span class="variable">ELBO</span>, <span class="variable">_</span>, <span class="variable">SMAPE</span> = <span class="variable">model</span>.<span class="function">fit</span>(<span class="variable">epoch</span>=<span class="number">5000</span>)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="example-step">
+                    <h4>Results Visualization</h4>
+                    <div class="results-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Train data</th>
+                                    <th>Test data</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><img src="https://github.com/tungtokyo1108/VBayesMM/raw/main/examples/ELBO.png" alt="ELBO Train" style="max-width: auto; height: auto;"></td>
+                                    <td><img src="https://github.com/tungtokyo1108/VBayesMM/raw/main/examples/SMAPE.png" alt="SMAPE Test" style="max-width: auto; height: auto;"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="example-step">
+                    <h4>Visualizing the posterior distributions of model outputs</h4>
+                    <div class="code-section">
+                        <div class="code-header">
+                            <div class="code-title"><i class="fab fa-python"></i> Output Analysis</div>
+                            <button class="copy-btn" onclick="copyCode('tf-analysis')">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <div class="code-block" id="tf-analysis">
+<span class="variable">latent_microbiome_matrix</span> = <span class="variable">model</span>.<span class="variable">U</span><br>
+<span class="variable">microbial_species_selection</span> = <span class="variable">model</span>.<span class="variable">U_mean_gamma</span><br>
+<span class="variable">microbial_species_selection_mean</span> = <span class="variable">np</span>.<span class="function">sort</span>(<span class="variable">np</span>.<span class="function">mean</span>(<span class="variable">microbial_species_selection</span>, <span class="variable">axis</span>=<span class="number">1</span>))[<span class="number">::-1</span>]
+                        </div>
+                    </div>
+                    <div class="results-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Latent microbiome matrix</th>
+                                    <th>Microbial species selection</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><img src="https://github.com/tungtokyo1108/VBayesMM/raw/main/examples/Posterior_distribution_of_latent_microbiome_matrix.png" alt="Latent microbiome matrix" style="max-width: auto; height: auto;"></td>
+                                    <td><img src="https://github.com/tungtokyo1108/VBayesMM/raw/main/examples/Posterior_distribution_of_microbial_species_selection.png" alt="Microbial species selection" style="max-width: auto; height: auto;"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PyTorch Example -->
+            <div class="example-framework fade-in">
+                <div class="framework-header">
+                    <h3><i class="fas fa-fire" style="color: #ee4c2c;"></i> PyTorch Implementation</h3>
+                </div>
+                
+                <div class="example-step">
+                    <h4>Import packages</h4>
+                    <div class="code-section">
+                        <div class="code-header">
+                            <div class="code-title"><i class="fab fa-python"></i> Python</div>
+                            <button class="copy-btn" onclick="copyCode('pt-imports')">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <div class="code-block" id="pt-imports">
+<span class="keyword">import</span> <span class="highlight">pandas</span> <span class="keyword">as</span> pd<br>
+<span class="keyword">import</span> <span class="highlight">numpy</span> <span class="keyword">as</span> np<br>
+<span class="keyword">import</span> <span class="highlight">matplotlib.pyplot</span> <span class="keyword">as</span> plt<br>
+<span class="keyword">import</span> <span class="highlight">seaborn</span> <span class="keyword">as</span> sns<br>
+<span class="keyword">import</span> <span class="highlight">biom</span><br>
+<span class="keyword">from</span> <span class="highlight">biom</span> <span class="keyword">import</span> load_table, Table<br>
+<span class="keyword">from</span> <span class="highlight">scipy.stats</span> <span class="keyword">import</span> entropy, spearmanr<br>
+<span class="keyword">from</span> <span class="highlight">scipy.sparse</span> <span class="keyword">import</span> coo_matrix<br>
+<span class="keyword">import</span> <span class="highlight">torch</span><br>
+<span class="keyword">from</span> <span class="highlight">VBayesMM</span> <span class="keyword">import</span> VBayesMM<br>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="example-step">
+                    <h4>Loading and preparing data</h4>
+                    <div class="code-section">
+                        <div class="code-header">
+                            <div class="code-title"><i class="fab fa-python"></i> Data Preparation</div>
+                            <button class="copy-btn" onclick="copyCode('pt-data-prep')">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <div class="code-block" id="pt-data-prep">
+<span class="variable">microbes</span> = <span class="function">load_table</span>(<span class="string">"microbes.biom"</span>)<br>
+<span class="variable">metabolites</span> = <span class="function">load_table</span>(<span class="string">"metabolites.biom"</span>)<br>
+
+<span class="variable">microbes_df</span> = <span class="variable">microbes</span>.<span class="function">to_dataframe</span>()<br>
+<span class="variable">metabolites_df</span> = <span class="variable">metabolites</span>.<span class="function">to_dataframe</span>()<br>
+
+<span class="variable">microbes_df</span> = <span class="variable">microbes_df</span>.<span class="function">astype</span>(<span class="variable">pd</span>.<span class="function">SparseDtype</span>(<span class="string">"float64"</span>, <span class="variable">fill_value</span>=<span class="number">0</span>))<br>
+<span class="variable">metabolites_df</span> = <span class="variable">metabolites_df</span>.<span class="function">astype</span>(<span class="variable">pd</span>.<span class="function">SparseDtype</span>(<span class="string">"float64"</span>, <span class="variable">fill_value</span>=<span class="number">0</span>))<br>
+
+<span class="variable">microbes_df</span>, <span class="variable">metabolites_df</span> = <span class="variable">microbes_df</span>.<span class="function">align</span>(<span class="variable">metabolites_df</span>, <span class="variable">axis</span>=<span class="number">0</span>, <span class="variable">join</span>=<span class="string">'inner'</span>)<br>
+
+<span class="variable">num_test</span> = <span class="number">20</span><br>
+<span class="variable">sample_ids</span> = <span class="function">set</span>(<span class="variable">np</span>.<span class="variable">random</span>.<span class="function">choice</span>(<span class="variable">microbes_df</span>.<span class="variable">index</span>, <span class="variable">size</span>=<span class="variable">num_test</span>))<br>
+<span class="variable">sample_ids</span> = <span class="variable">np</span>.<span class="function">array</span>([(<span class="variable">x</span> <span class="keyword">in</span> <span class="variable">sample_ids</span>) <span class="keyword">for</span> <span class="variable">x</span> <span class="keyword">in</span> <span class="variable">microbes_df</span>.<span class="variable">index</span>])<br>
+
+<span class="variable">train_microbes_df</span> = <span class="variable">microbes_df</span>.<span class="variable">loc</span>[~<span class="variable">sample_ids</span>]<br>
+<span class="variable">test_microbes_df</span> = <span class="variable">microbes_df</span>.<span class="variable">loc</span>[<span class="variable">sample_ids</span>]<br>
+<span class="variable">train_metabolites_df</span> = <span class="variable">metabolites_df</span>.<span class="variable">loc</span>[~<span class="variable">sample_ids</span>]<br>
+<span class="variable">test_metabolites_df</span> = <span class="variable">metabolites_df</span>.<span class="variable">loc</span>[<span class="variable">sample_ids</span>]<br>
+
+<span class="variable">n</span>, <span class="variable">d1</span> = <span class="variable">train_microbes_df</span>.<span class="variable">shape</span><br>
+<span class="variable">n</span>, <span class="variable">d2</span> = <span class="variable">train_metabolites_df</span>.<span class="variable">shape</span><br>
+
+<span class="variable">train_microbes_coo</span> = <span class="function">coo_matrix</span>(<span class="variable">train_microbes_df</span>.<span class="variable">values</span>)<br>
+<span class="variable">test_microbes_coo</span> = <span class="function">coo_matrix</span>(<span class="variable">test_microbes_df</span>.<span class="variable">values</span>)<br>
+
+<span class="variable">trainY_torch</span> = <span class="variable">torch</span>.<span class="function">tensor</span>(<span class="variable">train_metabolites_df</span>.<span class="function">to_numpy</span>(), <span class="variable">dtype</span>=<span class="variable">torch</span>.<span class="variable">float32</span>)<br>
+<span class="variable">testY_torch</span> = <span class="variable">torch</span>.<span class="function">tensor</span>(<span class="variable">test_metabolites_df</span>.<span class="function">to_numpy</span>(), <span class="variable">dtype</span>=<span class="variable">torch</span>.<span class="variable">float32</span>)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="example-step">
+                    <h4>Creating, training, and testing a model</h4>
+                    <div class="code-section">
+                        <div class="code-header">
+                            <div class="code-title"><i class="fab fa-python"></i> Model Training</div>
+                            <button class="copy-btn" onclick="copyCode('pt-training')">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <div class="code-block" id="pt-training">
+<span class="variable">model</span> = <span class="function">VBayesMM</span>(<span class="variable">d1</span>=<span class="variable">d1</span>, <span class="variable">d2</span>=<span class="variable">d2</span>, <span class="variable">num_samples</span>=<span class="variable">n</span>)<br>
+<span class="variable">ELBO</span>, <span class="variable">_</span>, <span class="variable">SMAPE</span> = <span class="variable">model</span>.<span class="function">fit</span>(<span class="variable">train_microbes_coo</span>, <span class="variable">trainY_torch</span>, 
+                                      <span class="variable">test_microbes_coo</span>, <span class="variable">testY_torch</span>, <span class="variable">epochs</span>=<span class="number">5000</span>)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="example-step">
+                    <h4>Results Visualization</h4>
+                    <div class="results-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Train data</th>
+                                    <th>Test data</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><img src="https://github.com/tungtokyo1108/VBayesMM/raw/main/examples/ELBO_torch.png" alt="ELBO Train" style="max-width: 100%; height: auto;"></td>
+                                    <td><img src="https://github.com/tungtokyo1108/VBayesMM/raw/main/examples/SMAPE_torch.png" alt="SMAPE Test" style="max-width: 100%; height: auto;"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="example-step">
+                    <h4>Visualizing the posterior distributions of model outputs</h4>
+                    <div class="code-section">
+                        <div class="code-header">
+                            <div class="code-title"><i class="fab fa-python"></i> Output Analysis</div>
+                            <button class="copy-btn" onclick="copyCode('pt-analysis')">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <div class="code-block" id="pt-analysis">
+<span class="variable">latent_microbiome_matrix</span> = <span class="variable">np</span>.<span class="function">array</span>(<span class="variable">model</span>.<span class="variable">qUmain_mean</span>.<span class="variable">weight</span>.<span class="variable">data</span>.<span class="function">detach</span>())<br>
+<span class="variable">microbial_species_selection</span> = <span class="variable">np</span>.<span class="function">array</span>(<span class="variable">model</span>.<span class="variable">qUmain_mean_gamma</span>.<span class="function">detach</span>())<br>
+<span class="variable">microbial_species_selection_mean</span> = <span class="variable">np</span>.<span class="function">sort</span>(<span class="variable">np</span>.<span class="function">mean</span>(<span class="variable">microbial_species_selection</span>, <span class="variable">axis</span>=<span class="number">1</span>))[<span class="number">::-1</span>]
+                        </div>
+                    </div>
+                    <div class="results-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Latent microbiome matrix</th>
+                                    <th>Microbial species selection</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><img src="https://github.com/tungtokyo1108/VBayesMM/raw/main/examples/Posterior_distribution_of_latent_microbiome_matrix_pt.png" alt="Latent microbiome matrix" style="max-width: 100%; height: auto;"></td>
+                                    <td><img src="https://github.com/tungtokyo1108/VBayesMM/raw/main/examples/Posterior_distribution_of_microbial_species_selection_pt.png" alt="Microbial species selection" style="max-width: 100%; height: auto;"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Source Code Reference -->
+            <div class="source-reference fade-in" style="margin-top: 4rem; padding: 2rem; background: #f8f9fa; border-radius: 15px; border-left: 4px solid #667eea;">
+                <h3 style="color: #333; margin-bottom: 1rem;">Source Code</h3>
+                <p style="color: #666; margin-bottom: 1.5rem;">
+                    All of the code is in the <code>src/</code> folder, you can use to re-make the analyses in the paper:
+                </p>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 0.5rem; color: #333;">
+                        <code style="background: #e9ecef; padding: 2px 6px; border-radius: 4px; color: #667eea; font-weight: 600;">tensorflow/VBayesMM.py</code>: 
+                        file contains Python codes for VBayesMM method for TensorFlow User.
+                    </li>
+                    <li style="margin-bottom: 0.5rem; color: #333;">
+                        <code style="background: #e9ecef; padding: 2px 6px; border-radius: 4px; color: #667eea; font-weight: 600;">pytorch/VBayesMM.py</code>: 
+                        file contains Python codes for VBayesMM method for PyTorch User.
+                    </li>
+                </ul>
+                <p style="color: #666; margin-top: 1.5rem;">
+                    If you have any problem, please contact me via email: 
+                    <a href="mailto:dangthanhtung91@vn-bml.com" style="color: #667eea;">dangthanhtung91@vn-bml.com</a>
+                </p>
+            </div>
+        </div>
+    </section>
+
     <footer id="contact">
         <div class="container">
             <div class="footer-content">
