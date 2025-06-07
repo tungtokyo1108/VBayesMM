@@ -5,23 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VBayesMM - Variational Bayesian Neural Network for Microbiome Analysis</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <!-- Add MathJax for mathematical notation -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
-    <script>
-        window.MathJax = {
-            tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']],
-                displayMath: [['$$', '$$'], ['\\[', '\\]']],
-                processEscapes: true,
-                processEnvironments: true
-            },
-            options: {
-                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-                ignoreHtmlClass: 'tex2jax_ignore',
-                processHtmlClass: 'tex2jax_process'
-            }
-        };
-    </script>
     <style>
         * {
             margin: 0;
@@ -195,7 +178,7 @@
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
 
-        /* ENHANCED MATHEMATICAL FEATURES SECTION */
+        /* DEVELOPER-FOCUSED FEATURES SECTION */
         #features {
             background: #fafbfc;
             border: 1px solid #e1e8ed;
@@ -241,112 +224,7 @@
             z-index: 1;
         }
 
-        /* Mathematical Foundation Section */
-        .mathematical-foundation {
-            background: #ffffff;
-            border: 2px solid #667eea;
-            border-radius: 20px;
-            padding: 40px;
-            margin-bottom: 48px;
-            box-shadow: 0 8px 32px rgba(102, 126, 234, 0.1);
-        }
-
-        .foundation-header {
-            text-align: center;
-            margin-bottom: 32px;
-        }
-
-        .foundation-title {
-            font-size: 2rem;
-            color: #667eea;
-            margin-bottom: 12px;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-        }
-
-        .foundation-subtitle {
-            color: #6b7280;
-            font-size: 1.1rem;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .math-sections {
-            display: grid;
-            gap: 32px;
-        }
-
-        .math-section {
-            background: #f8f9fa;
-            border-radius: 16px;
-            padding: 32px;
-            border-left: 6px solid #667eea;
-            transition: all 0.3s ease;
-        }
-
-        .math-section:hover {
-            transform: translateX(8px);
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15);
-        }
-
-        .math-section h3 {
-            color: #333;
-            font-size: 1.4rem;
-            margin-bottom: 16px;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .math-icon {
-            color: #667eea;
-            font-size: 1.2rem;
-        }
-
-        .math-content {
-            color: #555;
-            line-height: 1.8;
-            margin-bottom: 20px;
-        }
-
-        .equation-block {
-            background: #ffffff;
-            border: 1px solid #e5e7eb;
-            border-radius: 12px;
-            padding: 24px;
-            margin: 20px 0;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-            overflow-x: auto;
-        }
-
-        .equation-title {
-            color: #667eea;
-            font-weight: 600;
-            margin-bottom: 12px;
-            font-size: 0.95rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .math-explanation {
-            background: #f0f4ff;
-            border-radius: 8px;
-            padding: 16px;
-            margin: 16px 0;
-            border-left: 4px solid #667eea;
-        }
-
-        .math-explanation p {
-            margin: 0;
-            color: #444;
-            font-size: 0.95rem;
-        }
-
-        /* Enhanced Performance Dashboard */
+        /* Performance Dashboard */
         .performance-dashboard {
             background: #ffffff;
             border: 1px solid #e5e7eb;
@@ -801,7 +679,569 @@
             transform: translateY(0);
         }
 
-        /* Rest of original styles - Applications section */
+        /* Rest of original styles */
+
+        /* CLEAN GITHUB-STYLE CODE EXAMPLES SECTION */
+        #examples {
+            background: white;
+            color: #333;
+        }
+
+        .example-framework {
+            background: #fafbfc;
+            border: 1px solid #e1e8ed;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .framework-header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 1.5rem 2rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .example-step {
+            padding: 2rem;
+            border-bottom: 1px solid #e1e8ed;
+        }
+
+        .example-step:last-child {
+            border-bottom: none;
+        }
+
+        .example-step h4 {
+            color: #333;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #667eea;
+            display: inline-block;
+        }
+
+        .results-table {
+            margin: 1.5rem 0;
+            overflow-x: auto;
+        }
+
+        .results-table table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid #e1e8ed;
+            border-radius: 8px;
+            overflow: hidden;
+            background: white;
+        }
+
+        .results-table th {
+            background: #f6f8fa;
+            color: #333;
+            font-weight: 600;
+            padding: 1rem;
+            text-align: center;
+            border-bottom: 1px solid #e1e8ed;
+        }
+
+        .results-table td {
+            padding: 1rem;
+            text-align: center;
+            border-bottom: 1px solid #e1e8ed;
+            vertical-align: top;
+        }
+
+        .results-table img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .source-reference {
+            background: #f8f9fa;
+            border-radius: 15px;
+            border-left: 4px solid #667eea;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        .source-reference h3 {
+            color: #333;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .source-reference ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .source-reference li {
+            margin-bottom: 0.8rem;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .source-reference code {
+            background: #e9ecef;
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #667eea;
+            font-weight: 600;
+            font-family: 'Monaco', 'Courier New', monospace;
+        }
+
+        .source-reference a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .source-reference a:hover {
+            text-decoration: underline;
+        }
+
+        .examples-header {
+            background: linear-gradient(135deg, #1a2b4c 0%, #2d1b69 100%);
+            padding: 60px 0 40px;
+            text-align: center;
+            position: relative;
+            border-bottom: 1px solid #30363d;
+        }
+
+        .examples-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .examples-header .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .examples-title {
+            font-size: 2.8rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+        }
+
+        .examples-subtitle {
+            font-size: 1.1rem;
+            color: #a0aec0;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .difficulty-selector {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .difficulty-btn {
+            padding: 12px 24px;
+            border: 2px solid #667eea;
+            background: transparent;
+            color: #667eea;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .difficulty-btn.active,
+        .difficulty-btn:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        /* Interactive Code Playground */
+        .code-playground {
+            background: #0d1117;
+            border-radius: 16px;
+            margin: 40px 0;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border: 1px solid #30363d;
+        }
+
+        .playground-header {
+            background: #161b22;
+            padding: 16px 24px;
+            border-bottom: 1px solid #30363d;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .playground-tabs {
+            display: flex;
+            gap: 4px;
+        }
+
+        .playground-tab {
+            padding: 8px 16px;
+            background: transparent;
+            border: none;
+            color: #7d8590;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .playground-tab.active {
+            background: #21262d;
+            color: #f0f6fc;
+        }
+
+        .playground-actions {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .action-btn {
+            padding: 6px 12px;
+            background: #238636;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .action-btn:hover {
+            background: #2ea043;
+            transform: translateY(-1px);
+        }
+
+        .action-btn.secondary {
+            background: #21262d;
+            color: #f0f6fc;
+        }
+
+        .action-btn.secondary:hover {
+            background: #30363d;
+        }
+
+        .playground-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 450px;
+        }
+
+        .code-editor {
+            background: #0d1117;
+            padding: 24px;
+            font-family: 'Monaco', 'Consolas', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #e6edf3;
+            overflow-x: auto;
+            border-right: 1px solid #30363d;
+        }
+
+        .output-panel {
+            background: #010409;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .output-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 16px;
+            color: #7d8590;
+            font-size: 0.9rem;
+        }
+
+        .output-content {
+            flex: 1;
+            background: #0c0c0c;
+            border-radius: 8px;
+            padding: 16px;
+            font-family: 'Monaco', 'Consolas', monospace;
+            font-size: 13px;
+            color: #58a6ff;
+            border: 1px solid #21262d;
+            position: relative;
+            line-height: 1.5;
+        }
+
+        /* Enhanced Syntax Highlighting */
+        .keyword { color: #ff7b72; }
+        .string { color: #a5d6ff; }
+        .comment { color: #8b949e; font-style: italic; }
+        .function { color: #d2a8ff; }
+        .number { color: #79c0ff; }
+        .operator { color: #ff7b72; }
+        .variable { color: #ffa657; }
+
+        /* Tutorial Steps */
+        .tutorial-section {
+            margin: 60px 0;
+            padding: 0 20px;
+        }
+
+        .tutorial-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .tutorial-title {
+            font-size: 2.2rem;
+            color: #f0f6fc;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .tutorial-description {
+            color: #7d8590;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .steps-container {
+            display: grid;
+            gap: 24px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .tutorial-step {
+            background: #161b22;
+            border-radius: 16px;
+            border: 1px solid #30363d;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .tutorial-step:hover {
+            border-color: #667eea;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(102, 126, 234, 0.1);
+        }
+
+        .step-header {
+            padding: 20px 24px;
+            background: linear-gradient(135deg, #21262d, #30363d);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            cursor: pointer;
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .step-info {
+            flex: 1;
+        }
+
+        .step-title {
+            color: #f0f6fc;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .step-subtitle {
+            color: #7d8590;
+            font-size: 0.9rem;
+        }
+
+        .step-toggle {
+            color: #7d8590;
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .step-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .step-content.expanded {
+            max-height: 1000px;
+        }
+
+        .step-inner {
+            padding: 24px;
+            border-top: 1px solid #30363d;
+        }
+
+        .step-code {
+            background: #0d1117;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 16px 0;
+            font-family: 'Monaco', 'Consolas', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #e6edf3;
+            border: 1px solid #30363d;
+            position: relative;
+            overflow-x: auto;
+        }
+
+        .step-explanation {
+            color: #c9d1d9;
+            line-height: 1.7;
+            margin: 16px 0;
+        }
+
+        /* Results Showcase */
+        .results-showcase {
+            background: #161b22;
+            border-radius: 20px;
+            padding: 40px;
+            margin: 60px 20px;
+            border: 1px solid #30363d;
+        }
+
+        .results-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .results-title {
+            color: #f0f6fc;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .result-card {
+            background: #0d1117;
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid #30363d;
+            transition: all 0.3s ease;
+        }
+
+        .result-card:hover {
+            border-color: #667eea;
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(102, 126, 234, 0.1);
+        }
+
+        .result-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+        }
+
+        .result-title {
+            color: #f0f6fc;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .result-description {
+            color: #7d8590;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .result-metric {
+            background: #21262d;
+            border-radius: 8px;
+            padding: 12px;
+            margin-top: 12px;
+            text-align: center;
+        }
+
+        .metric-value {
+            color: #58a6ff;
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: block;
+        }
+
+        .metric-label {
+            color: #7d8590;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Loading Animation */
+        .loading-animation {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #30363d;
+            border-radius: 50%;
+            border-top-color: #667eea;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
         .applications-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -879,16 +1319,25 @@
                 align-items: center;
             }
             
-            .comparison-grid {
+            .playground-content {
                 grid-template-columns: 1fr;
             }
             
-            .mathematical-foundation {
-                padding: 24px;
+            .code-editor {
+                border-right: none;
+                border-bottom: 1px solid #30363d;
             }
             
-            .math-section {
-                padding: 20px;
+            .difficulty-selector {
+                flex-wrap: wrap;
+            }
+            
+            .examples-title {
+                font-size: 2.2rem;
+            }
+            
+            .results-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -924,186 +1373,10 @@
 
     <section id="features" class="section">
         <div class="container">
-            <h2>Mathematical Methodology</h2>
-            <p class="features-subtitle">Advanced Bayesian neural network framework with rigorous mathematical foundations for multiomics analysis</p>
+            <h2>Key Features</h2>
+            <p class="features-subtitle">Production-ready Bayesian neural network framework optimized for high-dimensional multiomics analysis</p>
             
             <div class="features-container">
-                <!-- Mathematical Foundation Section -->
-                <div class="mathematical-foundation fade-in">
-                    <div class="foundation-header">
-                        <h2 class="foundation-title">
-                            <i class="fas fa-calculator"></i>
-                            Mathematical Foundations
-                        </h2>
-                        <p class="foundation-subtitle">
-                            VBayesMM integrates spike-and-slab priors with variational Bayesian inference in neural networks to achieve probabilistic feature selection and uncertainty quantification in high-dimensional microbiome multiomics data.
-                        </p>
-                    </div>
-
-                    <div class="math-sections">
-                        <!-- 1. Spike-and-Slab Prior Distribution -->
-                        <div class="math-section">
-                            <h3>
-                                <i class="fas fa-chart-line math-icon"></i>
-                                Spike-and-Slab Prior Distribution
-                            </h3>
-                            <div class="math-content">
-                                <p>The core innovation of VBayesMM lies in the incorporation of spike-and-slab priors for probabilistic feature selection. Unlike MMvec which treats all microbial species equally, our approach distinguishes between relevant and irrelevant taxonomic units.</p>
-                            </div>
-                            
-                            <div class="equation-block">
-                                <div class="equation-title">Prior Distribution for Taxonomic Units</div>
-                                $$u_i | \gamma_i \sim \gamma_i \mathcal{N}(0, \tau^2 I) + (1 - \gamma_i) \delta_0$$
-                                $$\gamma_i \sim \text{Bernoulli}(\lambda)$$
-                            </div>
-
-                            <div class="math-explanation">
-                                <p><strong>Key Components:</strong></p>
-                                <ul style="margin: 8px 0; padding-left: 20px;">
-                                    <li><strong>$\gamma_i \in \{0,1\}$:</strong> Binary indicator variable for feature inclusion</li>
-                                    <li><strong>$\delta_0$:</strong> Dirac spike component that enforces exact sparsity</li>
-                                    <li><strong>$\mathcal{N}(0, \tau^2 I)$:</strong> Slab component capturing non-zero effects</li>
-                                    <li><strong>$\lambda$:</strong> Prior inclusion probability hyperparameter</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <!-- 2. Variational Bayesian Inference -->
-                        <div class="math-section">
-                            <h3>
-                                <i class="fas fa-brain math-icon"></i>
-                                Variational Bayesian Inference Framework
-                            </h3>
-                            <div class="math-content">
-                                <p>To address computational intractability in high-dimensional settings, we employ variational inference to approximate the posterior distribution through optimization rather than sampling.</p>
-                            </div>
-                            
-                            <div class="equation-block">
-                                <div class="equation-title">Evidence Lower Bound (ELBO)</div>
-                                $$\mathcal{L}[q(\Xi|\Theta)] = \mathbb{E}_{q(\Xi|\Theta)}[\log p(\mathcal{D}, \Xi)] - \mathbb{E}_{q(\Xi|\Theta)}[\log q(\Xi|\Theta)]$$
-                                $$= \mathbb{E}_{q(\Xi|\Theta)}[\log p(\mathcal{D}|\Xi)] - \text{KL}[q(\Xi|\Theta) \| p(\Xi)]$$
-                            </div>
-
-                            <div class="math-explanation">
-                                <p><strong>Where:</strong></p>
-                                <ul style="margin: 8px 0; padding-left: 20px;">
-                                    <li><strong>$\Xi = \{U, \gamma, V\}$:</strong> Model parameters (microbiome embeddings, selection indicators, metabolite embeddings)</li>
-                                    <li><strong>$q(\Xi|\Theta)$:</strong> Variational approximation with parameters $\Theta$</li>
-                                    <li><strong>$\text{KL}[\cdot \| \cdot]$:</strong> Kullback-Leibler divergence measuring approximation quality</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <!-- 3. Neural Network Architecture -->
-                        <div class="math-section">
-                            <h3>
-                                <i class="fas fa-network-wired math-icon"></i>
-                                Neural Network Architecture & Conditional Probabilities
-                            </h3>
-                            <div class="math-content">
-                                <p>VBayesMM employs an encoder-decoder architecture to map high-dimensional microbiome data to metabolite predictions through learned low-dimensional latent representations.</p>
-                            </div>
-                            
-                            <div class="equation-block">
-                                <div class="equation-title">Conditional Probability Model</div>
-                                $$p(y_j | x_i) = \frac{\exp(u_i^T v_j + v_{j0})}{\sum_{j'=1}^M \exp(u_i^T v_{j'} + v_{j'0})}$$
-                                $$Y_k \sim \text{Multinomial}\left(w_k, \{p(y_j | x_i)\}_{j=1}^M\right)$$
-                            </div>
-
-                            <div class="math-explanation">
-                                <p><strong>Architecture Details:</strong></p>
-                                <ul style="margin: 8px 0; padding-left: 20px;">
-                                    <li><strong>$u_i \in \mathbb{R}^L$:</strong> Latent embedding for taxonomic unit $i$</li>
-                                    <li><strong>$v_j \in \mathbb{R}^L$:</strong> Latent embedding for metabolite $j$</li>
-                                    <li><strong>$w_k$:</strong> Total metabolite count in sample $k$</li>
-                                    <li><strong>$L$:</strong> Latent dimensionality (typically $L \ll \min(N,M)$)</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <!-- 4. Variational Distributions -->
-                        <div class="math-section">
-                            <h3>
-                                <i class="fas fa-function math-icon"></i>
-                                Mean-Field Variational Approximation
-                            </h3>
-                            <div class="math-content">
-                                <p>We employ a mean-field variational family with factorized distributions to enable tractable inference and efficient optimization.</p>
-                            </div>
-                            
-                            <div class="equation-block">
-                                <div class="equation-title">Variational Distributions</div>
-                                $$q(U|\Theta) = \prod_{i=1}^N \mathcal{N}(u_i; \alpha_{U,i}, \text{diag}(\beta_{U,i}^2))$$
-                                $$q(\gamma|\Theta) = \prod_{i=1}^N \prod_{l=1}^L \text{Bernoulli}(\gamma_{il}; \xi_{il})$$
-                                $$q(V|\Theta) = \prod_{j=1}^M \mathcal{N}(v_j; \alpha_{V,j}, \text{diag}(\beta_{V,j}^2))$$
-                            </div>
-
-                            <div class="math-explanation">
-                                <p><strong>Variational Parameters:</strong></p>
-                                <ul style="margin: 8px 0; padding-left: 20px;">
-                                    <li><strong>$\{\alpha_{U,i}, \beta_{U,i}\}$:</strong> Mean and standard deviation for microbiome embeddings</li>
-                                    <li><strong>$\xi_{il}$:</strong> Inclusion probabilities for spike-and-slab selection</li>
-                                    <li><strong>$\{\alpha_{V,j}, \beta_{V,j}\}$:</strong> Mean and standard deviation for metabolite embeddings</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <!-- 5. Optimization & Reparameterization -->
-                        <div class="math-section">
-                            <h3>
-                                <i class="fas fa-cogs math-icon"></i>
-                                Stochastic Optimization & Reparameterization
-                            </h3>
-                            <div class="math-content">
-                                <p>We use reparameterization tricks to enable gradient-based optimization of the ELBO with respect to variational parameters.</p>
-                            </div>
-                            
-                            <div class="equation-block">
-                                <div class="equation-title">Reparameterization Techniques</div>
-                                $$u_i = \alpha_{U,i} + \beta_{U,i} \odot \epsilon_U, \quad \epsilon_U \sim \mathcal{N}(0,I)$$
-                                $$\gamma_{il} = \text{Gumbel-Softmax}(\xi_{il}, \tau), \quad \kappa \sim U(0,1)$$
-                                $$\text{where } \text{Gumbel-Softmax}(\xi, \tau) = \frac{\exp((\log \xi + g_1)/\tau)}{\exp((\log \xi + g_1)/\tau) + \exp((\log(1-\xi) + g_0)/\tau)}$$
-                            </div>
-
-                            <div class="math-explanation">
-                                <p><strong>Technical Details:</strong></p>
-                                <ul style="margin: 8px 0; padding-left: 20px;">
-                                    <li><strong>$\tau$:</strong> Temperature parameter for Gumbel-Softmax (set to 0.5)</li>
-                                    <li><strong>$g_0, g_1$:</strong> Gumbel noise terms: $g = -\log(-\log(\kappa))$</li>
-                                    <li><strong>Adam Optimizer:</strong> Learning rate 0.1, $\beta_1=0.8$, $\beta_2=0.9$</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <!-- 6. Performance Metrics -->
-                        <div class="math-section">
-                            <h3>
-                                <i class="fas fa-chart-bar math-icon"></i>
-                                Evaluation Metrics & Model Selection
-                            </h3>
-                            <div class="math-content">
-                                <p>Model performance is evaluated using symmetric metrics that handle varying scales across different multiomics datasets.</p>
-                            </div>
-                            
-                            <div class="equation-block">
-                                <div class="equation-title">Performance Evaluation</div>
-                                $$\text{SMAPE} = \frac{100\%}{K'} \sum_{k'=1}^{K'} \frac{|\hat{Y}_{k'} - Y_{k'}|}{(|\hat{Y}_{k'}| + |Y_{k'}|)/2}$$
-                                $$\text{MAE} = \frac{1}{K'} \sum_{k'=1}^{K'} |\hat{Y}_{k'} - Y_{k'}|$$
-                                $$\text{Feature Selection:} \quad \mathbb{E}[\gamma_{il}] > \text{threshold}$$
-                            </div>
-
-                            <div class="math-explanation">
-                                <p><strong>Model Selection Criteria:</strong></p>
-                                <ul style="margin: 8px 0; padding-left: 20px;">
-                                    <li><strong>SMAPE:</strong> Scale-invariant error metric (0% = perfect, 100% = worst)</li>
-                                    <li><strong>Selection Threshold:</strong> Typically 0.5-0.7 for feature inclusion</li>
-                                    <li><strong>Convergence:</strong> Based on ELBO stabilization</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 <!-- Performance Dashboard -->
                 <div class="performance-dashboard fade-in">
                     <div class="dashboard-header">
@@ -1926,13 +2199,6 @@ important_species = model.<span class="code-function">get_selected_features</spa
         window.addEventListener('load', function() {
             document.body.style.opacity = '1';
         });
-
-        // MathJax processing
-        if (window.MathJax) {
-            MathJax.startup.promise = MathJax.startup.promise.then(() => {
-                return MathJax.typesetPromise();
-            });
-        }
     </script>
 </body>
 </html>
