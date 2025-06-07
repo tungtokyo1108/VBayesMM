@@ -5,6 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VBayesMM - Variational Bayesian Neural Network for Microbiome Analysis</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                packages: {'[+]': ['ams', 'newcommand', 'configmacros']}
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+            }
+        };
+    </script>
     <style>
         * {
             margin: 0;
@@ -178,7 +192,7 @@
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
 
-        /* DEVELOPER-FOCUSED FEATURES SECTION */
+        /* ENHANCED MATHEMATICAL FEATURES SECTION */
         #features {
             background: #fafbfc;
             border: 1px solid #e1e8ed;
@@ -222,6 +236,210 @@
         .features-container {
             position: relative;
             z-index: 1;
+        }
+
+        /* Mathematical Foundation Section */
+        .mathematical-foundation {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mathematical-foundation::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="mathematical-grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23mathematical-grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .foundation-header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .foundation-title {
+            font-size: 2.5rem;
+            color: #f0f6fc;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .foundation-subtitle {
+            color: #a0aec0;
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .mathematical-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .math-concept {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .math-concept:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.2);
+            border-color: rgba(102, 126, 234, 0.3);
+        }
+
+        .concept-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .concept-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .concept-title {
+            font-size: 1.4rem;
+            color: #f0f6fc;
+            font-weight: 600;
+        }
+
+        .concept-description {
+            color: #a0aec0;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .mathematical-formula {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid #667eea;
+            font-family: 'Times New Roman', serif;
+            overflow-x: auto;
+        }
+
+        .formula-label {
+            color: #667eea;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .formula-content {
+            color: #f0f6fc;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .concept-highlights {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .highlight-tag {
+            background: rgba(102, 126, 234, 0.2);
+            color: #667eea;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            border: 1px solid rgba(102, 126, 234, 0.3);
+        }
+
+        .algorithm-flowchart {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            padding: 30px;
+            margin: 40px 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .flowchart-title {
+            text-align: center;
+            color: #f0f6fc;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+
+        .algorithm-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .algorithm-step {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step-title {
+            color: #f0f6fc;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .step-description {
+            color: #a0aec0;
+            font-size: 0.95rem;
+            line-height: 1.5;
         }
 
         /* Performance Dashboard */
@@ -377,6 +595,210 @@
             font-size: 1.2rem;
         }
 
+        /* Mathematical Foundation Section */
+        .mathematical-foundation {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mathematical-foundation::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="mathematical-grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23mathematical-grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .foundation-header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .foundation-title {
+            font-size: 2.5rem;
+            color: #f0f6fc;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .foundation-subtitle {
+            color: #a0aec0;
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .mathematical-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .math-concept {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .math-concept:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.2);
+            border-color: rgba(102, 126, 234, 0.3);
+        }
+
+        .concept-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .concept-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .concept-title {
+            font-size: 1.4rem;
+            color: #f0f6fc;
+            font-weight: 600;
+        }
+
+        .concept-description {
+            color: #a0aec0;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .mathematical-formula {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid #667eea;
+            font-family: 'Times New Roman', serif;
+            overflow-x: auto;
+        }
+
+        .formula-label {
+            color: #667eea;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .formula-content {
+            color: #f0f6fc;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .concept-highlights {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .highlight-tag {
+            background: rgba(102, 126, 234, 0.2);
+            color: #667eea;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            border: 1px solid rgba(102, 126, 234, 0.3);
+        }
+
+        .algorithm-flowchart {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            padding: 30px;
+            margin: 40px 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .flowchart-title {
+            text-align: center;
+            color: #f0f6fc;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+
+        .algorithm-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .algorithm-step {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step-title {
+            color: #f0f6fc;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .step-description {
+            color: #a0aec0;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
         /* Core Features Grid */
         .core-features {
             display: grid;
@@ -506,151 +928,6 @@
             font-weight: 600;
         }
 
-        /* Interactive Code Preview */
-        .code-preview {
-            background: #1e293b;
-            border-radius: 12px;
-            overflow: hidden;
-            margin: 24px 0;
-        }
-
-        .code-header {
-            background: #334155;
-            padding: 12px 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .code-tabs {
-            display: flex;
-            gap: 16px;
-        }
-
-        .code-tab {
-            color: #94a3b8;
-            font-size: 0.875rem;
-            cursor: pointer;
-            padding: 4px 8px;
-            border-radius: 4px;
-            transition: all 0.2s ease;
-        }
-
-        .code-tab.active {
-            color: #f1f5f9;
-            background: #475569;
-        }
-
-        .code-actions {
-            display: flex;
-            gap: 8px;
-        }
-
-        .code-action {
-            background: #475569;
-            border: none;
-            color: #94a3b8;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .code-action:hover {
-            background: #64748b;
-            color: #f1f5f9;
-        }
-
-        .code-content {
-            padding: 20px;
-            color: #e2e8f0;
-            font-family: 'Monaco', 'Courier New', monospace;
-            font-size: 0.875rem;
-            line-height: 1.6;
-            overflow-x: auto;
-        }
-
-        .code-keyword { color: #c084fc; }
-        .code-string { color: #34d399; }
-        .code-comment { color: #64748b; }
-        .code-function { color: #fbbf24; }
-        .code-number { color: #fb7185; }
-
-        /* Framework Comparison */
-        .framework-comparison {
-            margin: 48px 0;
-        }
-
-        .comparison-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 24px;
-            margin-top: 24px;
-        }
-
-        .framework-card {
-            background: #ffffff;
-            border: 1px solid #e5e7eb;
-            border-radius: 16px;
-            padding: 24px;
-            text-align: center;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .framework-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
-        }
-
-        .framework-logo {
-            width: 60px;
-            height: 60px;
-            margin: 0 auto 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 12px;
-            font-size: 2rem;
-        }
-
-        .tensorflow { background: linear-gradient(135deg, #ff6f00, #ff8f00); color: white; }
-        .pytorch { background: linear-gradient(135deg, #ee4c2c, #ff6b35); color: white; }
-
-        .framework-name {
-            font-size: 1.125rem;
-            font-weight: 600;
-            color: #111827;
-            margin-bottom: 8px;
-        }
-
-        .framework-version {
-            color: #6b7280;
-            font-size: 0.875rem;
-            margin-bottom: 16px;
-        }
-
-        .framework-features {
-            list-style: none;
-            text-align: left;
-        }
-
-        .framework-features li {
-            color: #374151;
-            font-size: 0.875rem;
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .framework-features li::before {
-            content: '✓';
-            color: #10b981;
-            font-weight: bold;
-        }
-
         /* Animations */
         @keyframes pulse {
             0%, 100% { opacity: 1; }
@@ -679,632 +956,7 @@
             transform: translateY(0);
         }
 
-        /* Rest of original styles */
-
-        /* CLEAN GITHUB-STYLE CODE EXAMPLES SECTION */
-        #examples {
-            background: white;
-            color: #333;
-        }
-
-        .example-framework {
-            background: #fafbfc;
-            border: 1px solid #e1e8ed;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .framework-header {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            padding: 1.5rem 2rem;
-            font-size: 1.5rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .example-step {
-            padding: 2rem;
-            border-bottom: 1px solid #e1e8ed;
-        }
-
-        .example-step:last-child {
-            border-bottom: none;
-        }
-
-        .example-step h4 {
-            color: #333;
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid #667eea;
-            display: inline-block;
-        }
-
-        .results-table {
-            margin: 1.5rem 0;
-            overflow-x: auto;
-        }
-
-        .results-table table {
-            width: 100%;
-            border-collapse: collapse;
-            border: 1px solid #e1e8ed;
-            border-radius: 8px;
-            overflow: hidden;
-            background: white;
-        }
-
-        .results-table th {
-            background: #f6f8fa;
-            color: #333;
-            font-weight: 600;
-            padding: 1rem;
-            text-align: center;
-            border-bottom: 1px solid #e1e8ed;
-        }
-
-        .results-table td {
-            padding: 1rem;
-            text-align: center;
-            border-bottom: 1px solid #e1e8ed;
-            vertical-align: top;
-        }
-
-        .results-table img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .source-reference {
-            background: #f8f9fa;
-            border-radius: 15px;
-            border-left: 4px solid #667eea;
-            padding: 2rem;
-            margin-top: 4rem;
-        }
-
-        .source-reference h3 {
-            color: #333;
-            margin-bottom: 1rem;
-            font-size: 1.4rem;
-            font-weight: 600;
-        }
-
-        .source-reference ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .source-reference li {
-            margin-bottom: 0.8rem;
-            color: #333;
-            line-height: 1.6;
-        }
-
-        .source-reference code {
-            background: #e9ecef;
-            padding: 2px 6px;
-            border-radius: 4px;
-            color: #667eea;
-            font-weight: 600;
-            font-family: 'Monaco', 'Courier New', monospace;
-        }
-
-        .source-reference a {
-            color: #667eea;
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        .source-reference a:hover {
-            text-decoration: underline;
-        }
-
-        .examples-header {
-            background: linear-gradient(135deg, #1a2b4c 0%, #2d1b69 100%);
-            padding: 60px 0 40px;
-            text-align: center;
-            position: relative;
-            border-bottom: 1px solid #30363d;
-        }
-
-        .examples-header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
-            opacity: 0.3;
-        }
-
-        .examples-header .container {
-            position: relative;
-            z-index: 2;
-        }
-
-        .examples-title {
-            font-size: 2.8rem;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            margin-bottom: 1rem;
-        }
-
-        .examples-subtitle {
-            font-size: 1.1rem;
-            color: #a0aec0;
-            margin-bottom: 2rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .difficulty-selector {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .difficulty-btn {
-            padding: 12px 24px;
-            border: 2px solid #667eea;
-            background: transparent;
-            color: #667eea;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .difficulty-btn.active,
-        .difficulty-btn:hover {
-            background: #667eea;
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
-        }
-
-        /* Interactive Code Playground */
-        .code-playground {
-            background: #0d1117;
-            border-radius: 16px;
-            margin: 40px 0;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            border: 1px solid #30363d;
-        }
-
-        .playground-header {
-            background: #161b22;
-            padding: 16px 24px;
-            border-bottom: 1px solid #30363d;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .playground-tabs {
-            display: flex;
-            gap: 4px;
-        }
-
-        .playground-tab {
-            padding: 8px 16px;
-            background: transparent;
-            border: none;
-            color: #7d8590;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            font-size: 0.9rem;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .playground-tab.active {
-            background: #21262d;
-            color: #f0f6fc;
-        }
-
-        .playground-actions {
-            display: flex;
-            gap: 8px;
-            align-items: center;
-        }
-
-        .action-btn {
-            padding: 6px 12px;
-            background: #238636;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 0.85rem;
-            transition: all 0.2s ease;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .action-btn:hover {
-            background: #2ea043;
-            transform: translateY(-1px);
-        }
-
-        .action-btn.secondary {
-            background: #21262d;
-            color: #f0f6fc;
-        }
-
-        .action-btn.secondary:hover {
-            background: #30363d;
-        }
-
-        .playground-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            min-height: 450px;
-        }
-
-        .code-editor {
-            background: #0d1117;
-            padding: 24px;
-            font-family: 'Monaco', 'Consolas', monospace;
-            font-size: 14px;
-            line-height: 1.6;
-            color: #e6edf3;
-            overflow-x: auto;
-            border-right: 1px solid #30363d;
-        }
-
-        .output-panel {
-            background: #010409;
-            padding: 24px;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .output-header {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 16px;
-            color: #7d8590;
-            font-size: 0.9rem;
-        }
-
-        .output-content {
-            flex: 1;
-            background: #0c0c0c;
-            border-radius: 8px;
-            padding: 16px;
-            font-family: 'Monaco', 'Consolas', monospace;
-            font-size: 13px;
-            color: #58a6ff;
-            border: 1px solid #21262d;
-            position: relative;
-            line-height: 1.5;
-        }
-
-        /* Enhanced Syntax Highlighting */
-        .keyword { color: #ff7b72; }
-        .string { color: #a5d6ff; }
-        .comment { color: #8b949e; font-style: italic; }
-        .function { color: #d2a8ff; }
-        .number { color: #79c0ff; }
-        .operator { color: #ff7b72; }
-        .variable { color: #ffa657; }
-
-        /* Tutorial Steps */
-        .tutorial-section {
-            margin: 60px 0;
-            padding: 0 20px;
-        }
-
-        .tutorial-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .tutorial-title {
-            font-size: 2.2rem;
-            color: #f0f6fc;
-            margin-bottom: 1rem;
-            font-weight: 700;
-        }
-
-        .tutorial-description {
-            color: #7d8590;
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .steps-container {
-            display: grid;
-            gap: 24px;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .tutorial-step {
-            background: #161b22;
-            border-radius: 16px;
-            border: 1px solid #30363d;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .tutorial-step:hover {
-            border-color: #667eea;
-            transform: translateY(-2px);
-            box-shadow: 0 12px 24px rgba(102, 126, 234, 0.1);
-        }
-
-        .step-header {
-            padding: 20px 24px;
-            background: linear-gradient(135deg, #21262d, #30363d);
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            cursor: pointer;
-        }
-
-        .step-number {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 1.1rem;
-        }
-
-        .step-info {
-            flex: 1;
-        }
-
-        .step-title {
-            color: #f0f6fc;
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
-
-        .step-subtitle {
-            color: #7d8590;
-            font-size: 0.9rem;
-        }
-
-        .step-toggle {
-            color: #7d8590;
-            font-size: 1.2rem;
-            transition: transform 0.3s ease;
-        }
-
-        .step-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-        }
-
-        .step-content.expanded {
-            max-height: 1000px;
-        }
-
-        .step-inner {
-            padding: 24px;
-            border-top: 1px solid #30363d;
-        }
-
-        .step-code {
-            background: #0d1117;
-            border-radius: 12px;
-            padding: 20px;
-            margin: 16px 0;
-            font-family: 'Monaco', 'Consolas', monospace;
-            font-size: 14px;
-            line-height: 1.6;
-            color: #e6edf3;
-            border: 1px solid #30363d;
-            position: relative;
-            overflow-x: auto;
-        }
-
-        .step-explanation {
-            color: #c9d1d9;
-            line-height: 1.7;
-            margin: 16px 0;
-        }
-
-        /* Results Showcase */
-        .results-showcase {
-            background: #161b22;
-            border-radius: 20px;
-            padding: 40px;
-            margin: 60px 20px;
-            border: 1px solid #30363d;
-        }
-
-        .results-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .results-title {
-            color: #f0f6fc;
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
-        }
-
-        .results-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
-        }
-
-        .result-card {
-            background: #0d1117;
-            border-radius: 16px;
-            padding: 24px;
-            border: 1px solid #30363d;
-            transition: all 0.3s ease;
-        }
-
-        .result-card:hover {
-            border-color: #667eea;
-            transform: translateY(-4px);
-            box-shadow: 0 12px 24px rgba(102, 126, 234, 0.1);
-        }
-
-        .result-icon {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.5rem;
-            margin-bottom: 16px;
-        }
-
-        .result-title {
-            color: #f0f6fc;
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
-        .result-description {
-            color: #7d8590;
-            font-size: 0.9rem;
-            line-height: 1.6;
-        }
-
-        .result-metric {
-            background: #21262d;
-            border-radius: 8px;
-            padding: 12px;
-            margin-top: 12px;
-            text-align: center;
-        }
-
-        .metric-value {
-            color: #58a6ff;
-            font-size: 1.5rem;
-            font-weight: bold;
-            display: block;
-        }
-
-        .metric-label {
-            color: #7d8590;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        /* Loading Animation */
-        .loading-animation {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid #30363d;
-            border-radius: 50%;
-            border-top-color: #667eea;
-            animation: spin 1s ease-in-out infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        .applications-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .application-card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .application-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        .card-header {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            padding: 1.5rem;
-            text-align: center;
-        }
-
-        .card-body {
-            padding: 2rem;
-        }
-
-        footer {
-            background: #2c3e50;
-            color: white;
-            text-align: center;
-            padding: 3rem 0;
-            margin-top: 4rem;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-section h3 {
-            margin-bottom: 1rem;
-            color: #3498db;
-        }
-
-        .footer-section a {
-            color: #ccc;
-            text-decoration: none;
-            display: block;
-            margin-bottom: 0.5rem;
-            transition: color 0.3s ease;
-        }
-
-        .footer-section a:hover {
-            color: #3498db;
-        }
-
+        /* Responsive Design */
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
@@ -1319,26 +971,26 @@
                 align-items: center;
             }
             
-            .playground-content {
+            .mathematical-grid {
                 grid-template-columns: 1fr;
             }
             
-            .code-editor {
-                border-right: none;
-                border-bottom: 1px solid #30363d;
+            .architecture-flow {
+                flex-direction: column;
             }
             
-            .difficulty-selector {
-                flex-wrap: wrap;
+            .flow-arrow {
+                transform: rotate(90deg);
             }
-            
-            .examples-title {
-                font-size: 2.2rem;
-            }
-            
-            .results-grid {
-                grid-template-columns: 1fr;
-            }
+        }
+
+        /* Math styling */
+        .MathJax {
+            font-size: 1.1em !important;
+        }
+
+        .mathematical-formula .MathJax {
+            color: #f0f6fc !important;
         }
     </style>
 </head>
@@ -1373,16 +1025,195 @@
 
     <section id="features" class="section">
         <div class="container">
-            <h2>Key Features</h2>
-            <p class="features-subtitle">Production-ready Bayesian neural network framework optimized for high-dimensional multiomics analysis</p>
+            <h2>Mathematical Methodology & Key Features</h2>
+            <p class="features-subtitle">Advanced Bayesian neural network framework with rigorous mathematical foundations for high-dimensional multiomics analysis</p>
             
             <div class="features-container">
+                <!-- Mathematical Foundation Section -->
+                <div class="mathematical-foundation fade-in">
+                    <div class="foundation-header">
+                        <h3 class="foundation-title">Mathematical Foundations</h3>
+                        <p class="foundation-subtitle">VBayesMM builds upon rigorous Bayesian inference principles, incorporating spike-and-slab priors for sparse feature selection and variational inference for computational tractability in high-dimensional microbiome multiomics data.</p>
+                    </div>
+
+                    <div class="mathematical-grid">
+                        <div class="math-concept">
+                            <div class="concept-header">
+                                <div class="concept-icon">
+                                    <i class="fas fa-chart-pie"></i>
+                                </div>
+                                <h4 class="concept-title">Spike-and-Slab Prior Distribution</h4>
+                            </div>
+                            <p class="concept-description">
+                                VBayesMM implements a sophisticated spike-and-slab prior for automatic feature selection, enabling probabilistic identification of keystone microbial species while maintaining sparsity in high-dimensional data.
+                            </p>
+                            <div class="mathematical-formula">
+                                <div class="formula-label">Spike-and-Slab Prior for Taxonomic Units</div>
+                                <div class="formula-content">
+                                    $u_{il} | \gamma_{il} \sim \gamma_{il} \times \mathcal{N}(0, \sigma^2) + (1 - \gamma_{il}) \times \delta_0$
+                                    $\gamma_{il} \sim \text{Bernoulli}(\lambda), \quad l = 1, \ldots, L$
+                                </div>
+                            </div>
+                            <p class="concept-description">
+                                Where $\gamma_{il} \in \{0,1\}$ is a binary indicator for the $l$-th latent dimension of the $i$-th taxonomic unit, $\delta_0$ represents the Dirac spike at zero, and $\lambda$ is the prior inclusion probability hyperparameter.
+                            </p>
+                            <div class="concept-highlights">
+                                <span class="highlight-tag">Automatic Feature Selection</span>
+                                <span class="highlight-tag">Sparsity Induction</span>
+                                <span class="highlight-tag">Probabilistic Interpretation</span>
+                            </div>
+                        </div>
+
+                        <div class="math-concept">
+                            <div class="concept-header">
+                                <div class="concept-icon">
+                                    <i class="fas fa-brain"></i>
+                                </div>
+                                <h4 class="concept-title">Variational Bayesian Inference</h4>
+                            </div>
+                            <p class="concept-description">
+                                To address computational intractability in high-dimensional settings, VBayesMM employs mean-field variational inference with carefully designed variational distributions for efficient posterior approximation.
+                            </p>
+                            <div class="mathematical-formula">
+                                <div class="formula-label">Evidence Lower Bound (ELBO) Optimization</div>
+                                <div class="formula-content">
+                                    $$\mathcal{L}[q(\Xi|\Theta)] = \mathbb{E}_{q(\Xi|\Theta)}[\log p(\mathcal{D}, \Xi)] - \mathbb{E}_{q(\Xi|\Theta)}[\log q(\Xi|\Theta)]$$
+                                    $$\log p(\mathcal{D}) \geq \mathcal{L}[q(\Xi|\Theta)]$$
+                                </div>
+                            </div>
+                            <div class="mathematical-formula">
+                                <div class="formula-label">Variational Distributions</div>
+                                <div class="formula-content">
+                                    $q(U|\Theta) = \prod_{i=1}^{N} \mathcal{N}(u_i; \alpha_{U,i}, \text{diag}(\beta_{U,i}^2))$
+                                    $q(\gamma|\Theta) = \prod_{i=1}^{N} \prod_{l=1}^{L} \text{Bernoulli}(\gamma_{il}; \xi_{il})$
+                                    $q(V|\Theta) = \prod_{j=1}^{M} \mathcal{N}(v_j; \alpha_{V,j}, \text{diag}(\beta_{V,j}^2))$
+                                </div>
+                            </div>
+                            <div class="concept-highlights">
+                                <span class="highlight-tag">Mean-Field Approximation</span>
+                                <span class="highlight-tag">KL Divergence Minimization</span>
+                                <span class="highlight-tag">Scalable Inference</span>
+                            </div>
+                        </div>
+
+                        <div class="math-concept">
+                            <div class="concept-header">
+                                <div class="concept-icon">
+                                    <i class="fas fa-random"></i>
+                                </div>
+                                <h4 class="concept-title">Gumbel-Softmax Reparameterization</h4>
+                            </div>
+                            <p class="concept-description">
+                                For discrete binary variables in the spike-and-slab prior, VBayesMM employs the Gumbel-Softmax trick to enable gradient-based optimization through continuous relaxation of discrete distributions.
+                            </p>
+                            <div class="mathematical-formula">
+                                <div class="formula-label">Continuous Relaxation of Binary Indicators</div>
+                                <div class="formula-content">
+                                    $\tilde{\gamma}_{il} = \frac{\exp((\log \xi_{il} + \kappa_1)/\tau)}{\exp((\log \xi_{il} + \kappa_1)/\tau) + \exp((\log(1-\xi_{il}) + \kappa_2)/\tau)}$
+                                </div>
+                            </div>
+                            <p class="concept-description">
+                                Where $\kappa_1, \kappa_2 \sim \text{Gumbel}(0,1)$ are i.i.d. Gumbel random variables and $\tau$ is the temperature parameter controlling the approximation quality. As $\tau \to 0$, the relaxation approaches the discrete distribution.
+                            </p>
+                            <div class="concept-highlights">
+                                <span class="highlight-tag">Differentiable Discrete Sampling</span>
+                                <span class="highlight-tag">Temperature Annealing</span>
+                                <span class="highlight-tag">Gradient Estimation</span>
+                            </div>
+                        </div>
+
+                        <div class="math-concept">
+                            <div class="concept-header">
+                                <div class="concept-icon">
+                                    <i class="fas fa-project-diagram"></i>
+                                </div>
+                                <h4 class="concept-title">Neural Network Architecture</h4>
+                            </div>
+                            <p class="concept-description">
+                                VBayesMM extends the MMvec architecture with Bayesian neural networks, incorporating uncertainty quantification in both encoder and decoder networks for robust microbiome-metabolome relationship inference.
+                            </p>
+                            <div class="mathematical-formula">
+                                <div class="formula-label">Conditional Probability Model</div>
+                                <div class="formula-content">
+                                    $p(Y_{kj} | i \sim \text{Categorical}(X_k)) = \frac{\exp(u_i^T v_j + v_{j0})}{\sum_{j'=1}^{M} \exp(u_i^T v_{j'} + v_{j'0})}$
+                                </div>
+                            </div>
+                            <div class="mathematical-formula">
+                                <div class="formula-label">Multinomial Likelihood</div>
+                                <div class="formula-content">
+                                    $p(Y_k | X_k) = \text{Multinomial}\left(w_k, \left(p(Y_{kj} | i \sim \text{Categorical}(X_k))\right)_{j=1}^{M}\right)$
+                                </div>
+                            </div>
+                            <div class="mathematical-formula">
+                                <div class="formula-label">Latent Embedding Matrices</div>
+                                <div class="formula-content">
+                                    $U = [u_0, u_1, \ldots, u_N] \in \mathbb{R}^{(N+1) \times L}$
+                                    $V = [v_0, v_1, \ldots, v_M] \in \mathbb{R}^{(M+1) \times L}$
+                                </div>
+                            </div>
+                            <div class="concept-highlights">
+                                <span class="highlight-tag">Bayesian Neural Networks</span>
+                                <span class="highlight-tag">Uncertainty Quantification</span>
+                                <span class="highlight-tag">Compositional Data Modeling</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="algorithm-flowchart">
+                        <h4 class="flowchart-title">VBayesMM Algorithm Workflow</h4>
+                        <div class="algorithm-steps">
+                            <div class="algorithm-step">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <div class="step-title">Initialize Variational Parameters</div>
+                                    <div class="step-description">Set initial values for $\Theta = \{\alpha_U, \beta_U, \xi, \alpha_V, \beta_V\}$ and hyperparameters</div>
+                                </div>
+                            </div>
+                            <div class="algorithm-step">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <div class="step-title">Sample from Variational Distributions</div>
+                                    <div class="step-description">Use reparameterization trick: $u_i = \alpha_{U,i} + \beta_{U,i} \odot \epsilon$, where $\epsilon \sim \mathcal{N}(0,I)$</div>
+                                </div>
+                            </div>
+                            <div class="algorithm-step">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <div class="step-title">Apply Gumbel-Softmax for Feature Selection</div>
+                                    <div class="step-description">Generate continuous relaxation $\tilde{\gamma}_{il}$ for binary indicators using Gumbel-Softmax with temperature $\tau$</div>
+                                </div>
+                            </div>
+                            <div class="algorithm-step">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <div class="step-title">Compute ELBO and Gradients</div>
+                                    <div class="step-description">Evaluate $\mathcal{L}[q(\Xi|\Theta)]$ and compute $\nabla_\Theta \mathcal{L}$ using automatic differentiation</div>
+                                </div>
+                            </div>
+                            <div class="algorithm-step">
+                                <div class="step-number">5</div>
+                                <div class="step-content">
+                                    <div class="step-title">Update Variational Parameters</div>
+                                    <div class="step-description">Apply Adam optimizer: $\Theta^{(t+1)} = \Theta^{(t)} + \eta \cdot \text{Adam}(\nabla_\Theta \mathcal{L})$</div>
+                                </div>
+                            </div>
+                            <div class="algorithm-step">
+                                <div class="step-number">6</div>
+                                <div class="step-content">
+                                    <div class="step-title">Convergence and Feature Extraction</div>
+                                    <div class="step-description">Monitor ELBO convergence and extract posterior inclusion probabilities $\mathbb{E}[\gamma_{il}] = \xi_{il}$ for feature selection</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Performance Dashboard -->
                 <div class="performance-dashboard fade-in">
                     <div class="dashboard-header">
                         <div class="dashboard-title">
                             <i class="fas fa-tachometer-alt"></i>
-                            Performance Metrics
+                            Computational Performance Metrics
                         </div>
                         <div class="status-indicator">
                             <div class="status-dot"></div>
@@ -1407,8 +1238,8 @@
                         </div>
                         <div class="metric-card">
                             <span class="metric-value">π ∈ [0,1]</span>
-                            <div class="metric-label">Spike Probability</div>
-                            <div class="metric-description">Feature inclusion prior</div>
+                            <div class="metric-label">Inclusion Prior</div>
+                            <div class="metric-description">Spike probability parameter</div>
                         </div>
                     </div>
                 </div>
@@ -1416,34 +1247,41 @@
                 <!-- Technical Architecture -->
                 <div class="architecture-section fade-in">
                     <div class="arch-header">
-                        <h3 class="arch-title">Model Architecture</h3>
-                        <p class="arch-subtitle">Variational Bayesian inference pipeline with spike-and-slab priors in encoder network for sparse feature selection</p>
+                        <h3 class="arch-title">Model Architecture Pipeline</h3>
+                        <p class="arch-subtitle">End-to-end variational Bayesian inference pipeline with spike-and-slab feature selection in encoder network</p>
                     </div>
                     <div class="architecture-flow">
                         <div class="flow-node">
                             <div class="flow-node-title">Microbiome Input</div>
-                            <div class="flow-node-detail">16S/WGS → Sparse Matrix</div>
+                            <div class="flow-node-detail">X ∈ ℝ^(K×N) Count Matrix</div>
                         </div>
                         <div class="flow-arrow">
                             <i class="fas fa-arrow-right"></i>
                         </div>
                         <div class="flow-node">
                             <div class="flow-node-title">Encoder Network</div>
-                            <div class="flow-node-detail">Spike-and-Slab + ELBO</div>
+                            <div class="flow-node-detail">Spike-and-Slab + Variational Inference</div>
                         </div>
                         <div class="flow-arrow">
                             <i class="fas fa-arrow-right"></i>
                         </div>
                         <div class="flow-node">
                             <div class="flow-node-title">Latent Space</div>
-                            <div class="flow-node-detail">Low-Dimensional Encoding</div>
+                            <div class="flow-node-detail">U ∈ ℝ^((N+1)×L) Embeddings</div>
                         </div>
                         <div class="flow-arrow">
                             <i class="fas fa-arrow-right"></i>
                         </div>
                         <div class="flow-node">
                             <div class="flow-node-title">Decoder Network</div>
-                            <div class="flow-node-detail">Metabolome Prediction + ELBO</div>
+                            <div class="flow-node-detail">Multinomial Likelihood</div>
+                        </div>
+                        <div class="flow-arrow">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                        <div class="flow-node">
+                            <div class="flow-node-title">Metabolome Output</div>
+                            <div class="flow-node-detail">Y ∈ ℝ^(K×M) Predictions</div>
                         </div>
                     </div>
                 </div>
@@ -1453,17 +1291,17 @@
                     <div class="feature-module fade-in">
                         <div class="feature-header">
                             <div class="feature-icon">
-                                <i class="fas fa-brain"></i>
+                                <i class="fas fa-chart-line"></i>
                             </div>
-                            <h3 class="feature-title">Variational Bayesian Inference</h3>
-                            <p class="feature-description">Advanced posterior approximation using mean-field variational inference with KL-divergence optimization</p>
+                            <h3 class="feature-title">Bayesian Feature Selection</h3>
+                            <p class="feature-description">Probabilistic identification of keystone microbial species using spike-and-slab priors with theoretical guarantees for sparse feature discovery</p>
                         </div>
                         <div class="feature-body">
                             <div class="feature-specs">
-                                <span class="spec-tag primary">ELBO</span>
-                                <span class="spec-tag">KL-Divergence</span>
-                                <span class="spec-tag">Adam Optimizer</span>
-                                <span class="spec-tag">GPU Accelerated</span>
+                                <span class="spec-tag primary">Spike-and-Slab Prior</span>
+                                <span class="spec-tag">Bernoulli Indicators</span>
+                                <span class="spec-tag">Posterior Inclusion Probability</span>
+                                <span class="spec-tag">Automatic Relevance Determination</span>
                             </div>
                             <div class="feature-demo">
                                 <div class="demo-header">
@@ -1472,12 +1310,12 @@
                                         <div class="demo-dot yellow"></div>
                                         <div class="demo-dot green"></div>
                                     </div>
-                                    <div class="demo-title">Inference Implementation</div>
+                                    <div class="demo-title">Mathematical Implementation</div>
                                 </div>
                                 <div class="demo-content">
-                                    ELBO = <span class="demo-highlight">E_q[log p(x,z)] - E_q[log q(z)]</span><br>
-                                    KL = <span class="demo-highlight">∑ γ_i * log(γ_i / α_i)</span><br>
-                                    Loss = <span class="demo-highlight">-ELBO + λ * KL_regularization</span>
+                                    P(γᵢₗ = 1 | data) = <span class="demo-highlight">𝔼[ξᵢₗ]</span><br>
+                                    Sparsity level: <span class="demo-highlight">∑ᵢ∑ₗ P(γᵢₗ = 1)</span><br>
+                                    Selection threshold: <span class="demo-highlight">τ ∈ [0.5, 0.9]</span>
                                 </div>
                             </div>
                         </div>
@@ -1486,17 +1324,17 @@
                     <div class="feature-module fade-in">
                         <div class="feature-header">
                             <div class="feature-icon">
-                                <i class="fas fa-chart-line"></i>
+                                <i class="fas fa-calculator"></i>
                             </div>
-                            <h3 class="feature-title">Species Prioritization Engine</h3>
-                            <p class="feature-description">Automated feature selection using spike-and-slab priors for microbial importance ranking and sparse feature discovery</p>
+                            <h3 class="feature-title">Scalable Variational Inference</h3>
+                            <p class="feature-description">Efficient ELBO optimization with reparameterization tricks enabling analysis of ultra-high dimensional datasets with computational complexity O(n log n)</p>
                         </div>
                         <div class="feature-body">
                             <div class="feature-specs">
-                                <span class="spec-tag primary">Spike-and-Slab Prior</span>
-                                <span class="spec-tag">Bayesian Feature Selection</span>
-                                <span class="spec-tag">Sparse Inference</span>
-                                <span class="spec-tag">Binary Indicators</span>
+                                <span class="spec-tag primary">ELBO Maximization</span>
+                                <span class="spec-tag">Reparameterization Trick</span>
+                                <span class="spec-tag">Adam Optimization</span>
+                                <span class="spec-tag">Automatic Differentiation</span>
                             </div>
                             <div class="feature-demo">
                                 <div class="demo-header">
@@ -1505,12 +1343,45 @@
                                         <div class="demo-dot yellow"></div>
                                         <div class="demo-dot green"></div>
                                     </div>
-                                    <div class="demo-title">Spike-and-Slab Selection</div>
+                                    <div class="demo-title">Optimization Framework</div>
                                 </div>
                                 <div class="demo-content">
-                                    z_i ~ <span class="demo-highlight">Bernoulli(π)</span> &nbsp;&nbsp;# spike indicator<br>
-                                    β_i | z_i ~ <span class="demo-highlight">z_i × N(0,τ²) + (1-z_i) × δ₀</span><br>
-                                    P(selected) = <span class="demo-highlight">E[z_i | data]</span>
+                                    ELBO = <span class="demo-highlight">𝔼q[log p(𝒟,Ξ)] - KL[q||p]</span><br>
+                                    Gradient: <span class="demo-highlight">∇Θ ℒ = ∇Θ 𝔼q[f(ξ)]</span><br>
+                                    Update: <span class="demo-highlight">Θ ← Adam(∇Θ ℒ)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="feature-module fade-in">
+                        <div class="feature-header">
+                            <div class="feature-icon">
+                                <i class="fas fa-chart-area"></i>
+                            </div>
+                            <h3 class="feature-title">Uncertainty Quantification</h3>
+                            <p class="feature-description">Comprehensive Bayesian uncertainty estimation through posterior distributions of weights and feature inclusion probabilities with calibrated confidence intervals</p>
+                        </div>
+                        <div class="feature-body">
+                            <div class="feature-specs">
+                                <span class="spec-tag primary">Posterior Uncertainty</span>
+                                <span class="spec-tag">Predictive Intervals</span>
+                                <span class="spec-tag">Model Confidence</span>
+                                <span class="spec-tag">Bayesian Calibration</span>
+                            </div>
+                            <div class="feature-demo">
+                                <div class="demo-header">
+                                    <div class="demo-dots">
+                                        <div class="demo-dot red"></div>
+                                        <div class="demo-dot yellow"></div>
+                                        <div class="demo-dot green"></div>
+                                    </div>
+                                    <div class="demo-title">Uncertainty Measures</div>
+                                </div>
+                                <div class="demo-content">
+                                    Epistemic: <span class="demo-highlight">Var[𝔼[y|x,θ]]</span><br>
+                                    Aleatoric: <span class="demo-highlight">𝔼[Var[y|x,θ]]</span><br>
+                                    Total: <span class="demo-highlight">Var[y|x] = Epistemic + Aleatoric</span>
                                 </div>
                             </div>
                         </div>
@@ -1521,13 +1392,13 @@
                             <div class="feature-icon">
                                 <i class="fas fa-dna"></i>
                             </div>
-                            <h3 class="feature-title">Multiomics Data Fusion</h3>
-                            <p class="feature-description">Integrated analysis of microbiome and metabolome datasets with automatic alignment and preprocessing</p>
+                            <h3 class="feature-title">Multiomics Integration</h3>
+                            <p class="feature-description">Sophisticated modeling of compositional microbiome and metabolome data with automatic alignment and preprocessing for diverse sequencing platforms</p>
                         </div>
                         <div class="feature-body">
                             <div class="feature-specs">
                                 <span class="spec-tag primary">16S rRNA</span>
-                                <span class="spec-tag">WGS</span>
+                                <span class="spec-tag primary">WGS</span>
                                 <span class="spec-tag">LC-MS/MS</span>
                                 <span class="spec-tag">CE-TOFMS</span>
                             </div>
@@ -1538,533 +1409,20 @@
                                         <div class="demo-dot yellow"></div>
                                         <div class="demo-dot green"></div>
                                     </div>
-                                    <div class="demo-title">Data Pipeline</div>
+                                    <div class="demo-title">Data Processing Pipeline</div>
                                 </div>
                                 <div class="demo-content">
                                     Input: <span class="demo-highlight">BIOM | TSV | CSV</span><br>
-                                    Align: <span class="demo-highlight">sample_id mapping</span><br>
-                                    Process: <span class="demo-highlight">sparse_matrix → dense</span>
+                                    Normalization: <span class="demo-highlight">CLR transformation</span><br>
+                                    Alignment: <span class="demo-highlight">sample_id matching</span>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="feature-module fade-in">
-                        <div class="feature-header">
-                            <div class="feature-icon">
-                                <i class="fas fa-code"></i>
-                            </div>
-                            <h3 class="feature-title">Framework Compatibility</h3>
-                            <p class="feature-description">Native implementations for both TensorFlow and PyTorch with consistent APIs and performance</p>
-                        </div>
-                        <div class="feature-body">
-                            <div class="feature-specs">
-                                <span class="spec-tag primary">TensorFlow 2.x</span>
-                                <span class="spec-tag primary">PyTorch 1.x</span>
-                                <span class="spec-tag">CUDA Support</span>
-                                <span class="spec-tag">Multi-GPU</span>
-                            </div>
-                            <div class="feature-demo">
-                                <div class="demo-header">
-                                    <div class="demo-dots">
-                                        <div class="demo-dot red"></div>
-                                        <div class="demo-dot yellow"></div>
-                                        <div class="demo-dot green"></div>
-                                    </div>
-                                    <div class="demo-title">Installation</div>
-                                </div>
-                                <div class="demo-content">
-                                    pip install <span class="demo-highlight">vbayesmm[tensorflow]</span><br>
-                                    pip install <span class="demo-highlight">vbayesmm[pytorch]</span><br>
-                                    import <span class="demo-highlight">vbayesmm as vb</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Interactive Code Preview -->
-                <div class="code-preview fade-in">
-                    <div class="code-header">
-                        <div class="code-tabs">
-                            <div class="code-tab active" onclick="switchTab('tensorflow')">TensorFlow</div>
-                            <div class="code-tab" onclick="switchTab('pytorch')">PyTorch</div>
-                        </div>
-                        <div class="code-actions">
-                            <button class="code-action" onclick="copyCode('quick-start')">
-                                <i class="fas fa-copy"></i> Copy
-                            </button>
-                            <button class="code-action">
-                                <i class="fas fa-play"></i> Run
-                            </button>
-                        </div>
-                    </div>
-                    <div class="code-content" id="quick-start">
-<span class="code-comment"># Quick Start - TensorFlow Implementation</span>
-<span class="code-keyword">import</span> <span class="code-string">vbayesmm</span> <span class="code-keyword">as</span> vb
-<span class="code-keyword">import</span> <span class="code-string">tensorflow</span> <span class="code-keyword">as</span> tf
-
-<span class="code-comment"># Load your multiomics data</span>
-microbes, metabolites = vb.<span class="code-function">load_data</span>(<span class="code-string">"data/"</span>)
-
-<span class="code-comment"># Initialize VBayesMM model</span>
-model = vb.<span class="code-function">VBayesMM</span>(
-    input_dim=microbes.shape[<span class="code-number">1</span>],
-    output_dim=metabolites.shape[<span class="code-number">1</span>],
-    latent_dim=<span class="code-number">50</span>,
-    framework=<span class="code-string">"tensorflow"</span>
-)
-
-<span class="code-comment"># Train with ELBO optimization</span>
-history = model.<span class="code-function">fit</span>(
-    microbes, metabolites,
-    epochs=<span class="code-number">1000</span>,
-    batch_size=<span class="code-number">32</span>,
-    validation_split=<span class="code-number">0.2</span>
-)
-
-<span class="code-comment"># Extract important species</span>
-important_species = model.<span class="code-function">get_selected_features</span>(threshold=<span class="code-number">0.5</span>)
-<span class="code-function">print</span>(<span class="code-string">f"Selected {len(important_species)} important microbial species"</span>)
-                    </div>
-                </div>
-
-                <!-- Framework Comparison -->
-                <div class="framework-comparison fade-in">
-                    <div class="arch-header">
-                        <h3 class="arch-title">Framework Support</h3>
-                        <p class="arch-subtitle">Choose your preferred deep learning framework with identical functionality</p>
-                    </div>
-                    <div class="comparison-grid">
-                        <div class="framework-card">
-                            <div class="framework-logo tensorflow">
-                                <i class="fab fa-google"></i>
-                            </div>
-                            <h4 class="framework-name">TensorFlow</h4>
-                            <p class="framework-version">v2.x Compatible</p>
-                            <ul class="framework-features">
-                                <li>Eager execution support</li>
-                                <li>TensorBoard integration</li>
-                                <li>tf.data pipeline optimization</li>
-                                <li>Distributed training ready</li>
-                                <li>SavedModel export format</li>
-                            </ul>
-                        </div>
-                        <div class="framework-card">
-                            <div class="framework-logo pytorch">
-                                <i class="fas fa-fire"></i>
-                            </div>
-                            <h4 class="framework-name">PyTorch</h4>
-                            <p class="framework-version">v1.x Compatible</p>
-                            <ul class="framework-features">
-                                <li>Dynamic computation graphs</li>
-                                <li>Native Python debugging</li>
-                                <li>TorchScript compilation</li>
-                                <li>ONNX export support</li>
-                                <li>Lightning integration</li>
-                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
-    <section id="applications" class="section">
-        <div class="container">
-            <h2>Applications & Datasets</h2>
-            <div class="applications-grid">
-                <div class="application-card fade-in">
-                    <div class="card-header">
-                        <h3><i class="fas fa-bed"></i> Sleep Disorders</h3>
-                    </div>
-                    <div class="card-body">
-                        <h4>Obstructive Sleep Apnea (OSA)</h4>
-                        <p>Analysis of microbiome-metabolome relationships in mouse models of sleep apnea using 16S rRNA sequencing and LC-MS/MS metabolomics.</p>
-                        <ul style="margin-top: 1rem; color: #666;">
-                            <li>16S rRNA gene sequencing</li>
-                            <li>LC-MS/MS metabolomics</li>
-                            <li>Mouse model validation</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="application-card fade-in">
-                    <div class="card-header">
-                        <h3><i class="fas fa-hamburger"></i> Metabolic Disorders</h3>
-                    </div>
-                    <div class="card-body">
-                        <h4>High-Fat Diet (HFD) Model</h4>
-                        <p>Investigation of diet-induced changes in microbiome-metabolome interactions in murine models of metabolic dysfunction.</p>
-                        <ul style="margin-top: 1rem; color: #666;">
-                            <li>Diet-induced obesity model</li>
-                            <li>Metabolic pathway analysis</li>
-                            <li>Longitudinal data support</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="application-card fade-in">
-                    <div class="card-header">
-                        <h3><i class="fas fa-user-md"></i> Cancer Research</h3>
-                    </div>
-                    <div class="card-body">
-                        <h4>Gastric & Colorectal Cancer</h4>
-                        <p>Clinical application in cancer patients using whole-genome shotgun sequencing and CE-TOFMS metabolomics.</p>
-                        <ul style="margin-top: 1rem; color: #666;">
-                            <li>WGS microbiome profiling</li>
-                            <li>CE-TOFMS metabolomics</li>
-                            <li>Stage 0-4 cancer patients</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="examples" class="section">
-        <div class="container">
-            <h2>Code Examples</h2>
-            <p style="text-align: center; color: #666; font-size: 1.1rem; margin-bottom: 3rem;">
-                Let us first load the simple sample data to see an example of the VBayesMM. VBayesMM supports for loading arbitrary 
-                <strong>biom</strong>, <strong>tsv</strong>, and <strong>csv</strong> formats.
-            </p>
-            
-            <!-- TensorFlow Example -->
-            <div class="example-framework fade-in" style="margin-bottom: 4rem;">
-                <div class="framework-header">
-                    <h3><i class="fab fa-google" style="color: #ff6f00;"></i> TensorFlow Implementation</h3>
-                </div>
-                
-                <div class="example-step">
-                    <h4>Import packages</h4>
-                    <div class="code-section">
-                        <div class="code-header">
-                            <div class="code-title"><i class="fab fa-python"></i> Python</div>
-                            <button class="copy-btn" onclick="copyCode('tf-imports')">
-                                <i class="fas fa-copy"></i> Copy
-                            </button>
-                        </div>
-                        <div class="code-block" id="tf-imports">
-<span class="keyword">import</span> <span class="highlight">pandas</span> <span class="keyword">as</span> pd<br>
-<span class="keyword">import</span> <span class="highlight">numpy</span> <span class="keyword">as</span> np<br>
-<span class="keyword">import</span> <span class="highlight">matplotlib.pyplot</span> <span class="keyword">as</span> plt<br>
-<span class="keyword">import</span> <span class="highlight">seaborn</span> <span class="keyword">as</span> sns<br>
-<span class="keyword">import</span> <span class="highlight">biom</span><br>
-<span class="keyword">from</span> <span class="highlight">biom</span> <span class="keyword">import</span> load_table, Table<br>
-<span class="keyword">from</span> <span class="highlight">scipy.stats</span> <span class="keyword">import</span> entropy, spearmanr<br>
-<span class="keyword">from</span> <span class="highlight">scipy.sparse</span> <span class="keyword">import</span> coo_matrix<br>
-<span class="keyword">import</span> <span class="highlight">tensorflow</span> <span class="keyword">as</span> tf<br>
-<span class="keyword">from</span> <span class="highlight">VBayesMM</span> <span class="keyword">import</span> VBayesMM<br>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="example-step">
-                    <h4>Loading and preparing data in <code>examples/</code></h4>
-                    <div class="code-section">
-                        <div class="code-header">
-                            <div class="code-title"><i class="fab fa-python"></i> Data Preparation</div>
-                            <button class="copy-btn" onclick="copyCode('tf-data-prep')">
-                                <i class="fas fa-copy"></i> Copy
-                            </button>
-                        </div>
-                        <div class="code-block" id="tf-data-prep">
-<span class="variable">microbes</span> = <span class="function">load_table</span>(<span class="string">"microbes.biom"</span>)<br>
-<span class="variable">metabolites</span> = <span class="function">load_table</span>(<span class="string">"metabolites.biom"</span>)<br>
-
-<span class="variable">microbes_df</span> = <span class="variable">microbes</span>.<span class="function">to_dataframe</span>()<br>
-<span class="variable">metabolites_df</span> = <span class="variable">metabolites</span>.<span class="function">to_dataframe</span>()<br>
-
-<span class="variable">microbes_df</span> = <span class="variable">microbes_df</span>.<span class="function">astype</span>(<span class="variable">pd</span>.<span class="function">SparseDtype</span>(<span class="string">"float64"</span>, <span class="variable">fill_value</span>=<span class="number">0</span>))<br>
-<span class="variable">metabolites_df</span> = <span class="variable">metabolites_df</span>.<span class="function">astype</span>(<span class="variable">pd</span>.<span class="function">SparseDtype</span>(<span class="string">"float64"</span>, <span class="variable">fill_value</span>=<span class="number">0</span>))<br>
-
-<span class="variable">microbes_df</span>, <span class="variable">metabolites_df</span> = <span class="variable">microbes_df</span>.<span class="function">align</span>(<span class="variable">metabolites_df</span>, <span class="variable">axis</span>=<span class="number">0</span>, <span class="variable">join</span>=<span class="string">'inner'</span>)<br>
-
-<span class="variable">num_test</span> = <span class="number">20</span><br>
-<span class="variable">sample_ids</span> = <span class="function">set</span>(<span class="variable">np</span>.<span class="variable">random</span>.<span class="function">choice</span>(<span class="variable">microbes_df</span>.<span class="variable">index</span>, <span class="variable">size</span>=<span class="variable">num_test</span>))<br>
-<span class="variable">sample_ids</span> = <span class="variable">np</span>.<span class="function">array</span>([(<span class="variable">x</span> <span class="keyword">in</span> <span class="variable">sample_ids</span>) <span class="keyword">for</span> <span class="variable">x</span> <span class="keyword">in</span> <span class="variable">microbes_df</span>.<span class="variable">index</span>])<br>
-
-<span class="variable">train_microbes_df</span> = <span class="variable">microbes_df</span>.<span class="variable">loc</span>[~<span class="variable">sample_ids</span>]<br>
-<span class="variable">test_microbes_df</span> = <span class="variable">microbes_df</span>.<span class="variable">loc</span>[<span class="variable">sample_ids</span>]<br>
-<span class="variable">train_metabolites_df</span> = <span class="variable">metabolites_df</span>.<span class="variable">loc</span>[~<span class="variable">sample_ids</span>]<br>
-<span class="variable">test_metabolites_df</span> = <span class="variable">metabolites_df</span>.<span class="variable">loc</span>[<span class="variable">sample_ids</span>]<br>
-
-<span class="variable">train_microbes_coo</span> = <span class="function">coo_matrix</span>(<span class="variable">train_microbes_df</span>.<span class="variable">values</span>)<br>
-<span class="variable">test_microbes_coo</span> = <span class="function">coo_matrix</span>(<span class="variable">test_microbes_df</span>.<span class="variable">values</span>)<br>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="example-step">
-                    <h4>Creating, training, and testing a model</h4>
-                    <div class="code-section">
-                        <div class="code-header">
-                            <div class="code-title"><i class="fab fa-python"></i> Model Training</div>
-                            <button class="copy-btn" onclick="copyCode('tf-training')">
-                                <i class="fas fa-copy"></i> Copy
-                            </button>
-                        </div>
-                        <div class="code-block" id="tf-training">
-<span class="variable">model</span> = <span class="function">VBayesMM</span>()<br>
-<span class="variable">config</span> = <span class="variable">tf</span>.<span class="variable">compat</span>.<span class="variable">v1</span>.<span class="function">ConfigProto</span>()<br>
-
-<span class="keyword">with</span> <span class="variable">tf</span>.<span class="function">Graph</span>().<span class="function">as_default</span>(), <span class="variable">tf</span>.<span class="variable">compat</span>.<span class="variable">v1</span>.<span class="function">Session</span>(<span class="variable">config</span>=<span class="variable">config</span>) <span class="keyword">as</span> <span class="variable">session</span>:<br>
-    <span class="variable">model</span>(<span class="variable">session</span>, <span class="variable">train_microbes_coo</span>, <span class="variable">train_metabolites_df</span>.<span class="variable">values</span>,
-          <span class="variable">test_microbes_coo</span>, <span class="variable">test_metabolites_df</span>.<span class="variable">values</span>)<br>
-    <span class="variable">ELBO</span>, <span class="variable">_</span>, <span class="variable">SMAPE</span> = <span class="variable">model</span>.<span class="function">fit</span>(<span class="variable">epoch</span>=<span class="number">5000</span>)
-                        </div>
-                    </div>
-                </div>
-
-                <div class="example-step">
-                    <h4>Results Visualization</h4>
-                    <div class="results-table">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Train data</th>
-                                    <th>Test data</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><img src="https://github.com/tungtokyo1108/VBayesMM/raw/main/examples/ELBO.png" alt="ELBO Train" style="max-width: auto; height: auto;"></td>
-                                    <td><img src="https://github.com/tungtokyo1108/VBayesMM/raw/main/examples/SMAPE.png" alt="SMAPE Test" style="max-width: auto; height: auto;"></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <div class="example-step">
-                    <h4>Visualizing the posterior distributions of model outputs</h4>
-                    <div class="code-section">
-                        <div class="code-header">
-                            <div class="code-title"><i class="fab fa-python"></i> Output Analysis</div>
-                            <button class="copy-btn" onclick="copyCode('tf-analysis')">
-                                <i class="fas fa-copy"></i> Copy
-                            </button>
-                        </div>
-                        <div class="code-block" id="tf-analysis">
-<span class="variable">latent_microbiome_matrix</span> = <span class="variable">model</span>.<span class="variable">U</span><br>
-<span class="variable">microbial_species_selection</span> = <span class="variable">model</span>.<span class="variable">U_mean_gamma</span><br>
-<span class="variable">microbial_species_selection_mean</span> = <span class="variable">np</span>.<span class="function">sort</span>(<span class="variable">np</span>.<span class="function">mean</span>(<span class="variable">microbial_species_selection</span>, <span class="variable">axis</span>=<span class="number">1</span>))[<span class="number">::-1</span>]
-                        </div>
-                    </div>
-                    <div class="results-table">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Latent microbiome matrix</th>
-                                    <th>Microbial species selection</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><img src="https://github.com/tungtokyo1108/VBayesMM/raw/main/examples/Posterior_distribution_of_latent_microbiome_matrix.png" alt="Latent microbiome matrix" style="max-width: auto; height: auto;"></td>
-                                    <td><img src="https://github.com/tungtokyo1108/VBayesMM/raw/main/examples/Posterior_distribution_of_microbial_species_selection.png" alt="Microbial species selection" style="max-width: auto; height: auto;"></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-            <!-- PyTorch Example -->
-            <div class="example-framework fade-in">
-                <div class="framework-header">
-                    <h3><i class="fas fa-fire" style="color: #ee4c2c;"></i> PyTorch Implementation</h3>
-                </div>
-                
-                <div class="example-step">
-                    <h4>Import packages</h4>
-                    <div class="code-section">
-                        <div class="code-header">
-                            <div class="code-title"><i class="fab fa-python"></i> Python</div>
-                            <button class="copy-btn" onclick="copyCode('pt-imports')">
-                                <i class="fas fa-copy"></i> Copy
-                            </button>
-                        </div>
-                        <div class="code-block" id="pt-imports">
-<span class="keyword">import</span> <span class="highlight">pandas</span> <span class="keyword">as</span> pd<br>
-<span class="keyword">import</span> <span class="highlight">numpy</span> <span class="keyword">as</span> np<br>
-<span class="keyword">import</span> <span class="highlight">matplotlib.pyplot</span> <span class="keyword">as</span> plt<br>
-<span class="keyword">import</span> <span class="highlight">seaborn</span> <span class="keyword">as</span> sns<br>
-<span class="keyword">import</span> <span class="highlight">biom</span><br>
-<span class="keyword">from</span> <span class="highlight">biom</span> <span class="keyword">import</span> load_table, Table<br>
-<span class="keyword">from</span> <span class="highlight">scipy.stats</span> <span class="keyword">import</span> entropy, spearmanr<br>
-<span class="keyword">from</span> <span class="highlight">scipy.sparse</span> <span class="keyword">import</span> coo_matrix<br>
-<span class="keyword">import</span> <span class="highlight">torch</span><br>
-<span class="keyword">from</span> <span class="highlight">VBayesMM</span> <span class="keyword">import</span> VBayesMM<br>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="example-step">
-                    <h4>Loading and preparing data</h4>
-                    <div class="code-section">
-                        <div class="code-header">
-                            <div class="code-title"><i class="fab fa-python"></i> Data Preparation</div>
-                            <button class="copy-btn" onclick="copyCode('pt-data-prep')">
-                                <i class="fas fa-copy"></i> Copy
-                            </button>
-                        </div>
-                        <div class="code-block" id="pt-data-prep">
-<span class="variable">microbes</span> = <span class="function">load_table</span>(<span class="string">"microbes.biom"</span>)<br>
-<span class="variable">metabolites</span> = <span class="function">load_table</span>(<span class="string">"metabolites.biom"</span>)<br>
-
-<span class="variable">microbes_df</span> = <span class="variable">microbes</span>.<span class="function">to_dataframe</span>()<br>
-<span class="variable">metabolites_df</span> = <span class="variable">metabolites</span>.<span class="function">to_dataframe</span>()<br>
-
-<span class="variable">microbes_df</span> = <span class="variable">microbes_df</span>.<span class="function">astype</span>(<span class="variable">pd</span>.<span class="function">SparseDtype</span>(<span class="string">"float64"</span>, <span class="variable">fill_value</span>=<span class="number">0</span>))<br>
-<span class="variable">metabolites_df</span> = <span class="variable">metabolites_df</span>.<span class="function">astype</span>(<span class="variable">pd</span>.<span class="function">SparseDtype</span>(<span class="string">"float64"</span>, <span class="variable">fill_value</span>=<span class="number">0</span>))<br>
-
-<span class="variable">microbes_df</span>, <span class="variable">metabolites_df</span> = <span class="variable">microbes_df</span>.<span class="function">align</span>(<span class="variable">metabolites_df</span>, <span class="variable">axis</span>=<span class="number">0</span>, <span class="variable">join</span>=<span class="string">'inner'</span>)<br>
-
-<span class="variable">num_test</span> = <span class="number">20</span><br>
-<span class="variable">sample_ids</span> = <span class="function">set</span>(<span class="variable">np</span>.<span class="variable">random</span>.<span class="function">choice</span>(<span class="variable">microbes_df</span>.<span class="variable">index</span>, <span class="variable">size</span>=<span class="variable">num_test</span>))<br>
-<span class="variable">sample_ids</span> = <span class="variable">np</span>.<span class="function">array</span>([(<span class="variable">x</span> <span class="keyword">in</span> <span class="variable">sample_ids</span>) <span class="keyword">for</span> <span class="variable">x</span> <span class="keyword">in</span> <span class="variable">microbes_df</span>.<span class="variable">index</span>])<br>
-
-<span class="variable">train_microbes_df</span> = <span class="variable">microbes_df</span>.<span class="variable">loc</span>[~<span class="variable">sample_ids</span>]<br>
-<span class="variable">test_microbes_df</span> = <span class="variable">microbes_df</span>.<span class="variable">loc</span>[<span class="variable">sample_ids</span>]<br>
-<span class="variable">train_metabolites_df</span> = <span class="variable">metabolites_df</span>.<span class="variable">loc</span>[~<span class="variable">sample_ids</span>]<br>
-<span class="variable">test_metabolites_df</span> = <span class="variable">metabolites_df</span>.<span class="variable">loc</span>[<span class="variable">sample_ids</span>]<br>
-
-<span class="variable">n</span>, <span class="variable">d1</span> = <span class="variable">train_microbes_df</span>.<span class="variable">shape</span><br>
-<span class="variable">n</span>, <span class="variable">d2</span> = <span class="variable">train_metabolites_df</span>.<span class="variable">shape</span><br>
-
-<span class="variable">train_microbes_coo</span> = <span class="function">coo_matrix</span>(<span class="variable">train_microbes_df</span>.<span class="variable">values</span>)<br>
-<span class="variable">test_microbes_coo</span> = <span class="function">coo_matrix</span>(<span class="variable">test_microbes_df</span>.<span class="variable">values</span>)<br>
-
-<span class="variable">trainY_torch</span> = <span class="variable">torch</span>.<span class="function">tensor</span>(<span class="variable">train_metabolites_df</span>.<span class="function">to_numpy</span>(), <span class="variable">dtype</span>=<span class="variable">torch</span>.<span class="variable">float32</span>)<br>
-<span class="variable">testY_torch</span> = <span class="variable">torch</span>.<span class="function">tensor</span>(<span class="variable">test_metabolites_df</span>.<span class="function">to_numpy</span>(), <span class="variable">dtype</span>=<span class="variable">torch</span>.<span class="variable">float32</span>)
-                        </div>
-                    </div>
-                </div>
-
-                <div class="example-step">
-                    <h4>Creating, training, and testing a model</h4>
-                    <div class="code-section">
-                        <div class="code-header">
-                            <div class="code-title"><i class="fab fa-python"></i> Model Training</div>
-                            <button class="copy-btn" onclick="copyCode('pt-training')">
-                                <i class="fas fa-copy"></i> Copy
-                            </button>
-                        </div>
-                        <div class="code-block" id="pt-training">
-<span class="variable">model</span> = <span class="function">VBayesMM</span>(<span class="variable">d1</span>=<span class="variable">d1</span>, <span class="variable">d2</span>=<span class="variable">d2</span>, <span class="variable">num_samples</span>=<span class="variable">n</span>)<br>
-<span class="variable">ELBO</span>, <span class="variable">_</span>, <span class="variable">SMAPE</span> = <span class="variable">model</span>.<span class="function">fit</span>(<span class="variable">train_microbes_coo</span>, <span class="variable">trainY_torch</span>, 
-                                      <span class="variable">test_microbes_coo</span>, <span class="variable">testY_torch</span>, <span class="variable">epochs</span>=<span class="number">5000</span>)
-                        </div>
-                    </div>
-                </div>
-
-                <div class="example-step">
-                    <h4>Results Visualization</h4>
-                    <div class="results-table">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Train data</th>
-                                    <th>Test data</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><img src="https://github.com/tungtokyo1108/VBayesMM/raw/main/examples/ELBO_torch.png" alt="ELBO Train" style="max-width: 100%; height: auto;"></td>
-                                    <td><img src="https://github.com/tungtokyo1108/VBayesMM/raw/main/examples/SMAPE_torch.png" alt="SMAPE Test" style="max-width: 100%; height: auto;"></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <div class="example-step">
-                    <h4>Visualizing the posterior distributions of model outputs</h4>
-                    <div class="code-section">
-                        <div class="code-header">
-                            <div class="code-title"><i class="fab fa-python"></i> Output Analysis</div>
-                            <button class="copy-btn" onclick="copyCode('pt-analysis')">
-                                <i class="fas fa-copy"></i> Copy
-                            </button>
-                        </div>
-                        <div class="code-block" id="pt-analysis">
-<span class="variable">latent_microbiome_matrix</span> = <span class="variable">np</span>.<span class="function">array</span>(<span class="variable">model</span>.<span class="variable">qUmain_mean</span>.<span class="variable">weight</span>.<span class="variable">data</span>.<span class="function">detach</span>())<br>
-<span class="variable">microbial_species_selection</span> = <span class="variable">np</span>.<span class="function">array</span>(<span class="variable">model</span>.<span class="variable">qUmain_mean_gamma</span>.<span class="function">detach</span>())<br>
-<span class="variable">microbial_species_selection_mean</span> = <span class="variable">np</span>.<span class="function">sort</span>(<span class="variable">np</span>.<span class="function">mean</span>(<span class="variable">microbial_species_selection</span>, <span class="variable">axis</span>=<span class="number">1</span>))[<span class="number">::-1</span>]
-                        </div>
-                    </div>
-                    <div class="results-table">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Latent microbiome matrix</th>
-                                    <th>Microbial species selection</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><img src="https://github.com/tungtokyo1108/VBayesMM/raw/main/examples/Posterior_distribution_of_latent_microbiome_matrix_pt.png" alt="Latent microbiome matrix" style="max-width: 100%; height: auto;"></td>
-                                    <td><img src="https://github.com/tungtokyo1108/VBayesMM/raw/main/examples/Posterior_distribution_of_microbial_species_selection_pt.png" alt="Microbial species selection" style="max-width: 100%; height: auto;"></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Source Code Reference -->
-            <div class="source-reference fade-in" style="margin-top: 4rem; padding: 2rem; background: #f8f9fa; border-radius: 15px; border-left: 4px solid #667eea;">
-                <h3 style="color: #333; margin-bottom: 1rem;">Source Code</h3>
-                <p style="color: #666; margin-bottom: 1.5rem;">
-                    All of the code is in the <code>src/</code> folder, you can use to re-make the analyses in the paper:
-                </p>
-                <ul style="list-style: none; padding: 0;">
-                    <li style="margin-bottom: 0.5rem; color: #333;">
-                        <code style="background: #e9ecef; padding: 2px 6px; border-radius: 4px; color: #667eea; font-weight: 600;">tensorflow/VBayesMM.py</code>: 
-                        file contains Python codes for VBayesMM method for TensorFlow User.
-                    </li>
-                    <li style="margin-bottom: 0.5rem; color: #333;">
-                        <code style="background: #e9ecef; padding: 2px 6px; border-radius: 4px; color: #667eea; font-weight: 600;">pytorch/VBayesMM.py</code>: 
-                        file contains Python codes for VBayesMM method for PyTorch User.
-                    </li>
-                </ul>
-                <p style="color: #666; margin-top: 1.5rem;">
-                    If you have any problem, please contact me via email: 
-                    <a href="mailto:dangthanhtung91@vn-bml.com" style="color: #667eea;">dangthanhtung91@vn-bml.com</a>
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <footer id="contact">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>VBayesMM</h3>
-                    <p>Advancing microbiome research through sophisticated Bayesian neural networks and multiomics integration.</p>
-                </div>
-                <div class="footer-section">
-                    <h3>Quick Links</h3>
-                    <a href="https://github.com/tungtokyo1108/VBayesMM"><i class="fab fa-github"></i> GitHub Repository</a>
-                    <a href="https://doi.org/10.1101/2024.11.27.625587"><i class="fas fa-file-alt"></i> Research Paper</a>
-                    <a href="mailto:dangthanhtung91@vn-bml.com"><i class="fas fa-envelope"></i> Contact Author</a>
-                </div>
-                <div class="footer-section">
-                    <h3>Citation</h3>
-                    <p style="font-size: 0.9rem; color: #ccc;">
-                        Dang, T., Lysenko, A., Boroevich, K.A., & Tsunoda, T. (2024). 
-                        VBayesMM: Variational Bayesian neural network to prioritize important relationships of high-dimensional microbiome multiomics data. 
-                        <em>bioRxiv</em>.
-                    </p>
-                </div>
-            </div>
-            <div style="border-top: 1px solid #34495e; padding-top: 2rem; margin-top: 2rem;">
-                <p>&copy; 2024 VBayesMM. Released under open source license.</p>
-            </div>
-        </div>
-    </footer>
 
     <script>
         // Smooth scrolling for navigation links
@@ -2108,92 +1466,6 @@ important_species = model.<span class="code-function">get_selected_features</spa
                 header.style.background = 'rgba(255, 255, 255, 0.95)';
             }
         });
-
-        // Copy code functionality
-        function copyCode(elementId) {
-            const codeElement = document.getElementById(elementId);
-            const text = codeElement.textContent;
-            
-            navigator.clipboard.writeText(text).then(function() {
-                // Visual feedback
-                const button = event.target.closest('.copy-btn') || event.target.closest('.code-action');
-                const originalText = button.innerHTML;
-                button.innerHTML = '<i class="fas fa-check"></i> Copied!';
-                button.style.background = '#22c55e';
-                
-                setTimeout(() => {
-                    button.innerHTML = originalText;
-                    button.style.background = button.classList.contains('copy-btn') ? '#667eea' : '#475569';
-                }, 2000);
-            }).catch(function(err) {
-                console.error('Could not copy text: ', err);
-            });
-        }
-
-        // Tab switching functionality for features section
-        function switchTab(framework) {
-            const tabs = document.querySelectorAll('.code-tab');
-            const codeContent = document.getElementById('quick-start');
-            
-            tabs.forEach(tab => tab.classList.remove('active'));
-            event.target.classList.add('active');
-            
-            if (framework === 'pytorch') {
-                codeContent.innerHTML = `<span class="code-comment"># Quick Start - PyTorch Implementation</span>
-<span class="code-keyword">import</span> <span class="code-string">vbayesmm</span> <span class="code-keyword">as</span> vb
-<span class="code-keyword">import</span> <span class="code-string">torch</span>
-
-<span class="code-comment"># Load your multiomics data</span>
-microbes, metabolites = vb.<span class="code-function">load_data</span>(<span class="code-string">"data/"</span>)
-
-<span class="code-comment"># Initialize VBayesMM model</span>
-model = vb.<span class="code-function">VBayesMM</span>(
-    input_dim=microbes.shape[<span class="code-number">1</span>],
-    output_dim=metabolites.shape[<span class="code-number">1</span>],
-    latent_dim=<span class="code-number">50</span>,
-    framework=<span class="code-string">"pytorch"</span>
-)
-
-<span class="code-comment"># Train with ELBO optimization</span>
-history = model.<span class="code-function">fit</span>(
-    microbes, metabolites,
-    epochs=<span class="code-number">1000</span>,
-    batch_size=<span class="code-number">32</span>,
-    validation_split=<span class="code-number">0.2</span>
-)
-
-<span class="code-comment"># Extract important species</span>
-important_species = model.<span class="code-function">get_selected_features</span>(threshold=<span class="code-number">0.5</span>)
-<span class="code-function">print</span>(<span class="code-string">f"Selected {len(important_species)} important microbial species"</span>)`;
-            } else {
-                codeContent.innerHTML = `<span class="code-comment"># Quick Start - TensorFlow Implementation</span>
-<span class="code-keyword">import</span> <span class="code-string">vbayesmm</span> <span class="code-keyword">as</span> vb
-<span class="code-keyword">import</span> <span class="code-string">tensorflow</span> <span class="code-keyword">as</span> tf
-
-<span class="code-comment"># Load your multiomics data</span>
-microbes, metabolites = vb.<span class="code-function">load_data</span>(<span class="code-string">"data/"</span>)
-
-<span class="code-comment"># Initialize VBayesMM model</span>
-model = vb.<span class="code-function">VBayesMM</span>(
-    input_dim=microbes.shape[<span class="code-number">1</span>],
-    output_dim=metabolites.shape[<span class="code-number">1</span>],
-    latent_dim=<span class="code-number">50</span>,
-    framework=<span class="code-string">"tensorflow"</span>
-)
-
-<span class="code-comment"># Train with ELBO optimization</span>
-history = model.<span class="code-function">fit</span>(
-    microbes, metabolites,
-    epochs=<span class="code-number">1000</span>,
-    batch_size=<span class="code-number">32</span>,
-    validation_split=<span class="code-number">0.2</span>
-)
-
-<span class="code-comment"># Extract important species</span>
-important_species = model.<span class="code-function">get_selected_features</span>(threshold=<span class="code-number">0.5</span>)
-<span class="code-function">print</span>(<span class="code-string">f"Selected {len(important_species)} important microbial species"</span>)`;
-            }
-        }
 
         // Add loading animation
         window.addEventListener('load', function() {
