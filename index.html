@@ -1746,16 +1746,16 @@ important_species = model.<span class="code-function">get_selected_features</spa
                             </button>
                         </div>
                         <div class="code-block" id="tf-imports">
-<span class="keyword">import</span> <span class="highlight">pandas</span> <span class="keyword">as</span> pd
-<span class="keyword">import</span> <span class="highlight">numpy</span> <span class="keyword">as</span> np
-<span class="keyword">import</span> <span class="highlight">matplotlib.pyplot</span> <span class="keyword">as</span> plt
-<span class="keyword">import</span> <span class="highlight">seaborn</span> <span class="keyword">as</span> sns
-<span class="keyword">import</span> <span class="highlight">biom</span>
-<span class="keyword">from</span> <span class="highlight">biom</span> <span class="keyword">import</span> load_table, Table
-<span class="keyword">from</span> <span class="highlight">scipy.stats</span> <span class="keyword">import</span> entropy, spearmanr
-<span class="keyword">from</span> <span class="highlight">scipy.sparse</span> <span class="keyword">import</span> coo_matrix
-<span class="keyword">import</span> <span class="highlight">tensorflow</span> <span class="keyword">as</span> tf
-<span class="keyword">from</span> <span class="highlight">VBayesMM</span> <span class="keyword">import</span> VBayesMM
+<span class="keyword">import</span> <span class="highlight">pandas</span> <span class="keyword">as</span> pd<br>
+<span class="keyword">import</span> <span class="highlight">numpy</span> <span class="keyword">as</span> np<br>
+<span class="keyword">import</span> <span class="highlight">matplotlib.pyplot</span> <span class="keyword">as</span> plt<br>
+<span class="keyword">import</span> <span class="highlight">seaborn</span> <span class="keyword">as</span> sns<br>
+<span class="keyword">import</span> <span class="highlight">biom</span><br>
+<span class="keyword">from</span> <span class="highlight">biom</span> <span class="keyword">import</span> load_table, Table<br>
+<span class="keyword">from</span> <span class="highlight">scipy.stats</span> <span class="keyword">import</span> entropy, spearmanr<br>
+<span class="keyword">from</span> <span class="highlight">scipy.sparse</span> <span class="keyword">import</span> coo_matrix<br>
+<span class="keyword">import</span> <span class="highlight">tensorflow</span> <span class="keyword">as</span> tf<br>
+<span class="keyword">from</span> <span class="highlight">VBayesMM</span> <span class="keyword">import</span> VBayesMM<br>
                         </div>
                     </div>
                 </div>
@@ -1770,28 +1770,28 @@ important_species = model.<span class="code-function">get_selected_features</spa
                             </button>
                         </div>
                         <div class="code-block" id="tf-data-prep">
-<span class="variable">microbes</span> = <span class="function">load_table</span>(<span class="string">"microbes.biom"</span>)
-<span class="variable">metabolites</span> = <span class="function">load_table</span>(<span class="string">"metabolites.biom"</span>)
+<span class="variable">microbes</span> = <span class="function">load_table</span>(<span class="string">"microbes.biom"</span>)<br>
+<span class="variable">metabolites</span> = <span class="function">load_table</span>(<span class="string">"metabolites.biom"</span>)<br>
 
-<span class="variable">microbes_df</span> = <span class="variable">microbes</span>.<span class="function">to_dataframe</span>()
-<span class="variable">metabolites_df</span> = <span class="variable">metabolites</span>.<span class="function">to_dataframe</span>()
+<span class="variable">microbes_df</span> = <span class="variable">microbes</span>.<span class="function">to_dataframe</span>()<br>
+<span class="variable">metabolites_df</span> = <span class="variable">metabolites</span>.<span class="function">to_dataframe</span>()<br>
 
-<span class="variable">microbes_df</span> = <span class="variable">microbes_df</span>.<span class="function">astype</span>(<span class="variable">pd</span>.<span class="function">SparseDtype</span>(<span class="string">"float64"</span>, <span class="variable">fill_value</span>=<span class="number">0</span>))
-<span class="variable">metabolites_df</span> = <span class="variable">metabolites_df</span>.<span class="function">astype</span>(<span class="variable">pd</span>.<span class="function">SparseDtype</span>(<span class="string">"float64"</span>, <span class="variable">fill_value</span>=<span class="number">0</span>))
+<span class="variable">microbes_df</span> = <span class="variable">microbes_df</span>.<span class="function">astype</span>(<span class="variable">pd</span>.<span class="function">SparseDtype</span>(<span class="string">"float64"</span>, <span class="variable">fill_value</span>=<span class="number">0</span>))<br>
+<span class="variable">metabolites_df</span> = <span class="variable">metabolites_df</span>.<span class="function">astype</span>(<span class="variable">pd</span>.<span class="function">SparseDtype</span>(<span class="string">"float64"</span>, <span class="variable">fill_value</span>=<span class="number">0</span>))<br>
 
-<span class="variable">microbes_df</span>, <span class="variable">metabolites_df</span> = <span class="variable">microbes_df</span>.<span class="function">align</span>(<span class="variable">metabolites_df</span>, <span class="variable">axis</span>=<span class="number">0</span>, <span class="variable">join</span>=<span class="string">'inner'</span>)
+<span class="variable">microbes_df</span>, <span class="variable">metabolites_df</span> = <span class="variable">microbes_df</span>.<span class="function">align</span>(<span class="variable">metabolites_df</span>, <span class="variable">axis</span>=<span class="number">0</span>, <span class="variable">join</span>=<span class="string">'inner'</span>)<br>
 
-<span class="variable">num_test</span> = <span class="number">20</span>
-<span class="variable">sample_ids</span> = <span class="function">set</span>(<span class="variable">np</span>.<span class="variable">random</span>.<span class="function">choice</span>(<span class="variable">microbes_df</span>.<span class="variable">index</span>, <span class="variable">size</span>=<span class="variable">num_test</span>))
-<span class="variable">sample_ids</span> = <span class="variable">np</span>.<span class="function">array</span>([(<span class="variable">x</span> <span class="keyword">in</span> <span class="variable">sample_ids</span>) <span class="keyword">for</span> <span class="variable">x</span> <span class="keyword">in</span> <span class="variable">microbes_df</span>.<span class="variable">index</span>])
+<span class="variable">num_test</span> = <span class="number">20</span><br>
+<span class="variable">sample_ids</span> = <span class="function">set</span>(<span class="variable">np</span>.<span class="variable">random</span>.<span class="function">choice</span>(<span class="variable">microbes_df</span>.<span class="variable">index</span>, <span class="variable">size</span>=<span class="variable">num_test</span>))<br>
+<span class="variable">sample_ids</span> = <span class="variable">np</span>.<span class="function">array</span>([(<span class="variable">x</span> <span class="keyword">in</span> <span class="variable">sample_ids</span>) <span class="keyword">for</span> <span class="variable">x</span> <span class="keyword">in</span> <span class="variable">microbes_df</span>.<span class="variable">index</span>])<br>
 
-<span class="variable">train_microbes_df</span> = <span class="variable">microbes_df</span>.<span class="variable">loc</span>[~<span class="variable">sample_ids</span>]
-<span class="variable">test_microbes_df</span> = <span class="variable">microbes_df</span>.<span class="variable">loc</span>[<span class="variable">sample_ids</span>]
-<span class="variable">train_metabolites_df</span> = <span class="variable">metabolites_df</span>.<span class="variable">loc</span>[~<span class="variable">sample_ids</span>]
-<span class="variable">test_metabolites_df</span> = <span class="variable">metabolites_df</span>.<span class="variable">loc</span>[<span class="variable">sample_ids</span>]
+<span class="variable">train_microbes_df</span> = <span class="variable">microbes_df</span>.<span class="variable">loc</span>[~<span class="variable">sample_ids</span>]<br>
+<span class="variable">test_microbes_df</span> = <span class="variable">microbes_df</span>.<span class="variable">loc</span>[<span class="variable">sample_ids</span>]<br>
+<span class="variable">train_metabolites_df</span> = <span class="variable">metabolites_df</span>.<span class="variable">loc</span>[~<span class="variable">sample_ids</span>]<br>
+<span class="variable">test_metabolites_df</span> = <span class="variable">metabolites_df</span>.<span class="variable">loc</span>[<span class="variable">sample_ids</span>]<br>
 
-<span class="variable">train_microbes_coo</span> = <span class="function">coo_matrix</span>(<span class="variable">train_microbes_df</span>.<span class="variable">values</span>)
-<span class="variable">test_microbes_coo</span> = <span class="function">coo_matrix</span>(<span class="variable">test_microbes_df</span>.<span class="variable">values</span>)
+<span class="variable">train_microbes_coo</span> = <span class="function">coo_matrix</span>(<span class="variable">train_microbes_df</span>.<span class="variable">values</span>)<br>
+<span class="variable">test_microbes_coo</span> = <span class="function">coo_matrix</span>(<span class="variable">test_microbes_df</span>.<span class="variable">values</span>)<br>
                         </div>
                     </div>
                 </div>
