@@ -1377,6 +1377,186 @@
             <p class="features-subtitle">Production-ready Bayesian neural network framework optimized for high-dimensional multiomics analysis</p>
             
             <div class="features-container">
+
+                <!-- Mathematical Foundation Section -->
+                <div class="mathematical-foundation fade-in">
+                    <div class="foundation-header">
+                        <h3 class="foundation-title">Mathematical Foundations</h3>
+                        <p class="foundation-subtitle">VBayesMM builds upon rigorous Bayesian inference principles, incorporating spike-and-slab priors for sparse feature selection and variational inference for computational tractability in high-dimensional microbiome multiomics data.</p>
+                    </div>
+
+                    <div class="mathematical-grid">
+                        <div class="math-concept">
+                            <div class="concept-header">
+                                <div class="concept-icon">
+                                    <i class="fas fa-chart-pie"></i>
+                                </div>
+                                <h4 class="concept-title">Spike-and-Slab Prior Distribution</h4>
+                            </div>
+                            <p class="concept-description">
+                                VBayesMM implements a sophisticated spike-and-slab prior for automatic feature selection, enabling probabilistic identification of keystone microbial species while maintaining sparsity in high-dimensional data.
+                            </p>
+                            <div class="mathematical-formula">
+                                <div class="formula-label">Spike-and-Slab Prior for Taxonomic Units</div>
+                                <div class="formula-content">
+                                    $u_{il} | \gamma_{il} \sim \gamma_{il} \times \mathcal{N}(0, \sigma^2) + (1 - \gamma_{il}) \times \delta_0$
+                                    $\gamma_{il} \sim \text{Bernoulli}(\lambda), \quad l = 1, \ldots, L$
+                                </div>
+                            </div>
+                            <p class="concept-description">
+                                Where $\gamma_{il} \in \{0,1\}$ is a binary indicator for the $l$-th latent dimension of the $i$-th taxonomic unit, $\delta_0$ represents the Dirac spike at zero, and $\lambda$ is the prior inclusion probability hyperparameter.
+                            </p>
+                            <div class="concept-highlights">
+                                <span class="highlight-tag">Automatic Feature Selection</span>
+                                <span class="highlight-tag">Sparsity Induction</span>
+                                <span class="highlight-tag">Probabilistic Interpretation</span>
+                            </div>
+                        </div>
+
+                        <div class="math-concept">
+                            <div class="concept-header">
+                                <div class="concept-icon">
+                                    <i class="fas fa-brain"></i>
+                                </div>
+                                <h4 class="concept-title">Variational Bayesian Inference</h4>
+                            </div>
+                            <p class="concept-description">
+                                To address computational intractability in high-dimensional settings, VBayesMM employs mean-field variational inference with carefully designed variational distributions for efficient posterior approximation.
+                            </p>
+                            <div class="mathematical-formula">
+                                <div class="formula-label">Evidence Lower Bound (ELBO) Optimization</div>
+                                <div class="formula-content">
+                                    $$\mathcal{L}[q(\Xi|\Theta)] = \mathbb{E}_{q(\Xi|\Theta)}[\log p(\mathcal{D}, \Xi)] - \mathbb{E}_{q(\Xi|\Theta)}[\log q(\Xi|\Theta)]$$
+                                    $$\log p(\mathcal{D}) \geq \mathcal{L}[q(\Xi|\Theta)]$$
+                                </div>
+                            </div>
+                            <div class="mathematical-formula">
+                                <div class="formula-label">Variational Distributions</div>
+                                <div class="formula-content">
+                                    $q(U|\Theta) = \prod_{i=1}^{N} \mathcal{N}(u_i; \alpha_{U,i}, \text{diag}(\beta_{U,i}^2))$
+                                    $q(\gamma|\Theta) = \prod_{i=1}^{N} \prod_{l=1}^{L} \text{Bernoulli}(\gamma_{il}; \xi_{il})$
+                                    $q(V|\Theta) = \prod_{j=1}^{M} \mathcal{N}(v_j; \alpha_{V,j}, \text{diag}(\beta_{V,j}^2))$
+                                </div>
+                            </div>
+                            <div class="concept-highlights">
+                                <span class="highlight-tag">Mean-Field Approximation</span>
+                                <span class="highlight-tag">KL Divergence Minimization</span>
+                                <span class="highlight-tag">Scalable Inference</span>
+                            </div>
+                        </div>
+
+                        <div class="math-concept">
+                            <div class="concept-header">
+                                <div class="concept-icon">
+                                    <i class="fas fa-random"></i>
+                                </div>
+                                <h4 class="concept-title">Gumbel-Softmax Reparameterization</h4>
+                            </div>
+                            <p class="concept-description">
+                                For discrete binary variables in the spike-and-slab prior, VBayesMM employs the Gumbel-Softmax trick to enable gradient-based optimization through continuous relaxation of discrete distributions.
+                            </p>
+                            <div class="mathematical-formula">
+                                <div class="formula-label">Continuous Relaxation of Binary Indicators</div>
+                                <div class="formula-content">
+                                    $\tilde{\gamma}_{il} = \frac{\exp((\log \xi_{il} + \kappa_1)/\tau)}{\exp((\log \xi_{il} + \kappa_1)/\tau) + \exp((\log(1-\xi_{il}) + \kappa_2)/\tau)}$
+                                </div>
+                            </div>
+                            <p class="concept-description">
+                                Where $\kappa_1, \kappa_2 \sim \text{Gumbel}(0,1)$ are i.i.d. Gumbel random variables and $\tau$ is the temperature parameter controlling the approximation quality. As $\tau \to 0$, the relaxation approaches the discrete distribution.
+                            </p>
+                            <div class="concept-highlights">
+                                <span class="highlight-tag">Differentiable Discrete Sampling</span>
+                                <span class="highlight-tag">Temperature Annealing</span>
+                                <span class="highlight-tag">Gradient Estimation</span>
+                            </div>
+                        </div>
+
+                        <div class="math-concept">
+                            <div class="concept-header">
+                                <div class="concept-icon">
+                                    <i class="fas fa-project-diagram"></i>
+                                </div>
+                                <h4 class="concept-title">Neural Network Architecture</h4>
+                            </div>
+                            <p class="concept-description">
+                                VBayesMM extends the MMvec architecture with Bayesian neural networks, incorporating uncertainty quantification in both encoder and decoder networks for robust microbiome-metabolome relationship inference.
+                            </p>
+                            <div class="mathematical-formula">
+                                <div class="formula-label">Conditional Probability Model</div>
+                                <div class="formula-content">
+                                    $p(Y_{kj} | i \sim \text{Categorical}(X_k)) = \frac{\exp(u_i^T v_j + v_{j0})}{\sum_{j'=1}^{M} \exp(u_i^T v_{j'} + v_{j'0})}$
+                                </div>
+                            </div>
+                            <div class="mathematical-formula">
+                                <div class="formula-label">Multinomial Likelihood</div>
+                                <div class="formula-content">
+                                    $p(Y_k | X_k) = \text{Multinomial}\left(w_k, \left(p(Y_{kj} | i \sim \text{Categorical}(X_k))\right)_{j=1}^{M}\right)$
+                                </div>
+                            </div>
+                            <div class="mathematical-formula">
+                                <div class="formula-label">Latent Embedding Matrices</div>
+                                <div class="formula-content">
+                                    $U = [u_0, u_1, \ldots, u_N] \in \mathbb{R}^{(N+1) \times L}$
+                                    $V = [v_0, v_1, \ldots, v_M] \in \mathbb{R}^{(M+1) \times L}$
+                                </div>
+                            </div>
+                            <div class="concept-highlights">
+                                <span class="highlight-tag">Bayesian Neural Networks</span>
+                                <span class="highlight-tag">Uncertainty Quantification</span>
+                                <span class="highlight-tag">Compositional Data Modeling</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="algorithm-flowchart">
+                        <h4 class="flowchart-title">VBayesMM Algorithm Workflow</h4>
+                        <div class="algorithm-steps">
+                            <div class="algorithm-step">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <div class="step-title">Initialize Variational Parameters</div>
+                                    <div class="step-description">Set initial values for $\Theta = \{\alpha_U, \beta_U, \xi, \alpha_V, \beta_V\}$ and hyperparameters</div>
+                                </div>
+                            </div>
+                            <div class="algorithm-step">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <div class="step-title">Sample from Variational Distributions</div>
+                                    <div class="step-description">Use reparameterization trick: $u_i = \alpha_{U,i} + \beta_{U,i} \odot \epsilon$, where $\epsilon \sim \mathcal{N}(0,I)$</div>
+                                </div>
+                            </div>
+                            <div class="algorithm-step">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <div class="step-title">Apply Gumbel-Softmax for Feature Selection</div>
+                                    <div class="step-description">Generate continuous relaxation $\tilde{\gamma}_{il}$ for binary indicators using Gumbel-Softmax with temperature $\tau$</div>
+                                </div>
+                            </div>
+                            <div class="algorithm-step">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <div class="step-title">Compute ELBO and Gradients</div>
+                                    <div class="step-description">Evaluate $\mathcal{L}[q(\Xi|\Theta)]$ and compute $\nabla_\Theta \mathcal{L}$ using automatic differentiation</div>
+                                </div>
+                            </div>
+                            <div class="algorithm-step">
+                                <div class="step-number">5</div>
+                                <div class="step-content">
+                                    <div class="step-title">Update Variational Parameters</div>
+                                    <div class="step-description">Apply Adam optimizer: $\Theta^{(t+1)} = \Theta^{(t)} + \eta \cdot \text{Adam}(\nabla_\Theta \mathcal{L})$</div>
+                                </div>
+                            </div>
+                            <div class="algorithm-step">
+                                <div class="step-number">6</div>
+                                <div class="step-content">
+                                    <div class="step-title">Convergence and Feature Extraction</div>
+                                    <div class="step-description">Monitor ELBO convergence and extract posterior inclusion probabilities $\mathbb{E}[\gamma_{il}] = \xi_{il}$ for feature selection</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Performance Dashboard -->
                 <div class="performance-dashboard fade-in">
                     <div class="dashboard-header">
