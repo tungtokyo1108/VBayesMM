@@ -1990,8 +1990,8 @@ important_species = model.<span class="code-function">get_selected_features</spa
                             </button>
                         </div>
                         <div class="code-block" id="pt-analysis">
-<span class="variable">latent_microbiome_matrix</span> = <span class="variable">np</span>.<span class="function">array</span>(<span class="variable">model</span>.<span class="variable">qUmain_mean</span>.<span class="variable">weight</span>.<span class="variable">data</span>.<span class="function">detach</span>())
-<span class="variable">microbial_species_selection</span> = <span class="variable">np</span>.<span class="function">array</span>(<span class="variable">model</span>.<span class="variable">qUmain_mean_gamma</span>.<span class="function">detach</span>())
+<span class="variable">latent_microbiome_matrix</span> = <span class="variable">np</span>.<span class="function">array</span>(<span class="variable">model</span>.<span class="variable">qUmain_mean</span>.<span class="variable">weight</span>.<span class="variable">data</span>.<span class="function">detach</span>())<br>
+<span class="variable">microbial_species_selection</span> = <span class="variable">np</span>.<span class="function">array</span>(<span class="variable">model</span>.<span class="variable">qUmain_mean_gamma</span>.<span class="function">detach</span>())<br>
 <span class="variable">microbial_species_selection_mean</span> = <span class="variable">np</span>.<span class="function">sort</span>(<span class="variable">np</span>.<span class="function">mean</span>(<span class="variable">microbial_species_selection</span>, <span class="variable">axis</span>=<span class="number">1</span>))[<span class="number">::-1</span>]
                         </div>
                     </div>
