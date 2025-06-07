@@ -1806,8 +1806,8 @@ important_species = model.<span class="code-function">get_selected_features</spa
                             </button>
                         </div>
                         <div class="code-block" id="tf-training">
-<span class="variable">model</span> = <span class="function">VBayesMM</span>()
-<span class="variable">config</span> = <span class="variable">tf</span>.<span class="variable">compat</span>.<span class="variable">v1</span>.<span class="function">ConfigProto</span>()
+<span class="variable">model</span> = <span class="function">VBayesMM</span>()<br>
+<span class="variable">config</span> = <span class="variable">tf</span>.<span class="variable">compat</span>.<span class="variable">v1</span>.<span class="function">ConfigProto</span>()<br>
 
 <span class="keyword">with</span> <span class="variable">tf</span>.<span class="function">Graph</span>().<span class="function">as_default</span>(), <span class="variable">tf</span>.<span class="variable">compat</span>.<span class="variable">v1</span>.<span class="function">Session</span>(<span class="variable">config</span>=<span class="variable">config</span>) <span class="keyword">as</span> <span class="variable">session</span>:
     <span class="variable">model</span>(<span class="variable">session</span>, <span class="variable">train_microbes_coo</span>, <span class="variable">train_metabolites_df</span>.<span class="variable">values</span>,
