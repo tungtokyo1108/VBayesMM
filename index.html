@@ -680,39 +680,8 @@
         }
 
         /* Rest of original styles */
-        .methodology {
-            background: linear-gradient(135deg, #f8f9fa, #ffffff);
-        }
 
-        .methodology-steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
 
-        .step {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            position: relative;
-        }
-
-        .step-number {
-            position: absolute;
-            top: -15px;
-            left: 2rem;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-        }
 
         .code-section {
             background: #1a1a1a;
@@ -892,23 +861,52 @@
                 align-items: center;
             }
             
-            .metrics-grid {
+            /* Combined section responsive */
+            .innovation-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            
+            .metrics-dashboard {
+                grid-template-columns: 1fr;
+            }
+            
+            .comparison-header,
+            .comparison-row {
                 grid-template-columns: 1fr 1fr;
+                gap: 8px;
+                font-size: 0.8rem;
             }
             
-            .architecture-flow {
+            .comparison-header span:nth-child(3),
+            .comparison-header span:nth-child(4),
+            .comparison-row span:nth-child(3),
+            .comparison-row span:nth-child(4) {
+                display: none;
+            }
+            
+            .arch-algo-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            
+            .pipeline-flow {
                 flex-direction: column;
+                gap: 8px;
             }
             
-            .core-features {
+            .pipeline-arrow {
+                transform: rotate(90deg);
+            }
+            
+            .impl-framework-grid {
                 grid-template-columns: 1fr;
             }
             
-            .comparison-grid {
+            .discoveries-grid {
                 grid-template-columns: 1fr;
             }
             
-            .methodology-steps,
             .applications-grid {
                 grid-template-columns: 1fr;
             }
@@ -921,8 +919,7 @@
             <div class="logo">VBayesMM</div>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#methodology">Methodology</a></li>
+                <li><a href="#features">Methodology</a></li>
                 <li><a href="#applications">Applications</a></li>
                 <li><a href="#examples">Examples</a></li>
                 <li><a href="#contact">Contact</a></li>
@@ -1244,50 +1241,57 @@ important_species = model.<span class="code-function">get_selected_features</spa
         </div>
     </section>
 
-    <section id="methodology" class="section methodology">
+    <section id="applications" class="section">
         <div class="container">
-            <h2>Methodology</h2>
-            <p style="text-align: center; font-size: 1.1rem; margin-bottom: 2rem; color: #666;">
-                VBayesMM employs a sophisticated variational Bayesian approach to model complex relationships between microbiome and metabolome data.
-            </p>
-            
-            <div class="methodology-steps">
-                <div class="step fade-in">
-                    <div class="step-number">1</div>
-                    <h3>Data Preprocessing</h3>
-                    <p>Load and align microbiome and metabolome data, handling sparse matrices and ensuring sample consistency across datasets.</p>
+            <h2>Applications & Datasets</h2>
+            <div class="applications-grid">
+                <div class="application-card fade-in">
+                    <div class="card-header">
+                        <h3><i class="fas fa-bed"></i> Sleep Disorders</h3>
+                    </div>
+                    <div class="card-body">
+                        <h4>Obstructive Sleep Apnea (OSA)</h4>
+                        <p>Analysis of microbiome-metabolome relationships in mouse models of sleep apnea using 16S rRNA sequencing and LC-MS/MS metabolomics.</p>
+                        <ul style="margin-top: 1rem; color: #666;">
+                            <li>16S rRNA gene sequencing</li>
+                            <li>LC-MS/MS metabolomics</li>
+                            <li>Mouse model validation</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="step fade-in">
-                    <div class="step-number">2</div>
-                    <h3>Model Architecture</h3>
-                    <p>Construct variational Bayesian neural network with latent representations capturing microbial-metabolic relationships.</p>
+                
+                <div class="application-card fade-in">
+                    <div class="card-header">
+                        <h3><i class="fas fa-hamburger"></i> Metabolic Disorders</h3>
+                    </div>
+                    <div class="card-body">
+                        <h4>High-Fat Diet (HFD) Model</h4>
+                        <p>Investigation of diet-induced changes in microbiome-metabolome interactions in murine models of metabolic dysfunction.</p>
+                        <ul style="margin-top: 1rem; color: #666;">
+                            <li>Diet-induced obesity model</li>
+                            <li>Metabolic pathway analysis</li>
+                            <li>Longitudinal data support</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="step fade-in">
-                    <div class="step-number">3</div>
-                    <h3>Bayesian Inference</h3>
-                    <p>Apply variational inference to learn posterior distributions over model parameters and latent variables.</p>
-                </div>
-                <div class="step fade-in">
-                    <div class="step-number">4</div>
-                    <h3>Species Selection</h3>
-                    <p>Identify important microbial species through learned gamma distributions and feature importance scoring.</p>
-                </div>
-            </div>
-
-            <div class="visualization-container">
-                <h3>Model Architecture Visualization</h3>
-                <div class="placeholder-chart">
-                    <div>
-                        <i class="fas fa-project-diagram" style="font-size: 3rem; margin-bottom: 1rem; display: block;"></i>
-                        <div>Microbiome → Latent Space → Metabolome</div>
-                        <div style="font-size: 0.9rem; margin-top: 0.5rem; opacity: 0.7;">Variational Bayesian Neural Network</div>
+                
+                <div class="application-card fade-in">
+                    <div class="card-header">
+                        <h3><i class="fas fa-user-md"></i> Cancer Research</h3>
+                    </div>
+                    <div class="card-body">
+                        <h4>Gastric & Colorectal Cancer</h4>
+                        <p>Clinical application in cancer patients using whole-genome shotgun sequencing and CE-TOFMS metabolomics.</p>
+                        <ul style="margin-top: 1rem; color: #666;">
+                            <li>WGS microbiome profiling</li>
+                            <li>CE-TOFMS metabolomics</li>
+                            <li>Stage 0-4 cancer patients</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
-    <section id="applications" class="section">
         <div class="container">
             <h2>Applications & Datasets</h2>
             <div class="applications-grid">
@@ -1522,6 +1526,38 @@ species_selection = np.array(model.qUmain_mean_gamma.detach())
             navigator.clipboard.writeText(text).then(function() {
                 // Visual feedback
                 const button = event.target.closest('.copy-btn');
+                const originalText = button.innerHTML;
+                button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                button.style.background = '#22c55e';
+                
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                    button.style.background = '#667eea';
+                }, 2000);
+            }).catch(function(err) {
+                console.error('Could not copy text: ', err);
+            });
+        }
+
+        // Tab switching functionality for combined section
+        function switchCodeDemo(framework) {
+            const tabs = document.querySelectorAll('.demo-tab');
+            const demos = document.querySelectorAll('.demo-code');
+            
+            tabs.forEach(tab => tab.classList.remove('active'));
+            demos.forEach(demo => demo.style.display = 'none');
+            
+            event.target.classList.add('active');
+            document.getElementById(framework + '-demo').style.display = 'block';
+        }
+
+        // Copy code functionality for combined section
+        function copyDemoCode(elementId) {
+            const codeElement = document.getElementById(elementId).querySelector('.code-content');
+            const text = codeElement.textContent;
+            
+            navigator.clipboard.writeText(text).then(function() {
+                const button = event.target.closest('.copy-code-btn');
                 const originalText = button.innerHTML;
                 button.innerHTML = '<i class="fas fa-check"></i> Copied!';
                 button.style.background = '#22c55e';
