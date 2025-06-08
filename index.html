@@ -1179,7 +1179,7 @@
                                 $$p(\mathbf{u}_i | \gamma_i) = \gamma_i \mathcal{N}(\mathbf{u}_i | \mathbf{0}, \sigma^2_{\text{slab}} \mathbf{I}) + (1 - \gamma_i) \delta_0(\mathbf{u}_i)$$
                             </div>
                         </div>
-                        <p>Where $$\gamma_i \in \{0,1\}$$ acts as a binary selector, $$\delta_0$$ represents the Dirac spike at zero for irrelevant features, and $$\sigma^2_{\text{slab}}$$ controls the variance of important features.</p>
+                        <p>Where $$\gamma_i \in \{0,1}$$ acts as a binary selector, $$\delta_0$$ represents the Dirac spike at zero for irrelevant features, and $$\sigma^2_{\text{slab}}$$ controls the variance of important features.</p>
                     </div>
 
                     <div class="math-highlight">
@@ -1188,7 +1188,7 @@
                         <div class="equation-block">
                             <div class="math-display">
                                 $$q(\Theta) = q(\mathbf{U}) \cdot q(\gamma) \cdot q(\mathbf{V})$$
-                                $$\text{where } q(\mathbf{U}) = \prod_{i=1}^N \mathcal{N}(\mathbf{u}_i | \alpha_{U_i}, \text{diag}(\beta_{U_i}^2))$$
+                                $$\text{where } q(\mathbf{U}) = \prod_{i=1}^N \mathcal{N}(\mathbf{u}_i | \alpha_{U_i}, \beta_{U_i}^2)$$
                                 $$q(\gamma) = \prod_{i=1}^N \prod_{l=1}^L \text{Bernoulli}(\gamma_{il} | \xi_{il})$$
                             </div>
                         </div>
@@ -1200,7 +1200,7 @@
                         <p>The optimization objective combines data likelihood with Bayesian regularization:</p>
                         <div class="equation-block">
                             <div class="math-display">
-                                $$\mathcal{L}[q(\boldsymbol{\Theta})] = \mathbb{E}_{q(\boldsymbol{\Theta})}[\log p(\mathcal{D} | \boldsymbol{\Theta})] - \text{KL}[q(\boldsymbol{\Theta}) \| p(\boldsymbol{\Theta})]$$
+                                $$\mathcal{L}[q(\Theta)] = \mathbb{E}_{q(\Theta)}[\log p(\mathcal{D} | \Theta)] - \text{KL}[q(\Theta) \| p(\Theta)]$$
                             </div>
                         </div>
                         <p>The first term ensures data fidelity while the KL divergence term provides automatic complexity control through Bayesian regularization.</p>
