@@ -541,16 +541,21 @@
         }
 
         .method-column {
-            width: 15%;
-            min-width: 120px;
+            width: 12%;
+            min-width: 100px;
+        }
+
+        .accuracy-column {
+            width: 18%;
+            min-width: 140px;
         }
 
         .feature-column,
         .uncertainty-column,
-        .scalability-column,
+        .speed-column,
         .interpretability-column {
-            width: 21.25%;
-            min-width: 200px;
+            width: 17.5%;
+            min-width: 140px;
         }
 
         .method-badge {
@@ -566,6 +571,13 @@
         .method-badge.vbayesmm {
             background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .method-badge.mimenet {
+            background: linear-gradient(135deg, #f59e0b, #f97316);
+            color: white;
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
         }
 
         .method-badge.mmvec {
@@ -634,6 +646,14 @@
 
         .vbayesmm-row:hover {
             background: linear-gradient(135deg, rgba(102, 126, 234, 0.05), rgba(118, 75, 162, 0.05));
+        }
+
+        .mimenet-row {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.02), rgba(249, 115, 22, 0.02));
+        }
+
+        .mimenet-row:hover {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.05), rgba(249, 115, 22, 0.05));
         }
 
         .mmvec-row:hover,
@@ -1351,16 +1371,43 @@
                     <div class="comparison-section">
                         <h4 class="comparison-title">
                             <i class="fas fa-chart-bar"></i>
-                            Method Comparison Analysis
+                            Comprehensive Method Performance Analysis
                         </h4>
+                        
+                        <!-- Performance Summary -->
+                        <div class="performance-summary">
+                            <div class="summary-card best">
+                                <div class="summary-icon"><i class="fas fa-trophy"></i></div>
+                                <div class="summary-content">
+                                    <h5>VBayesMM Consistently Best</h5>
+                                    <p>Achieves lowest SMAPE across all 4 datasets (34.7% - 55.1%)</p>
+                                </div>
+                            </div>
+                            <div class="summary-card second">
+                                <div class="summary-icon"><i class="fas fa-medal"></i></div>
+                                <div class="summary-content">
+                                    <h5>MiMeNet Speed-Accuracy Balance</h5>
+                                    <p>Second-best accuracy with fastest computation time</p>
+                                </div>
+                            </div>
+                            <div class="summary-card third">
+                                <div class="summary-icon"><i class="fas fa-chart-line"></i></div>
+                                <div class="summary-content">
+                                    <h5>Neural Methods Dominate</h5>
+                                    <p>All neural approaches significantly outperform traditional sPLS</p>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="comparison-table-container">
                             <table class="performance-comparison-table">
                                 <thead>
                                     <tr>
                                         <th class="method-column">Method</th>
+                                        <th class="accuracy-column">Accuracy (SMAPE)</th>
                                         <th class="feature-column">Feature Selection</th>
                                         <th class="uncertainty-column">Uncertainty Quantification</th>
-                                        <th class="scalability-column">Scalability</th>
+                                        <th class="speed-column">Computational Speed</th>
                                         <th class="interpretability-column">Interpretability</th>
                                     </tr>
                                 </thead>
@@ -1368,8 +1415,17 @@
                                     <tr class="vbayesmm-row">
                                         <td class="method-name">
                                             <div class="method-badge vbayesmm">
-                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-crown"></i>
                                                 <strong>VBayesMM</strong>
+                                            </div>
+                                        </td>
+                                        <td class="feature-cell positive">
+                                            <div class="feature-status">
+                                                <i class="fas fa-trophy"></i>
+                                                <div class="feature-text">
+                                                    <strong>34.7% - 55.1%</strong><br>
+                                                    <span class="feature-detail">Best across all datasets</span>
+                                                </div>
                                             </div>
                                         </td>
                                         <td class="feature-cell positive">
@@ -1377,7 +1433,7 @@
                                                 <i class="fas fa-check-circle"></i>
                                                 <div class="feature-text">
                                                     <strong>Probabilistic</strong><br>
-                                                    <span class="feature-detail">(Spike-and-Slab)</span>
+                                                    <span class="feature-detail">Spike-and-Slab Prior</span>
                                                 </div>
                                             </div>
                                         </td>
@@ -1386,16 +1442,16 @@
                                                 <i class="fas fa-check-circle"></i>
                                                 <div class="feature-text">
                                                     <strong>Bayesian Posterior</strong><br>
-                                                    <span class="feature-detail">Full uncertainty</span>
+                                                    <span class="feature-detail">Full uncertainty quantification</span>
                                                 </div>
                                             </div>
                                         </td>
-                                        <td class="feature-cell positive">
+                                        <td class="feature-cell warning">
                                             <div class="feature-status">
-                                                <i class="fas fa-check-circle"></i>
+                                                <i class="fas fa-clock"></i>
                                                 <div class="feature-text">
-                                                    <strong>Variational Inference</strong><br>
-                                                    <span class="feature-detail">Ultra-high dimensions</span>
+                                                    <strong>1.5h - 120h+</strong><br>
+                                                    <span class="feature-detail">Moderate (scales with complexity)</span>
                                                 </div>
                                             </div>
                                         </td>
@@ -1404,7 +1460,60 @@
                                                 <i class="fas fa-check-circle"></i>
                                                 <div class="feature-text">
                                                     <strong>Selection Probabilities</strong><br>
-                                                    <span class="feature-detail">Interpretable weights</span>
+                                                    <span class="feature-detail">Highly interpretable</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="mimenet-row">
+                                        <td class="method-name">
+                                            <div class="method-badge mimenet">
+                                                <i class="fas fa-medal"></i>
+                                                <strong>MiMeNet</strong>
+                                            </div>
+                                        </td>
+                                        <td class="feature-cell positive">
+                                            <div class="feature-status">
+                                                <i class="fas fa-medal"></i>
+                                                <div class="feature-text">
+                                                    <strong>38.8% - 60.1%</strong><br>
+                                                    <span class="feature-detail">Second best performance</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="feature-cell warning">
+                                            <div class="feature-status">
+                                                <i class="fas fa-exclamation-triangle"></i>
+                                                <div class="feature-text">
+                                                    <strong>L2 Regularization</strong><br>
+                                                    <span class="feature-detail">Standard MLP approach</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="feature-cell negative">
+                                            <div class="feature-status">
+                                                <i class="fas fa-times-circle"></i>
+                                                <div class="feature-text">
+                                                    <strong>Point estimates</strong><br>
+                                                    <span class="feature-detail">No uncertainty</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="feature-cell positive">
+                                            <div class="feature-status">
+                                                <i class="fas fa-tachometer-alt"></i>
+                                                <div class="feature-text">
+                                                    <strong>1.2h - 99h</strong><br>
+                                                    <span class="feature-detail">Fastest among neural methods</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="feature-cell warning">
+                                            <div class="feature-status">
+                                                <i class="fas fa-exclamation-triangle"></i>
+                                                <div class="feature-text">
+                                                    <strong>Limited context</strong><br>
+                                                    <span class="feature-detail">Hyperparameter dependent</span>
                                                 </div>
                                             </div>
                                         </td>
@@ -1416,12 +1525,12 @@
                                                 <strong>MMvec</strong>
                                             </div>
                                         </td>
-                                        <td class="feature-cell negative">
+                                        <td class="feature-cell warning">
                                             <div class="feature-status">
-                                                <i class="fas fa-times-circle"></i>
+                                                <i class="fas fa-chart-line"></i>
                                                 <div class="feature-text">
-                                                    <strong>Treats all features equally</strong><br>
-                                                    <span class="feature-detail">No selection mechanism</span>
+                                                    <strong>47.6% - 76.5%</strong><br>
+                                                    <span class="feature-detail">Third place performance</span>
                                                 </div>
                                             </div>
                                         </td>
@@ -1429,26 +1538,35 @@
                                             <div class="feature-status">
                                                 <i class="fas fa-times-circle"></i>
                                                 <div class="feature-text">
-                                                    <strong>Point estimates only</strong><br>
+                                                    <strong>Equal treatment</strong><br>
+                                                    <span class="feature-detail">No feature selection</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="feature-cell negative">
+                                            <div class="feature-status">
+                                                <i class="fas fa-times-circle"></i>
+                                                <div class="feature-text">
+                                                    <strong>MAP estimates</strong><br>
                                                     <span class="feature-detail">No uncertainty</span>
                                                 </div>
                                             </div>
                                         </td>
                                         <td class="feature-cell warning">
                                             <div class="feature-status">
-                                                <i class="fas fa-exclamation-triangle"></i>
+                                                <i class="fas fa-clock"></i>
                                                 <div class="feature-text">
-                                                    <strong>Limited to moderate sizes</strong><br>
-                                                    <span class="feature-detail">Memory constraints</span>
+                                                    <strong>1.5h - 120h+</strong><br>
+                                                    <span class="feature-detail">Similar to VBayesMM</span>
                                                 </div>
                                             </div>
                                         </td>
-                                        <td class="feature-cell warning">
+                                        <td class="feature-cell negative">
                                             <div class="feature-status">
-                                                <i class="fas fa-exclamation-triangle"></i>
+                                                <i class="fas fa-times-circle"></i>
                                                 <div class="feature-text">
-                                                    <strong>Black box embeddings</strong><br>
-                                                    <span class="feature-detail">Limited insights</span>
+                                                    <strong>Black box</strong><br>
+                                                    <span class="feature-detail">Limited interpretability</span>
                                                 </div>
                                             </div>
                                         </td>
@@ -1456,8 +1574,17 @@
                                     <tr class="spls-row">
                                         <td class="method-name">
                                             <div class="method-badge spls">
-                                                <i class="fas fa-circle"></i>
+                                                <i class="fas fa-minus-circle"></i>
                                                 <strong>sPLS</strong>
+                                            </div>
+                                        </td>
+                                        <td class="feature-cell negative">
+                                            <div class="feature-status">
+                                                <i class="fas fa-arrow-down"></i>
+                                                <div class="feature-text">
+                                                    <strong>67.5% - 93.1%</strong><br>
+                                                    <span class="feature-detail">Poorest performance</span>
+                                                </div>
                                             </div>
                                         </td>
                                         <td class="feature-cell warning">
@@ -1465,7 +1592,7 @@
                                                 <i class="fas fa-exclamation-triangle"></i>
                                                 <div class="feature-text">
                                                     <strong>L1/L2 regularization</strong><br>
-                                                    <span class="feature-detail">Hyperparameter tuning</span>
+                                                    <span class="feature-detail">Manual tuning required</span>
                                                 </div>
                                             </div>
                                         </td>
@@ -1480,10 +1607,10 @@
                                         </td>
                                         <td class="feature-cell negative">
                                             <div class="feature-status">
-                                                <i class="fas fa-times-circle"></i>
+                                                <i class="fas fa-snail"></i>
                                                 <div class="feature-text">
-                                                    <strong>Poor with high dimensions</strong><br>
-                                                    <span class="feature-detail">Computational limits</span>
+                                                    <strong>Slowest</strong><br>
+                                                    <span class="feature-detail">Poor scalability</span>
                                                 </div>
                                             </div>
                                         </td>
@@ -1492,7 +1619,7 @@
                                                 <i class="fas fa-exclamation-triangle"></i>
                                                 <div class="feature-text">
                                                     <strong>Linear assumptions</strong><br>
-                                                    <span class="feature-detail">Limited flexibility</span>
+                                                    <span class="feature-detail">Limited to linear relationships</span>
                                                 </div>
                                             </div>
                                         </td>
