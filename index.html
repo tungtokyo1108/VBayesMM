@@ -1308,6 +1308,41 @@ p(metabolite_j | microbe_i) = softmax(uᵢᵀvⱼ + bⱼ)
                             <div class="metric-description">Feature inclusion prior</div>
                         </div>
                     </div>
+
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Method</th>
+                                <th>Feature Selection</th>
+                                <th>Uncertainty Quantification</th>
+                                <th>Scalability</th>
+                                <th>Interpretability</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>VBayesMM</strong></td>
+                                <td>✅ Probabilistic (Spike-and-Slab)</td>
+                                <td>✅ Bayesian Posterior</td>
+                                <td>✅ Variational Inference</td>
+                                <td>✅ Selection Probabilities</td>
+                            </tr>
+                            <tr>
+                                <td>MMvec</td>
+                                <td>❌ Treats all features equally</td>
+                                <td>❌ Point estimates only</td>
+                                <td>⚠️ Limited to moderate sizes</td>
+                                <td>⚠️ Black box embeddings</td>
+                            </tr>
+                            <tr>
+                                <td>sPLS</td>
+                                <td>⚠️ L1/L2 regularization</td>
+                                <td>❌ No uncertainty</td>
+                                <td>❌ Poor with high dimensions</td>
+                                <td>⚠️ Linear assumptions</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
 
                 <!-- Technical Architecture -->
