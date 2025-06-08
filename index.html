@@ -1172,14 +1172,14 @@
                     </p>
                     
                     <div class="math-highlight">
-                        <h4><i class="fas fa-brain"></i> Prior Distribution Formulation</h4>
+                        <h4><i class="fas fa-brain"></i> Spike-and-Slab Prior</h4>
                         <p>The core innovation lies in modeling each taxonomic unit with a mixture distribution that probabilistically determines feature relevance:</p>
                         <div class="equation-block">
                             <div class="math-display">
                                 $$p(\mathbf{u}_i | \gamma_i) = \gamma_i \mathcal{N}(\mathbf{u}_i | \mathbf{0}, \sigma^2_{\text{slab}} \mathbf{I}) + (1 - \gamma_i) \delta_0(\mathbf{u}_i)$$
                             </div>
                         </div>
-                        <p>Where $$\gamma_i \in \{0,1}$$ acts as a binary selector, $$\delta_0$$ represents the Dirac spike at zero for irrelevant features, and $$\sigma^2_{\text{slab}}$$ controls the variance of important features.</p>
+                        <p>Where $$\gamma_i \in \{0,1\}$$ acts as a binary selector, $$\delta_0$$ represents the Dirac spike at zero for irrelevant features, and $$\sigma^2_{\text{slab}}$$ controls the variance of important features.</p>
                     </div>
 
                     <div class="math-highlight">
