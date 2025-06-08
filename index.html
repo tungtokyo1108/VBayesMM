@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VBayesMM - Variational Bayesian Neural Network for Microbiome Analysis</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
     <style>
         * {
             margin: 0;
@@ -178,7 +187,7 @@
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
 
-        /* DEVELOPER-FOCUSED FEATURES SECTION */
+        /* ENHANCED FEATURES SECTION WITH MATHEMATICAL METHODOLOGY */
         #features {
             background: #fafbfc;
             border: 1px solid #e1e8ed;
@@ -222,6 +231,178 @@
         .features-container {
             position: relative;
             z-index: 1;
+        }
+
+        /* Mathematical Framework Section */
+        .mathematical-framework {
+            background: linear-gradient(135deg, #667eea0a, #764ba20a);
+            border: 2px solid #667eea;
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 3rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mathematical-framework::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .framework-badge {
+            position: absolute;
+            top: -12px;
+            left: 30px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .framework-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin: 1.5rem 0 1rem;
+            position: relative;
+        }
+
+        .framework-description {
+            font-size: 1.1rem;
+            color: #4a5568;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .math-highlight {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 2.5rem;
+            border-radius: 16px;
+            margin: 2rem 0;
+            border-left: 5px solid #667eea;
+            position: relative;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        .math-highlight h4 {
+            color: #2c3e50;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .equation-block {
+            background: #1a1a1a;
+            color: #f8f9fa;
+            padding: 2.5rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            overflow-x: auto;
+            position: relative;
+            font-family: 'Monaco', 'Courier New', monospace;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .equation-block::before {
+            content: 'Mathematical Framework';
+            position: absolute;
+            top: 0.8rem;
+            right: 1.5rem;
+            font-size: 0.8rem;
+            color: #667eea;
+            font-weight: 600;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .equation-block .math-display {
+            color: #e2e8f0;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* Key Innovation Boxes */
+        .innovations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .innovation-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e5e7eb;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .innovation-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        .innovation-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            border-color: #667eea;
+        }
+
+        .innovation-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .innovation-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .innovation-description {
+            color: #4a5568;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .innovation-formula {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1rem;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 0.9rem;
+            color: #2d3748;
+            overflow-x: auto;
         }
 
         /* Performance Dashboard */
@@ -524,48 +705,67 @@
 
         .code-tabs {
             display: flex;
-            gap: 16px;
+            gap: 4px;
         }
 
         .code-tab {
-            color: #94a3b8;
-            font-size: 0.875rem;
+            padding: 8px 16px;
+            background: transparent;
+            border: none;
+            color: #7d8590;
+            border-radius: 8px;
             cursor: pointer;
-            padding: 4px 8px;
-            border-radius: 4px;
             transition: all 0.2s ease;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
         .code-tab.active {
-            color: #f1f5f9;
-            background: #475569;
+            background: #21262d;
+            color: #f0f6fc;
         }
 
         .code-actions {
             display: flex;
             gap: 8px;
+            align-items: center;
         }
 
         .code-action {
-            background: #475569;
+            padding: 6px 12px;
+            background: #238636;
+            color: white;
             border: none;
-            color: #94a3b8;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 0.75rem;
+            border-radius: 6px;
             cursor: pointer;
+            font-size: 0.85rem;
             transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
         .code-action:hover {
-            background: #64748b;
-            color: #f1f5f9;
+            background: #2ea043;
+            transform: translateY(-1px);
+        }
+
+        .code-action.secondary {
+            background: #21262d;
+            color: #f0f6fc;
+        }
+
+        .code-action.secondary:hover {
+            background: #30363d;
         }
 
         .code-content {
             padding: 20px;
             color: #e2e8f0;
-            font-family: 'Monaco', 'Courier New', monospace;
+            font-family: 'Monaco', 'Consolas', monospace;
             font-size: 0.875rem;
             line-height: 1.6;
             overflow-x: auto;
@@ -679,14 +879,39 @@
             transform: translateY(0);
         }
 
-        /* Rest of original styles */
-
-        /* CLEAN GITHUB-STYLE CODE EXAMPLES SECTION */
-        #examples {
-            background: white;
-            color: #333;
+        /* Applications Section Styles */
+        .applications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
         }
 
+        .application-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .application-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .card-body {
+            padding: 2rem;
+        }
+
+        /* Examples Section Styles */
         .example-framework {
             background: #fafbfc;
             border: 1px solid #e1e8ed;
@@ -724,6 +949,29 @@
             border-bottom: 2px solid #667eea;
             display: inline-block;
         }
+
+        .code-section {
+            margin: 1.5rem 0;
+        }
+
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .keyword { color: #ff7b72; }
+        .string { color: #a5d6ff; }
+        .comment { color: #8b949e; font-style: italic; }
+        .function { color: #d2a8ff; }
+        .number { color: #79c0ff; }
+        .variable { color: #ffa657; }
+        .highlight { color: #58a6ff; }
 
         .results-table {
             margin: 1.5rem 0;
@@ -807,472 +1055,7 @@
             text-decoration: underline;
         }
 
-        .examples-header {
-            background: linear-gradient(135deg, #1a2b4c 0%, #2d1b69 100%);
-            padding: 60px 0 40px;
-            text-align: center;
-            position: relative;
-            border-bottom: 1px solid #30363d;
-        }
-
-        .examples-header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
-            opacity: 0.3;
-        }
-
-        .examples-header .container {
-            position: relative;
-            z-index: 2;
-        }
-
-        .examples-title {
-            font-size: 2.8rem;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            margin-bottom: 1rem;
-        }
-
-        .examples-subtitle {
-            font-size: 1.1rem;
-            color: #a0aec0;
-            margin-bottom: 2rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .difficulty-selector {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .difficulty-btn {
-            padding: 12px 24px;
-            border: 2px solid #667eea;
-            background: transparent;
-            color: #667eea;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .difficulty-btn.active,
-        .difficulty-btn:hover {
-            background: #667eea;
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
-        }
-
-        /* Interactive Code Playground */
-        .code-playground {
-            background: #0d1117;
-            border-radius: 16px;
-            margin: 40px 0;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            border: 1px solid #30363d;
-        }
-
-        .playground-header {
-            background: #161b22;
-            padding: 16px 24px;
-            border-bottom: 1px solid #30363d;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .playground-tabs {
-            display: flex;
-            gap: 4px;
-        }
-
-        .playground-tab {
-            padding: 8px 16px;
-            background: transparent;
-            border: none;
-            color: #7d8590;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            font-size: 0.9rem;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .playground-tab.active {
-            background: #21262d;
-            color: #f0f6fc;
-        }
-
-        .playground-actions {
-            display: flex;
-            gap: 8px;
-            align-items: center;
-        }
-
-        .action-btn {
-            padding: 6px 12px;
-            background: #238636;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 0.85rem;
-            transition: all 0.2s ease;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .action-btn:hover {
-            background: #2ea043;
-            transform: translateY(-1px);
-        }
-
-        .action-btn.secondary {
-            background: #21262d;
-            color: #f0f6fc;
-        }
-
-        .action-btn.secondary:hover {
-            background: #30363d;
-        }
-
-        .playground-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            min-height: 450px;
-        }
-
-        .code-editor {
-            background: #0d1117;
-            padding: 24px;
-            font-family: 'Monaco', 'Consolas', monospace;
-            font-size: 14px;
-            line-height: 1.6;
-            color: #e6edf3;
-            overflow-x: auto;
-            border-right: 1px solid #30363d;
-        }
-
-        .output-panel {
-            background: #010409;
-            padding: 24px;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .output-header {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 16px;
-            color: #7d8590;
-            font-size: 0.9rem;
-        }
-
-        .output-content {
-            flex: 1;
-            background: #0c0c0c;
-            border-radius: 8px;
-            padding: 16px;
-            font-family: 'Monaco', 'Consolas', monospace;
-            font-size: 13px;
-            color: #58a6ff;
-            border: 1px solid #21262d;
-            position: relative;
-            line-height: 1.5;
-        }
-
-        /* Enhanced Syntax Highlighting */
-        .keyword { color: #ff7b72; }
-        .string { color: #a5d6ff; }
-        .comment { color: #8b949e; font-style: italic; }
-        .function { color: #d2a8ff; }
-        .number { color: #79c0ff; }
-        .operator { color: #ff7b72; }
-        .variable { color: #ffa657; }
-
-        /* Tutorial Steps */
-        .tutorial-section {
-            margin: 60px 0;
-            padding: 0 20px;
-        }
-
-        .tutorial-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .tutorial-title {
-            font-size: 2.2rem;
-            color: #f0f6fc;
-            margin-bottom: 1rem;
-            font-weight: 700;
-        }
-
-        .tutorial-description {
-            color: #7d8590;
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .steps-container {
-            display: grid;
-            gap: 24px;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .tutorial-step {
-            background: #161b22;
-            border-radius: 16px;
-            border: 1px solid #30363d;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .tutorial-step:hover {
-            border-color: #667eea;
-            transform: translateY(-2px);
-            box-shadow: 0 12px 24px rgba(102, 126, 234, 0.1);
-        }
-
-        .step-header {
-            padding: 20px 24px;
-            background: linear-gradient(135deg, #21262d, #30363d);
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            cursor: pointer;
-        }
-
-        .step-number {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 1.1rem;
-        }
-
-        .step-info {
-            flex: 1;
-        }
-
-        .step-title {
-            color: #f0f6fc;
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
-
-        .step-subtitle {
-            color: #7d8590;
-            font-size: 0.9rem;
-        }
-
-        .step-toggle {
-            color: #7d8590;
-            font-size: 1.2rem;
-            transition: transform 0.3s ease;
-        }
-
-        .step-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-        }
-
-        .step-content.expanded {
-            max-height: 1000px;
-        }
-
-        .step-inner {
-            padding: 24px;
-            border-top: 1px solid #30363d;
-        }
-
-        .step-code {
-            background: #0d1117;
-            border-radius: 12px;
-            padding: 20px;
-            margin: 16px 0;
-            font-family: 'Monaco', 'Consolas', monospace;
-            font-size: 14px;
-            line-height: 1.6;
-            color: #e6edf3;
-            border: 1px solid #30363d;
-            position: relative;
-            overflow-x: auto;
-        }
-
-        .step-explanation {
-            color: #c9d1d9;
-            line-height: 1.7;
-            margin: 16px 0;
-        }
-
-        /* Results Showcase */
-        .results-showcase {
-            background: #161b22;
-            border-radius: 20px;
-            padding: 40px;
-            margin: 60px 20px;
-            border: 1px solid #30363d;
-        }
-
-        .results-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .results-title {
-            color: #f0f6fc;
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
-        }
-
-        .results-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
-        }
-
-        .result-card {
-            background: #0d1117;
-            border-radius: 16px;
-            padding: 24px;
-            border: 1px solid #30363d;
-            transition: all 0.3s ease;
-        }
-
-        .result-card:hover {
-            border-color: #667eea;
-            transform: translateY(-4px);
-            box-shadow: 0 12px 24px rgba(102, 126, 234, 0.1);
-        }
-
-        .result-icon {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.5rem;
-            margin-bottom: 16px;
-        }
-
-        .result-title {
-            color: #f0f6fc;
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
-        .result-description {
-            color: #7d8590;
-            font-size: 0.9rem;
-            line-height: 1.6;
-        }
-
-        .result-metric {
-            background: #21262d;
-            border-radius: 8px;
-            padding: 12px;
-            margin-top: 12px;
-            text-align: center;
-        }
-
-        .metric-value {
-            color: #58a6ff;
-            font-size: 1.5rem;
-            font-weight: bold;
-            display: block;
-        }
-
-        .metric-label {
-            color: #7d8590;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        /* Loading Animation */
-        .loading-animation {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid #30363d;
-            border-radius: 50%;
-            border-top-color: #667eea;
-            animation: spin 1s ease-in-out infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        .applications-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .application-card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .application-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        .card-header {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            padding: 1.5rem;
-            text-align: center;
-        }
-
-        .card-body {
-            padding: 2rem;
-        }
-
+        /* Footer Styles */
         footer {
             background: #2c3e50;
             color: white;
@@ -1305,6 +1088,7 @@
             color: #3498db;
         }
 
+        /* Responsive Design */
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
@@ -1319,25 +1103,25 @@
                 align-items: center;
             }
             
-            .playground-content {
+            .code-content {
+                padding: 15px;
+                font-size: 0.8rem;
+            }
+            
+            .mathematical-framework {
+                padding: 2rem;
+            }
+            
+            .innovations-grid {
                 grid-template-columns: 1fr;
             }
             
-            .code-editor {
-                border-right: none;
-                border-bottom: 1px solid #30363d;
-            }
-            
-            .difficulty-selector {
-                flex-wrap: wrap;
-            }
-            
-            .examples-title {
-                font-size: 2.2rem;
-            }
-            
-            .results-grid {
+            .comparison-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .metrics-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
     </style>
@@ -1373,10 +1157,111 @@
 
     <section id="features" class="section">
         <div class="container">
-            <h2>Key Features</h2>
-            <p class="features-subtitle">Production-ready Bayesian neural network framework optimized for high-dimensional multiomics analysis</p>
+            <h2>Mathematical Methodology</h2>
+            <p class="features-subtitle">Advanced Bayesian neural network framework with rigorous mathematical foundations for high-dimensional multiomics analysis</p>
             
             <div class="features-container">
+                <!-- Mathematical Framework -->
+                <div class="mathematical-framework fade-in">
+                    <div class="framework-badge">CORE INNOVATION</div>
+                    <h3 class="framework-title">Spike-and-Slab Variational Bayesian Framework</h3>
+                    <p class="framework-description">
+                        VBayesMM introduces a revolutionary approach to microbiome feature selection through spike-and-slab priors, 
+                        enabling probabilistic identification of keystone microbial species while maintaining computational efficiency 
+                        through variational inference optimization.
+                    </p>
+                    
+                    <div class="math-highlight">
+                        <h4><i class="fas fa-brain"></i> Prior Distribution Formulation</h4>
+                        <p>The core innovation lies in modeling each taxonomic unit with a mixture distribution that probabilistically determines feature relevance:</p>
+                        <div class="equation-block">
+                            <div class="math-display">
+                                $$p(\mathbf{u}_i | \gamma_i) = \gamma_i \mathcal{N}(\mathbf{u}_i | \mathbf{0}, \sigma^2_{\text{slab}} \mathbf{I}) + (1 - \gamma_i) \delta_0(\mathbf{u}_i)$$
+                            </div>
+                        </div>
+                        <p>Where $\gamma_i \in \{0,1\}$ acts as a binary selector, $\delta_0$ represents the Dirac spike at zero for irrelevant features, and $\sigma^2_{\text{slab}}$ controls the variance of important features.</p>
+                    </div>
+
+                    <div class="math-highlight">
+                        <h4><i class="fas fa-chart-line"></i> Variational Inference Optimization</h4>
+                        <p>We employ mean-field variational inference to approximate the intractable posterior distribution:</p>
+                        <div class="equation-block">
+                            <div class="math-display">
+                                $$q(\boldsymbol{\Theta}) = q(\mathbf{U}) \cdot q(\boldsymbol{\gamma}) \cdot q(\mathbf{V})$$
+                                $$\text{where } q(\mathbf{U}) = \prod_{i=1}^N \mathcal{N}(\mathbf{u}_i | \boldsymbol{\alpha}_{U_i}, \text{diag}(\boldsymbol{\beta}_{U_i}^2))$$
+                                $$q(\boldsymbol{\gamma}) = \prod_{i=1}^N \prod_{l=1}^L \text{Bernoulli}(\gamma_{il} | \xi_{il})$$
+                            </div>
+                        </div>
+                        <p>The variational parameters $\boldsymbol{\Theta} = \{\boldsymbol{\alpha}_U, \boldsymbol{\beta}_U, \boldsymbol{\xi}, \boldsymbol{\alpha}_V, \boldsymbol{\beta}_V\}$ are optimized via gradient descent on the Evidence Lower Bound (ELBO).</p>
+                    </div>
+
+                    <div class="math-highlight">
+                        <h4><i class="fas fa-calculator"></i> Evidence Lower Bound (ELBO)</h4>
+                        <p>The optimization objective combines data likelihood with Bayesian regularization:</p>
+                        <div class="equation-block">
+                            <div class="math-display">
+                                $$\mathcal{L}[q(\boldsymbol{\Theta})] = \mathbb{E}_{q(\boldsymbol{\Theta})}[\log p(\mathcal{D} | \boldsymbol{\Theta})] - \text{KL}[q(\boldsymbol{\Theta}) \| p(\boldsymbol{\Theta})]$$
+                            </div>
+                        </div>
+                        <p>The first term ensures data fidelity while the KL divergence term provides automatic complexity control through Bayesian regularization.</p>
+                    </div>
+                </div>
+
+                <!-- Key Innovations Grid -->
+                <div class="innovations-grid">
+                    <div class="innovation-card fade-in">
+                        <div class="innovation-icon">
+                            <i class="fas fa-microscope"></i>
+                        </div>
+                        <h4 class="innovation-title">Probabilistic Feature Selection</h4>
+                        <p class="innovation-description">
+                            Unlike traditional L1/L2 regularization, our spike-and-slab approach provides principled Bayesian feature selection with interpretable selection probabilities.
+                        </p>
+                        <div class="innovation-formula">
+P(feature selected) = E[γᵢ | data] > τ_threshold
+                        </div>
+                    </div>
+
+                    <div class="innovation-card fade-in">
+                        <div class="innovation-icon">
+                            <i class="fas fa-balance-scale"></i>
+                        </div>
+                        <h4 class="innovation-title">Uncertainty Quantification</h4>
+                        <p class="innovation-description">
+                            Bayesian neural network architecture provides full posterior distributions over parameters, enabling robust uncertainty estimation.
+                        </p>
+                        <div class="innovation-formula">
+σ²(prediction) = Var[p(y|x)] + E[Var[y|x,θ]]
+                        </div>
+                    </div>
+
+                    <div class="innovation-card fade-in">
+                        <div class="innovation-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h4 class="innovation-title">Scalable Implementation</h4>
+                        <p class="innovation-description">
+                            Variational inference transforms intractable MCMC sampling into efficient gradient-based optimization, achieving O(n log n) complexity.
+                        </p>
+                        <div class="innovation-formula">
+∇_θ ELBO = E_q[∇_θ log p(D|θ)] - ∇_θ KL[q||p]
+                        </div>
+                    </div>
+
+                    <div class="innovation-card fade-in">
+                        <div class="innovation-icon">
+                            <i class="fas fa-network-wired"></i>
+                        </div>
+                        <h4 class="innovation-title">Conditional Probability Modeling</h4>
+                        <p class="innovation-description">
+                            Models microbe-metabolite relationships through conditional probabilities using multinomial likelihood with neural network embeddings.
+                        </p>
+                        <div class="innovation-formula">
+p(metabolite_j | microbe_i) = softmax(uᵢᵀvⱼ + bⱼ)
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Performance Dashboard -->
                 <div class="performance-dashboard fade-in">
                     <div class="dashboard-header">
@@ -1739,13 +1624,7 @@ important_species = model.<span class="code-function">get_selected_features</spa
                 <div class="example-step">
                     <h4>Import packages</h4>
                     <div class="code-section">
-                        <div class="code-header">
-                            <div class="code-title"><i class="fab fa-python"></i> Python</div>
-                            <button class="copy-btn" onclick="copyCode('tf-imports')">
-                                <i class="fas fa-copy"></i> Copy
-                            </button>
-                        </div>
-                        <div class="code-block" id="tf-imports">
+                        <div class="code-block">
 <span class="keyword">import</span> <span class="highlight">pandas</span> <span class="keyword">as</span> pd<br>
 <span class="keyword">import</span> <span class="highlight">numpy</span> <span class="keyword">as</span> np<br>
 <span class="keyword">import</span> <span class="highlight">matplotlib.pyplot</span> <span class="keyword">as</span> plt<br>
@@ -1763,13 +1642,7 @@ important_species = model.<span class="code-function">get_selected_features</spa
                 <div class="example-step">
                     <h4>Loading and preparing data in <code>examples/</code></h4>
                     <div class="code-section">
-                        <div class="code-header">
-                            <div class="code-title"><i class="fab fa-python"></i> Data Preparation</div>
-                            <button class="copy-btn" onclick="copyCode('tf-data-prep')">
-                                <i class="fas fa-copy"></i> Copy
-                            </button>
-                        </div>
-                        <div class="code-block" id="tf-data-prep">
+                        <div class="code-block">
 <span class="variable">microbes</span> = <span class="function">load_table</span>(<span class="string">"microbes.biom"</span>)<br>
 <span class="variable">metabolites</span> = <span class="function">load_table</span>(<span class="string">"metabolites.biom"</span>)<br>
 
@@ -1799,13 +1672,7 @@ important_species = model.<span class="code-function">get_selected_features</spa
                 <div class="example-step">
                     <h4>Creating, training, and testing a model</h4>
                     <div class="code-section">
-                        <div class="code-header">
-                            <div class="code-title"><i class="fab fa-python"></i> Model Training</div>
-                            <button class="copy-btn" onclick="copyCode('tf-training')">
-                                <i class="fas fa-copy"></i> Copy
-                            </button>
-                        </div>
-                        <div class="code-block" id="tf-training">
+                        <div class="code-block">
 <span class="variable">model</span> = <span class="function">VBayesMM</span>()<br>
 <span class="variable">config</span> = <span class="variable">tf</span>.<span class="variable">compat</span>.<span class="variable">v1</span>.<span class="function">ConfigProto</span>()<br>
 
@@ -1840,13 +1707,7 @@ important_species = model.<span class="code-function">get_selected_features</spa
                 <div class="example-step">
                     <h4>Visualizing the posterior distributions of model outputs</h4>
                     <div class="code-section">
-                        <div class="code-header">
-                            <div class="code-title"><i class="fab fa-python"></i> Output Analysis</div>
-                            <button class="copy-btn" onclick="copyCode('tf-analysis')">
-                                <i class="fas fa-copy"></i> Copy
-                            </button>
-                        </div>
-                        <div class="code-block" id="tf-analysis">
+                        <div class="code-block">
 <span class="variable">latent_microbiome_matrix</span> = <span class="variable">model</span>.<span class="variable">U</span><br>
 <span class="variable">microbial_species_selection</span> = <span class="variable">model</span>.<span class="variable">U_mean_gamma</span><br>
 <span class="variable">microbial_species_selection_mean</span> = <span class="variable">np</span>.<span class="function">sort</span>(<span class="variable">np</span>.<span class="function">mean</span>(<span class="variable">microbial_species_selection</span>, <span class="variable">axis</span>=<span class="number">1</span>))[<span class="number">::-1</span>]
@@ -1880,13 +1741,7 @@ important_species = model.<span class="code-function">get_selected_features</spa
                 <div class="example-step">
                     <h4>Import packages</h4>
                     <div class="code-section">
-                        <div class="code-header">
-                            <div class="code-title"><i class="fab fa-python"></i> Python</div>
-                            <button class="copy-btn" onclick="copyCode('pt-imports')">
-                                <i class="fas fa-copy"></i> Copy
-                            </button>
-                        </div>
-                        <div class="code-block" id="pt-imports">
+                        <div class="code-block">
 <span class="keyword">import</span> <span class="highlight">pandas</span> <span class="keyword">as</span> pd<br>
 <span class="keyword">import</span> <span class="highlight">numpy</span> <span class="keyword">as</span> np<br>
 <span class="keyword">import</span> <span class="highlight">matplotlib.pyplot</span> <span class="keyword">as</span> plt<br>
@@ -1904,13 +1759,7 @@ important_species = model.<span class="code-function">get_selected_features</spa
                 <div class="example-step">
                     <h4>Loading and preparing data</h4>
                     <div class="code-section">
-                        <div class="code-header">
-                            <div class="code-title"><i class="fab fa-python"></i> Data Preparation</div>
-                            <button class="copy-btn" onclick="copyCode('pt-data-prep')">
-                                <i class="fas fa-copy"></i> Copy
-                            </button>
-                        </div>
-                        <div class="code-block" id="pt-data-prep">
+                        <div class="code-block">
 <span class="variable">microbes</span> = <span class="function">load_table</span>(<span class="string">"microbes.biom"</span>)<br>
 <span class="variable">metabolites</span> = <span class="function">load_table</span>(<span class="string">"metabolites.biom"</span>)<br>
 
@@ -1946,13 +1795,7 @@ important_species = model.<span class="code-function">get_selected_features</spa
                 <div class="example-step">
                     <h4>Creating, training, and testing a model</h4>
                     <div class="code-section">
-                        <div class="code-header">
-                            <div class="code-title"><i class="fab fa-python"></i> Model Training</div>
-                            <button class="copy-btn" onclick="copyCode('pt-training')">
-                                <i class="fas fa-copy"></i> Copy
-                            </button>
-                        </div>
-                        <div class="code-block" id="pt-training">
+                        <div class="code-block">
 <span class="variable">model</span> = <span class="function">VBayesMM</span>(<span class="variable">d1</span>=<span class="variable">d1</span>, <span class="variable">d2</span>=<span class="variable">d2</span>, <span class="variable">num_samples</span>=<span class="variable">n</span>)<br>
 <span class="variable">ELBO</span>, <span class="variable">_</span>, <span class="variable">SMAPE</span> = <span class="variable">model</span>.<span class="function">fit</span>(<span class="variable">train_microbes_coo</span>, <span class="variable">trainY_torch</span>, 
                                       <span class="variable">test_microbes_coo</span>, <span class="variable">testY_torch</span>, <span class="variable">epochs</span>=<span class="number">5000</span>)
@@ -1983,13 +1826,7 @@ important_species = model.<span class="code-function">get_selected_features</spa
                 <div class="example-step">
                     <h4>Visualizing the posterior distributions of model outputs</h4>
                     <div class="code-section">
-                        <div class="code-header">
-                            <div class="code-title"><i class="fab fa-python"></i> Output Analysis</div>
-                            <button class="copy-btn" onclick="copyCode('pt-analysis')">
-                                <i class="fas fa-copy"></i> Copy
-                            </button>
-                        </div>
-                        <div class="code-block" id="pt-analysis">
+                        <div class="code-block">
 <span class="variable">latent_microbiome_matrix</span> = <span class="variable">np</span>.<span class="function">array</span>(<span class="variable">model</span>.<span class="variable">qUmain_mean</span>.<span class="variable">weight</span>.<span class="variable">data</span>.<span class="function">detach</span>())<br>
 <span class="variable">microbial_species_selection</span> = <span class="variable">np</span>.<span class="function">array</span>(<span class="variable">model</span>.<span class="variable">qUmain_mean_gamma</span>.<span class="function">detach</span>())<br>
 <span class="variable">microbial_species_selection_mean</span> = <span class="variable">np</span>.<span class="function">sort</span>(<span class="variable">np</span>.<span class="function">mean</span>(<span class="variable">microbial_species_selection</span>, <span class="variable">axis</span>=<span class="number">1</span>))[<span class="number">::-1</span>]
@@ -2199,6 +2036,220 @@ important_species = model.<span class="code-function">get_selected_features</spa
         window.addEventListener('load', function() {
             document.body.style.opacity = '1';
         });
+
+        // Mathematical equations hover effects
+        document.addEventListener('DOMContentLoaded', function() {
+            const equations = document.querySelectorAll('.equation-block');
+            equations.forEach(eq => {
+                eq.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.02)';
+                    this.style.transition = 'transform 0.3s ease';
+                });
+                eq.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                });
+            });
+
+            // Innovation cards hover effects
+            const innovationCards = document.querySelectorAll('.innovation-card');
+            innovationCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-8px) scale(1.02)';
+                    this.style.boxShadow = '0 25px 50px rgba(0, 0, 0, 0.2)';
+                });
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                    this.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.1)';
+                });
+            });
+
+            // Mathematical framework animation
+            const mathFramework = document.querySelector('.mathematical-framework');
+            if (mathFramework) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.style.animation = 'fadeInUp 1s ease forwards';
+                        }
+                    });
+                }, { threshold: 0.2 });
+                observer.observe(mathFramework);
+            }
+        });
+
+        // Code block copy functionality with enhanced feedback
+        document.querySelectorAll('.code-block').forEach(block => {
+            block.addEventListener('click', function() {
+                const text = this.textContent;
+                navigator.clipboard.writeText(text).then(() => {
+                    // Create temporary success indicator
+                    const indicator = document.createElement('div');
+                    indicator.textContent = 'Code copied to clipboard!';
+                    indicator.style.cssText = `
+                        position: fixed;
+                        top: 20px;
+                        right: 20px;
+                        background: #22c55e;
+                        color: white;
+                        padding: 12px 20px;
+                        border-radius: 8px;
+                        z-index: 10000;
+                        font-weight: 600;
+                        animation: slideIn 0.3s ease;
+                    `;
+                    document.body.appendChild(indicator);
+                    
+                    setTimeout(() => {
+                        indicator.remove();
+                    }, 3000);
+                }).catch(err => {
+                    console.error('Failed to copy code:', err);
+                });
+            });
+            
+            // Add click cursor indication
+            block.style.cursor = 'pointer';
+            block.title = 'Click to copy code';
+        });
+
+        // Enhanced scroll animations for mathematical elements
+        const mathElements = document.querySelectorAll('.math-highlight, .innovation-card, .metric-card');
+        mathElements.forEach((element, index) => {
+            element.style.animationDelay = `${index * 0.1}s`;
+        });
+
+        // Interactive mathematical formula highlighting
+        document.querySelectorAll('.innovation-formula').forEach(formula => {
+            formula.addEventListener('mouseenter', function() {
+                this.style.background = '#667eea';
+                this.style.color = 'white';
+                this.style.transform = 'scale(1.05)';
+                this.style.transition = 'all 0.3s ease';
+            });
+            formula.addEventListener('mouseleave', function() {
+                this.style.background = '#f7fafc';
+                this.style.color = '#2d3748';
+                this.style.transform = 'scale(1)';
+            });
+        });
+
+        // Performance metrics counter animation
+        function animateCounters() {
+            const counters = document.querySelectorAll('.metric-value');
+            counters.forEach(counter => {
+                const target = counter.textContent;
+                if (target.includes('%')) {
+                    const number = parseInt(target);
+                    if (!isNaN(number)) {
+                        let current = 0;
+                        const increment = number / 50;
+                        const timer = setInterval(() => {
+                            current += increment;
+                            if (current >= number) {
+                                counter.textContent = target;
+                                clearInterval(timer);
+                            } else {
+                                counter.textContent = Math.floor(current) + '%';
+                            }
+                        }, 30);
+                    }
+                }
+            });
+        }
+
+        // Trigger counter animation when performance dashboard is visible
+        const performanceDashboard = document.querySelector('.performance-dashboard');
+        if (performanceDashboard) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCounters();
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            observer.observe(performanceDashboard);
+        }
     </script>
+
+    <!-- Custom CSS for additional animations -->
+    <style>
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .math-highlight:hover {
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.15);
+        }
+
+        .innovation-card {
+            animation: fadeInUp 0.6s ease forwards;
+            animation-fill-mode: both;
+        }
+
+        .metric-card {
+            animation: fadeInUp 0.6s ease forwards;
+            animation-fill-mode: both;
+        }
+
+        .feature-module {
+            animation: fadeInUp 0.6s ease forwards;
+            animation-fill-mode: both;
+        }
+
+        /* Enhanced mathematical typography */
+        .equation-block .math-display {
+            font-family: 'Latin Modern Math', 'STIX Two Math', 'Times New Roman', serif;
+        }
+
+        /* Improved mobile responsiveness for mathematical content */
+        @media (max-width: 768px) {
+            .mathematical-framework {
+                padding: 1.5rem;
+                margin: 2rem 0;
+            }
+            
+            .math-highlight {
+                padding: 1.5rem;
+            }
+            
+            .equation-block {
+                padding: 1.5rem;
+                font-size: 0.9rem;
+            }
+            
+            .innovation-formula {
+                font-size: 0.8rem;
+                padding: 0.8rem;
+            }
+            
+            .innovations-grid {
+                gap: 1rem;
+            }
+        }
+
+        /* Enhanced focus states for accessibility */
+        .code-tab:focus,
+        .code-action:focus,
+        .btn:focus {
+            outline: 2px solid #667eea;
+            outline-offset: 2px;
+        }
+
+        /* Smooth transitions for all interactive elements */
+        .innovation-card,
+        .metric-card,
+        .feature-module,
+        .framework-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    </style>
 </body>
 </html>
