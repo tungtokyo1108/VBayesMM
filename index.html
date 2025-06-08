@@ -1159,61 +1159,40 @@
         <div class="container">
             <h2>Novel Methodology</h2>
             <div class="features-container">
-                <!-- Mathematical Framework -->
-                <div class="mathematical-framework fade-in">
-                    <div class="framework-badge">CORE INNOVATION</div>
-                    <h3 class="framework-title">Spike-and-Slab Priors for Variational Bayesian Neural Networks</h3>
-                    <p class="framework-description">
-                        VBayesMM introduces a revolutionary approach to microbiome feature selection through spike-and-slab priors, 
-                        enabling probabilistic identification of keystone microbial species while maintaining computational efficiency 
-                        through variational inference optimization.
-                    </p>
 
-                    <div class="math-highlight">
-                        <h4><i class="fas fa-brain"></i> Problem Formulation</h4>
-                        <p>Given paired microbiome-metabolome dataset D = [X, Y] with K samples, N taxonomic units, and M metabolites, VBayesMM learns conditional probabilities:</p>
-                        <div class="equation-block">
-                            <div class="math-display">
-                                $$p(y_j | x_i) = \frac{\exp(\mathbf{u}_i^T \mathbf{v}_j + b_j)}{\sum_{j'=1}^M \exp(\mathbf{u}_i^T \mathbf{v}_{j'} + b_{j'})}$$
-                            </div>
+                <!-- Performance Dashboard -->
+                <div class="performance-dashboard fade-in">
+                    <div class="dashboard-header">
+                        <div class="dashboard-title">
+                            <i class="fas fa-tachometer-alt"></i>
+                            Performance Metrics
                         </div>
-                        <p>Where $$\mathbf{u}_i, \mathbf{v}_j \in \mathbb{R}^L$$ are latent embeddings for microbes and metabolites respectively.</p>
+                        <div class="status-indicator">
+                            <div class="status-dot"></div>
+                            <span>Production Ready</span>
+                        </div>
                     </div>
-                    
-                    <div class="math-highlight">
-                        <h4><i class="fas fa-brain"></i> Spike-and-Slab Prior</h4>
-                        <p>The core innovation lies in modeling each taxonomic unit with a mixture distribution that probabilistically determines feature relevance:</p>
-                        <div class="equation-block">
-                            <div class="math-display">
-                                $$p(\mathbf{u}_i | \gamma_i) = \gamma_i \mathcal{N}(\mathbf{u}_i | \mathbf{0}, \sigma^2_{\text{slab}} \mathbf{I}) + (1 - \gamma_i) \delta_0(\mathbf{u}_i)$$
-                            </div>
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <span class="metric-value">34%</span>
+                            <div class="metric-label">SMAPE Score</div>
+                            <div class="metric-description">Lowest validation error achieved</div>
                         </div>
-                        <p>Where $$\gamma_i \in \{0,1\} : \text{acts as a binary selector}$$ $$\delta_0 : \text{represents the Dirac spike at zero for irrelevant features}$$ $$\sigma^2_{\text{slab}} : \text{controls the variance of important features}$$ </p>
-                    </div>
-
-                    <div class="math-highlight">
-                        <h4><i class="fas fa-chart-line"></i> Variational Inference Optimization</h4>
-                        <p>We employ mean-field variational inference to approximate the intractable posterior distribution:</p>
-                        <div class="equation-block">
-                            <div class="math-display">
-                                $$q(\Theta) = q(\mathbf{U}) \cdot q(\gamma) \cdot q(\mathbf{V})$$
-                                $$\text{where } q(\mathbf{U}) = \prod_{i=1}^N \mathcal{N}(\mathbf{u}_i | \alpha_{U_i}, \beta_{U_i}^2)$$
-                                $$q(\gamma) = \prod_{i=1}^N \prod_{l=1}^L \text{Bernoulli}(\gamma_{il} | \xi_{il})$$
-                                $$ q(\mathbf{V}) = \prod_{j=1}^M \mathcal{N}(\mathbf{v}_j | \alpha_{V_j}, \beta_{V_j}^2)$$
-                            </div>
+                        <div class="metric-card">
+                            <span class="metric-value">57,702</span>
+                            <div class="metric-label">Microbial Taxa</div>
+                            <div class="metric-description">Maximum feature dimensionality</div>
                         </div>
-                        <p>The variational parameters $$\Theta = \{\alpha_U, \beta_U, \xi, \alpha_V, \beta_V\}$$ are optimized via gradient descent on the Evidence Lower Bound (ELBO).</p>
-                    </div>
-
-                    <div class="math-highlight">
-                        <h4><i class="fas fa-calculator"></i> Evidence Lower Bound (ELBO)</h4>
-                        <p>The optimization objective combines data likelihood with Bayesian regularization:</p>
-                        <div class="equation-block">
-                            <div class="math-display">
-                                $$\mathcal{L}[q(\Theta)] = \mathbb{E}_{q(\Theta)}[\log p(\mathcal{D} | \Theta)] - \text{KL}[q(\Theta) \| p(\Theta)]$$
-                            </div>
+                        <div class="metric-card">
+                            <span class="metric-value">O(n log n)</span>
+                            <div class="metric-label">Complexity</div>
+                            <div class="metric-description">Optimized ELBO computation</div>
                         </div>
-                        <p>The first term ensures data fidelity while the KL divergence term provides automatic complexity control through Bayesian regularization.</p>
+                        <div class="metric-card">
+                            <span class="metric-value">π ∈ [0,1]</span>
+                            <div class="metric-label">Spike Probability</div>
+                            <div class="metric-description">Feature inclusion prior</div>
+                        </div>
                     </div>
                 </div>
 
@@ -1272,39 +1251,61 @@ p(metabolite_j | microbe_i) = softmax(uᵢᵀvⱼ + bⱼ)
                     </div>
                 </div>
 
-                <!-- Performance Dashboard -->
-                <div class="performance-dashboard fade-in">
-                    <div class="dashboard-header">
-                        <div class="dashboard-title">
-                            <i class="fas fa-tachometer-alt"></i>
-                            Performance Metrics
+                <!-- Mathematical Framework -->
+                <div class="mathematical-framework fade-in">
+                    <div class="framework-badge">CORE INNOVATION</div>
+                    <h3 class="framework-title">Spike-and-Slab Priors for Variational Bayesian Neural Networks</h3>
+                    <p class="framework-description">
+                        VBayesMM introduces a revolutionary approach to microbiome feature selection through spike-and-slab priors, 
+                        enabling probabilistic identification of keystone microbial species while maintaining computational efficiency 
+                        through variational inference optimization.
+                    </p>
+
+                    <div class="math-highlight">
+                        <h4><i class="fas fa-brain"></i> Problem Formulation</h4>
+                        <p>Given paired microbiome-metabolome dataset D = [X, Y] with K samples, N taxonomic units, and M metabolites, VBayesMM learns conditional probabilities:</p>
+                        <div class="equation-block">
+                            <div class="math-display">
+                                $$p(y_j | x_i) = \frac{\exp(\mathbf{u}_i^T \mathbf{v}_j + b_j)}{\sum_{j'=1}^M \exp(\mathbf{u}_i^T \mathbf{v}_{j'} + b_{j'})}$$
+                            </div>
                         </div>
-                        <div class="status-indicator">
-                            <div class="status-dot"></div>
-                            <span>Production Ready</span>
-                        </div>
+                        <p>Where $$\mathbf{u}_i, \mathbf{v}_j \in \mathbb{R}^L$$ are latent embeddings for microbes and metabolites respectively.</p>
                     </div>
-                    <div class="metrics-grid">
-                        <div class="metric-card">
-                            <span class="metric-value">34%</span>
-                            <div class="metric-label">SMAPE Score</div>
-                            <div class="metric-description">Lowest validation error achieved</div>
+                    
+                    <div class="math-highlight">
+                        <h4><i class="fas fa-brain"></i> Spike-and-Slab Prior</h4>
+                        <p>The core innovation lies in modeling each taxonomic unit with a mixture distribution that probabilistically determines feature relevance:</p>
+                        <div class="equation-block">
+                            <div class="math-display">
+                                $$p(\mathbf{u}_i | \gamma_i) = \gamma_i \mathcal{N}(\mathbf{u}_i | \mathbf{0}, \sigma^2_{\text{slab}} \mathbf{I}) + (1 - \gamma_i) \delta_0(\mathbf{u}_i)$$
+                            </div>
                         </div>
-                        <div class="metric-card">
-                            <span class="metric-value">57,702</span>
-                            <div class="metric-label">Microbial Taxa</div>
-                            <div class="metric-description">Maximum feature dimensionality</div>
+                        <p>Where $$\gamma_i \in \{0,1\} : \text{acts as a binary selector}$$ $$\delta_0 : \text{represents the Dirac spike at zero for irrelevant features}$$ $$\sigma^2_{\text{slab}} : \text{controls the variance of important features}$$ </p>
+                    </div>
+
+                    <div class="math-highlight">
+                        <h4><i class="fas fa-chart-line"></i> Variational Inference Optimization</h4>
+                        <p>We employ mean-field variational inference to approximate the intractable posterior distribution:</p>
+                        <div class="equation-block">
+                            <div class="math-display">
+                                $$q(\Theta) = q(\mathbf{U}) \cdot q(\gamma) \cdot q(\mathbf{V})$$
+                                $$\text{where } q(\mathbf{U}) = \prod_{i=1}^N \mathcal{N}(\mathbf{u}_i | \alpha_{U_i}, \beta_{U_i}^2)$$
+                                $$q(\gamma) = \prod_{i=1}^N \prod_{l=1}^L \text{Bernoulli}(\gamma_{il} | \xi_{il})$$
+                                $$ q(\mathbf{V}) = \prod_{j=1}^M \mathcal{N}(\mathbf{v}_j | \alpha_{V_j}, \beta_{V_j}^2)$$
+                            </div>
                         </div>
-                        <div class="metric-card">
-                            <span class="metric-value">O(n log n)</span>
-                            <div class="metric-label">Complexity</div>
-                            <div class="metric-description">Optimized ELBO computation</div>
+                        <p>The variational parameters $$\Theta = \{\alpha_U, \beta_U, \xi, \alpha_V, \beta_V\}$$ are optimized via gradient descent on the Evidence Lower Bound (ELBO).</p>
+                    </div>
+
+                    <div class="math-highlight">
+                        <h4><i class="fas fa-calculator"></i> Evidence Lower Bound (ELBO)</h4>
+                        <p>The optimization objective combines data likelihood with Bayesian regularization:</p>
+                        <div class="equation-block">
+                            <div class="math-display">
+                                $$\mathcal{L}[q(\Theta)] = \mathbb{E}_{q(\Theta)}[\log p(\mathcal{D} | \Theta)] - \text{KL}[q(\Theta) \| p(\Theta)]$$
+                            </div>
                         </div>
-                        <div class="metric-card">
-                            <span class="metric-value">π ∈ [0,1]</span>
-                            <div class="metric-label">Spike Probability</div>
-                            <div class="metric-description">Feature inclusion prior</div>
-                        </div>
+                        <p>The first term ensures data fidelity while the KL divergence term provides automatic complexity control through Bayesian regularization.</p>
                     </div>
                 </div>
 
