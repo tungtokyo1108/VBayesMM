@@ -493,6 +493,158 @@
             margin-top: 4px;
         }
 
+        /* Performance Comparison Table */
+        .comparison-section {
+            margin-top: 40px;
+            padding-top: 32px;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .comparison-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .comparison-table-container {
+            overflow-x: auto;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e5e7eb;
+        }
+
+        .performance-comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            font-size: 0.875rem;
+        }
+
+        .performance-comparison-table th {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            font-weight: 600;
+            padding: 16px 12px;
+            text-align: left;
+            font-size: 0.875rem;
+            letter-spacing: 0.025em;
+        }
+
+        .performance-comparison-table td {
+            padding: 16px 12px;
+            border-bottom: 1px solid #f3f4f6;
+            vertical-align: top;
+        }
+
+        .method-column {
+            width: 15%;
+            min-width: 120px;
+        }
+
+        .feature-column,
+        .uncertainty-column,
+        .scalability-column,
+        .interpretability-column {
+            width: 21.25%;
+            min-width: 200px;
+        }
+
+        .method-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+
+        .method-badge.vbayesmm {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .method-badge.mmvec {
+            background: #f3f4f6;
+            color: #374151;
+            border: 1px solid #d1d5db;
+        }
+
+        .method-badge.spls {
+            background: #f3f4f6;
+            color: #374151;
+            border: 1px solid #d1d5db;
+        }
+
+        .feature-status {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .feature-status i {
+            margin-top: 2px;
+            font-size: 1rem;
+        }
+
+        .feature-text {
+            flex: 1;
+        }
+
+        .feature-detail {
+            font-size: 0.75rem;
+            opacity: 0.8;
+            font-weight: 400;
+        }
+
+        .feature-cell.positive {
+            background: #f0fdf4;
+            border-left: 3px solid #22c55e;
+        }
+
+        .feature-cell.positive i {
+            color: #22c55e;
+        }
+
+        .feature-cell.negative {
+            background: #fef2f2;
+            border-left: 3px solid #ef4444;
+        }
+
+        .feature-cell.negative i {
+            color: #ef4444;
+        }
+
+        .feature-cell.warning {
+            background: #fffbeb;
+            border-left: 3px solid #f59e0b;
+        }
+
+        .feature-cell.warning i {
+            color: #f59e0b;
+        }
+
+        .vbayesmm-row {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.02), rgba(118, 75, 162, 0.02));
+        }
+
+        .vbayesmm-row:hover {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05), rgba(118, 75, 162, 0.05));
+        }
+
+        .mmvec-row:hover,
+        .spls-row:hover {
+            background: #f9fafb;
+        }
+
+        .performance-comparison-table tr {
+            transition: background-color 0.2s ease;
+        }
+
         /* Technical Architecture */
         .architecture-section {
             margin: 48px 0;
@@ -1192,6 +1344,161 @@
                             <span class="metric-value">O(n log n)</span>
                             <div class="metric-label">Complexity</div>
                             <div class="metric-description">Optimized ELBO computation</div>
+                        </div>
+                    </div>
+
+                    <!-- Performance Comparison Table -->
+                    <div class="comparison-section">
+                        <h4 class="comparison-title">
+                            <i class="fas fa-chart-bar"></i>
+                            Method Comparison Analysis
+                        </h4>
+                        <div class="comparison-table-container">
+                            <table class="performance-comparison-table">
+                                <thead>
+                                    <tr>
+                                        <th class="method-column">Method</th>
+                                        <th class="feature-column">Feature Selection</th>
+                                        <th class="uncertainty-column">Uncertainty Quantification</th>
+                                        <th class="scalability-column">Scalability</th>
+                                        <th class="interpretability-column">Interpretability</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="vbayesmm-row">
+                                        <td class="method-name">
+                                            <div class="method-badge vbayesmm">
+                                                <i class="fas fa-star"></i>
+                                                <strong>VBayesMM</strong>
+                                            </div>
+                                        </td>
+                                        <td class="feature-cell positive">
+                                            <div class="feature-status">
+                                                <i class="fas fa-check-circle"></i>
+                                                <div class="feature-text">
+                                                    <strong>Probabilistic</strong><br>
+                                                    <span class="feature-detail">(Spike-and-Slab)</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="feature-cell positive">
+                                            <div class="feature-status">
+                                                <i class="fas fa-check-circle"></i>
+                                                <div class="feature-text">
+                                                    <strong>Bayesian Posterior</strong><br>
+                                                    <span class="feature-detail">Full uncertainty</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="feature-cell positive">
+                                            <div class="feature-status">
+                                                <i class="fas fa-check-circle"></i>
+                                                <div class="feature-text">
+                                                    <strong>Variational Inference</strong><br>
+                                                    <span class="feature-detail">Ultra-high dimensions</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="feature-cell positive">
+                                            <div class="feature-status">
+                                                <i class="fas fa-check-circle"></i>
+                                                <div class="feature-text">
+                                                    <strong>Selection Probabilities</strong><br>
+                                                    <span class="feature-detail">Interpretable weights</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="mmvec-row">
+                                        <td class="method-name">
+                                            <div class="method-badge mmvec">
+                                                <i class="fas fa-circle"></i>
+                                                <strong>MMvec</strong>
+                                            </div>
+                                        </td>
+                                        <td class="feature-cell negative">
+                                            <div class="feature-status">
+                                                <i class="fas fa-times-circle"></i>
+                                                <div class="feature-text">
+                                                    <strong>Treats all features equally</strong><br>
+                                                    <span class="feature-detail">No selection mechanism</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="feature-cell negative">
+                                            <div class="feature-status">
+                                                <i class="fas fa-times-circle"></i>
+                                                <div class="feature-text">
+                                                    <strong>Point estimates only</strong><br>
+                                                    <span class="feature-detail">No uncertainty</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="feature-cell warning">
+                                            <div class="feature-status">
+                                                <i class="fas fa-exclamation-triangle"></i>
+                                                <div class="feature-text">
+                                                    <strong>Limited to moderate sizes</strong><br>
+                                                    <span class="feature-detail">Memory constraints</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="feature-cell warning">
+                                            <div class="feature-status">
+                                                <i class="fas fa-exclamation-triangle"></i>
+                                                <div class="feature-text">
+                                                    <strong>Black box embeddings</strong><br>
+                                                    <span class="feature-detail">Limited insights</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="spls-row">
+                                        <td class="method-name">
+                                            <div class="method-badge spls">
+                                                <i class="fas fa-circle"></i>
+                                                <strong>sPLS</strong>
+                                            </div>
+                                        </td>
+                                        <td class="feature-cell warning">
+                                            <div class="feature-status">
+                                                <i class="fas fa-exclamation-triangle"></i>
+                                                <div class="feature-text">
+                                                    <strong>L1/L2 regularization</strong><br>
+                                                    <span class="feature-detail">Hyperparameter tuning</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="feature-cell negative">
+                                            <div class="feature-status">
+                                                <i class="fas fa-times-circle"></i>
+                                                <div class="feature-text">
+                                                    <strong>No uncertainty</strong><br>
+                                                    <span class="feature-detail">Deterministic output</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="feature-cell negative">
+                                            <div class="feature-status">
+                                                <i class="fas fa-times-circle"></i>
+                                                <div class="feature-text">
+                                                    <strong>Poor with high dimensions</strong><br>
+                                                    <span class="feature-detail">Computational limits</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="feature-cell warning">
+                                            <div class="feature-status">
+                                                <i class="fas fa-exclamation-triangle"></i>
+                                                <div class="feature-text">
+                                                    <strong>Linear assumptions</strong><br>
+                                                    <span class="feature-detail">Limited flexibility</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
