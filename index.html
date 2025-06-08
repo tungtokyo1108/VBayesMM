@@ -1638,7 +1638,7 @@
                         <div class="equation-block">
                             <div class="math-display">
                                 $$q(\Theta) = q(\mathbf{U}) \cdot q(\gamma) \cdot q(\mathbf{V})$$
-                                $$\text{where } q(\mathbf{U}) = \prod_{i=1}^N \mathcal{N}(\mathbf{u}_i | \alpha_{U_i}, \beta_{U_i}^2)$$
+                                $$\text{where } q(\mathbf{U}) = \prod_{i=1}^N \gamma \mathcal{N}(\mathbf{u}_i | \alpha_{U_i}, \beta_{U_i}^2) + (1 - \gamma) \delta_0$$ 
                                 $$q(\gamma) = \prod_{i=1}^N \prod_{l=1}^L \text{Bernoulli}(\gamma_{il} | \xi_{il})$$
                                 $$ q(\mathbf{V}) = \prod_{j=1}^M \mathcal{N}(\mathbf{v}_j | \alpha_{V_j}, \beta_{V_j}^2)$$
                             </div>
