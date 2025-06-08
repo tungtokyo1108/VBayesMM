@@ -1201,7 +1201,7 @@
                                 $$q(\Theta) = q(\mathbf{U}) \cdot q(\gamma) \cdot q(\mathbf{V})$$
                                 $$\text{where } q(\mathbf{U}) = \prod_{i=1}^N \mathcal{N}(\mathbf{u}_i | \alpha_{U_i}, \beta_{U_i}^2)$$
                                 $$q(\gamma) = \prod_{i=1}^N \prod_{l=1}^L \text{Bernoulli}(\gamma_{il} | \xi_{il})$$
-                                $$ q(\mathbf{V}) = \prod_{j=1}^M \mathcal{M}(\mathbf{v}_j | \alpha_{V_j}, \beta_{V_j}^2)$$
+                                $$ q(\mathbf{V}) = \prod_{j=1}^M \mathcal{N}(\mathbf{v}_j | \alpha_{V_j}, \beta_{V_j}^2)$$
                             </div>
                         </div>
                         <p>The variational parameters $$\Theta = \{\alpha_U, \beta_U, \xi, \alpha_V, \beta_V\}$$ are optimized via gradient descent on the Evidence Lower Bound (ELBO).</p>
