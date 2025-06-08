@@ -1605,62 +1605,7 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Key Innovations Grid -->
-                <div class="innovations-grid">
-                    <div class="innovation-card fade-in">
-                        <div class="innovation-icon">
-                            <i class="fas fa-microscope"></i>
-                        </div>
-                        <h4 class="innovation-title">Probabilistic Feature Selection</h4>
-                        <p class="innovation-description">
-                            Unlike traditional L1/L2 regularization, our spike-and-slab approach provides principled Bayesian feature selection with interpretable selection probabilities.
-                        </p>
-                        <div class="innovation-formula">
-P(feature selected) = E[γᵢ | data] > τ_threshold
-                        </div>
-                    </div>
-
-                    <div class="innovation-card fade-in">
-                        <div class="innovation-icon">
-                            <i class="fas fa-balance-scale"></i>
-                        </div>
-                        <h4 class="innovation-title">Uncertainty Quantification</h4>
-                        <p class="innovation-description">
-                            Bayesian neural network architecture provides full posterior distributions over parameters, enabling robust uncertainty estimation.
-                        </p>
-                        <div class="innovation-formula">
-σ²(prediction) = Var[p(y|x)] + E[Var[y|x,θ]]
-                        </div>
-                    </div>
-
-                    <div class="innovation-card fade-in">
-                        <div class="innovation-icon">
-                            <i class="fas fa-rocket"></i>
-                        </div>
-                        <h4 class="innovation-title">Scalable Implementation</h4>
-                        <p class="innovation-description">
-                            Variational inference transforms intractable MCMC sampling into efficient gradient-based optimization, achieving O(n log n) complexity.
-                        </p>
-                        <div class="innovation-formula">
-∇_θ ELBO = E_q[∇_θ log p(D|θ)] - ∇_θ KL[q||p]
-                        </div>
-                    </div>
-
-                    <div class="innovation-card fade-in">
-                        <div class="innovation-icon">
-                            <i class="fas fa-network-wired"></i>
-                        </div>
-                        <h4 class="innovation-title">Conditional Probability Modeling</h4>
-                        <p class="innovation-description">
-                            Models microbe-metabolite relationships through conditional probabilities using multinomial likelihood with neural network embeddings.
-                        </p>
-                        <div class="innovation-formula">
-p(metabolite_j | microbe_i) = softmax(uᵢᵀvⱼ + bⱼ)
-                        </div>
-                    </div>
-                </div>
-
+                
                 <!-- Mathematical Framework -->
                 <div class="mathematical-framework fade-in">
                     <div class="framework-badge">CORE INNOVATION</div>
@@ -1716,6 +1661,61 @@ p(metabolite_j | microbe_i) = softmax(uᵢᵀvⱼ + bⱼ)
                             </div>
                         </div>
                         <p>The first term ensures data fidelity while the KL divergence term provides automatic complexity control through Bayesian regularization.</p>
+                    </div>
+                </div>
+
+                <!-- Key Innovations Grid -->
+                <div class="innovations-grid">
+                    <div class="innovation-card fade-in">
+                        <div class="innovation-icon">
+                            <i class="fas fa-microscope"></i>
+                        </div>
+                        <h4 class="innovation-title">Probabilistic Feature Selection</h4>
+                        <p class="innovation-description">
+                            Unlike traditional L1/L2 regularization, our spike-and-slab approach provides principled Bayesian feature selection with interpretable selection probabilities.
+                        </p>
+                        <div class="innovation-formula">
+P(feature selected) = E[γᵢ | data] > τ_threshold
+                        </div>
+                    </div>
+
+                    <div class="innovation-card fade-in">
+                        <div class="innovation-icon">
+                            <i class="fas fa-balance-scale"></i>
+                        </div>
+                        <h4 class="innovation-title">Uncertainty Quantification</h4>
+                        <p class="innovation-description">
+                            Bayesian neural network architecture provides full posterior distributions over parameters, enabling robust uncertainty estimation.
+                        </p>
+                        <div class="innovation-formula">
+σ²(prediction) = Var[p(y|x)] + E[Var[y|x,θ]]
+                        </div>
+                    </div>
+
+                    <div class="innovation-card fade-in">
+                        <div class="innovation-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h4 class="innovation-title">Scalable Implementation</h4>
+                        <p class="innovation-description">
+                            Variational inference transforms intractable MCMC sampling into efficient gradient-based optimization, achieving O(n log n) complexity.
+                        </p>
+                        <div class="innovation-formula">
+∇_θ ELBO = E_q[∇_θ log p(D|θ)] - ∇_θ KL[q||p]
+                        </div>
+                    </div>
+
+                    <div class="innovation-card fade-in">
+                        <div class="innovation-icon">
+                            <i class="fas fa-network-wired"></i>
+                        </div>
+                        <h4 class="innovation-title">Conditional Probability Modeling</h4>
+                        <p class="innovation-description">
+                            Models microbe-metabolite relationships through conditional probabilities using multinomial likelihood with neural network embeddings.
+                        </p>
+                        <div class="innovation-formula">
+p(metabolite_j | microbe_i) = softmax(uᵢᵀvⱼ + bⱼ)
+                        </div>
                     </div>
                 </div>
 
