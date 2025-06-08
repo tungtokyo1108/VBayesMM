@@ -1157,7 +1157,7 @@
 
     <section id="features" class="section">
         <div class="container">
-            <h2>Mathematical Methodology</h2>
+            <h2>Novel Methodology</h2>
             <p class="features-subtitle">Advanced Bayesian neural network framework with rigorous mathematical foundations for high-dimensional multiomics analysis</p>
             
             <div class="features-container">
@@ -1179,7 +1179,7 @@
                                 $$p(\mathbf{u}_i | \gamma_i) = \gamma_i \mathcal{N}(\mathbf{u}_i | \mathbf{0}, \sigma^2_{\text{slab}} \mathbf{I}) + (1 - \gamma_i) \delta_0(\mathbf{u}_i)$$
                             </div>
                         </div>
-                        <p>Where $\gamma_i \in \{0,1\}$ acts as a binary selector, $\delta_0$ represents the Dirac spike at zero for irrelevant features, and $\sigma^2_{\text{slab}}$ controls the variance of important features.</p>
+                        <p>Where $$\gamma_i \in \{0,1\}$$ acts as a binary selector, $$\delta_0$$ represents the Dirac spike at zero for irrelevant features, and $$\sigma^2_{\text{slab}}$$ controls the variance of important features.</p>
                     </div>
 
                     <div class="math-highlight">
@@ -1187,12 +1187,12 @@
                         <p>We employ mean-field variational inference to approximate the intractable posterior distribution:</p>
                         <div class="equation-block">
                             <div class="math-display">
-                                $$q(\boldsymbol{\Theta}) = q(\mathbf{U}) \cdot q(\boldsymbol{\gamma}) \cdot q(\mathbf{V})$$
-                                $$\text{where } q(\mathbf{U}) = \prod_{i=1}^N \mathcal{N}(\mathbf{u}_i | \boldsymbol{\alpha}_{U_i}, \text{diag}(\boldsymbol{\beta}_{U_i}^2))$$
-                                $$q(\boldsymbol{\gamma}) = \prod_{i=1}^N \prod_{l=1}^L \text{Bernoulli}(\gamma_{il} | \xi_{il})$$
+                                $$q(\Theta) = q(\mathbf{U}) \cdot q(\gamma) \cdot q(\mathbf{V})$$
+                                $$\text{where } q(\mathbf{U}) = \prod_{i=1}^N \mathcal{N}(\mathbf{u}_i | \alpha_{U_i}, \text{diag}(\beta_{U_i}^2))$$
+                                $$q(\gamma) = \prod_{i=1}^N \prod_{l=1}^L \text{Bernoulli}(\gamma_{il} | \xi_{il})$$
                             </div>
                         </div>
-                        <p>The variational parameters $\boldsymbol{\Theta} = \{\boldsymbol{\alpha}_U, \boldsymbol{\beta}_U, \boldsymbol{\xi}, \boldsymbol{\alpha}_V, \boldsymbol{\beta}_V\}$ are optimized via gradient descent on the Evidence Lower Bound (ELBO).</p>
+                        <p>The variational parameters $$\Theta = \{\alpha_U, \beta_U, \xi, \alpha_V, \beta_V\}$$ are optimized via gradient descent on the Evidence Lower Bound (ELBO).</p>
                     </div>
 
                     <div class="math-highlight">
