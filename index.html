@@ -1170,6 +1170,17 @@
                         enabling probabilistic identification of keystone microbial species while maintaining computational efficiency 
                         through variational inference optimization.
                     </p>
+
+                    <div class="math-highlight">
+                        <h4><i class="fas fa-brain"></i> Problem Formulation</h4>
+                        <p>Given paired microbiome-metabolome dataset $\mathcal{D} = \{\mathbf{X}, \mathbf{Y}\}$ with $K$ samples, $N$ taxonomic units, and $M$ metabolites, VBayesMM learns conditional probabilities:</p>
+                        <div class="equation-block">
+                            <div class="math-display">
+                                $$p(y_j | x_i) = \frac{\exp(\mathbf{u}_i^T \mathbf{v}_j + b_j)}{\sum_{j'=1}^M \exp(\mathbf{u}_i^T \mathbf{v}_{j'} + b_{j'})}$$
+                            </div>
+                        </div>
+                        <p>Where $$\mathbf{u}_i \in \mathbb{R}^L$$ $$\mathbf{v}_j \in \mathbb{R}^L$$ are latent embeddings for microbes and metabolites respectively.</p>
+                    </div>
                     
                     <div class="math-highlight">
                         <h4><i class="fas fa-brain"></i> Spike-and-Slab Prior</h4>
