@@ -147,6 +147,7 @@ plot(ladderize(osa_full_new), type =  "fan", label.offset = 0.05,
 add.scale.bar()
 
 ```
+<img src="examples/datasetA/OSA_tree.jpg" width="1000" height="500">
 
 ### PyTorch
 - Import packages
