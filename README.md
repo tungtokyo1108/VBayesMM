@@ -134,14 +134,24 @@ otu_full_0[otu_sub_1_in_otu_full] <- rep("*", sum(otu_sub_1_in_otu_full))
 
 osa_full_new$tip.label <- otu_full_0
 
+# IHH cases
 tipcol <- rep("black", length(osa_full_new$tip.label))
 for (i in 1:length(osa_full_new$tip.label)) {
   if (osa_full_new$tip.label[i] == "*") {
-    # VB
     tipcol[i] <- "red"
   } 
 }
+plot(ladderize(osa_full_new), type =  "fan", label.offset = 0.05,
+     show.tip.label = T, cex = 2, tip.color = tipcol)
+add.scale.bar()
 
+# Controls group
+tipcol <- rep("black", length(osa_full_new$tip.label))
+for (i in 1:length(osa_full_new$tip.label)) {
+  if (osa_full_new$tip.label[i] == "+") {
+    tipcol[i] <- "purple"
+  } 
+}
 plot(ladderize(osa_full_new), type =  "fan", label.offset = 0.05,
      show.tip.label = T, cex = 2, tip.color = tipcol)
 add.scale.bar()
