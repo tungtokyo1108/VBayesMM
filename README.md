@@ -88,6 +88,33 @@ microbial_species_selection_mean = np.sort(np.mean(microbial_species_selection, 
 | ----------------------------------- |:---------------------------------------------:|
 | <img src="examples/Posterior_distribution_of_latent_microbiome_matrix.png" width="400" height="400">|<img src="examples/Posterior_distribution_of_microbial_species_selection.png" width="400" height="400">| 
 
+- Visualizing the estimated conditional log probabilities of microbial species and metabolite abundances
+Umain = model.U
+Ubias = model.Ubias
+Vmain = model.V
+Vbias = model.Vbias
+
+U_microbiome = np.hstack(
+    (np.ones((Umain.shape[0],1)),
+     Ubias.reshape(-1,1), Umain))
+
+V_metabolite = np.vstack(
+    (Vbias.reshape(1,-1),
+     np.ones((1,Vmain.shape[1])), Vmain))
+
+ranks = pd.DataFrame(clr(centralize(clr_inv(np.hstack(
+    (np.zeros((Umain.shape[0], 1)), U_microbiome @ V_metabolite))))),
+    index=train_microbes_df.columns,
+    columns=train_metabolites_df.columns)
+
+plt.figure(figsize=(50, 50))
+g = sns.clustermap(ranks, cmap='seismic', center=0, z_score=1)
+g.ax_heatmap.set_xticklabels([])
+g.ax_heatmap.set_yticklabels([])
+g.ax_heatmap.set_xlabel("")
+g.ax_heatmap.set_ylabel("")
+plt.show()
+
 - Visualizing the microbial species selected using the VBayesMM mapped on the phylogenetic tree
 
 ```
