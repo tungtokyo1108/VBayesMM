@@ -116,6 +116,7 @@ g.ax_heatmap.set_xlabel("")
 g.ax_heatmap.set_ylabel("")
 plt.show()
 ```
+<img src="examples/Microbiome-metabolite_relatioship.png" width="500" height="500">
 
 - Visualizing the microbial species selected using the VBayesMM mapped on the phylogenetic tree
 
