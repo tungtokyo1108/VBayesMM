@@ -89,6 +89,7 @@ microbial_species_selection_mean = np.sort(np.mean(microbial_species_selection, 
 | <img src="examples/Posterior_distribution_of_latent_microbiome_matrix.png" width="400" height="400">|<img src="examples/Posterior_distribution_of_microbial_species_selection.png" width="400" height="400">| 
 
 - Visualizing the estimated conditional log probabilities of microbial species and metabolite abundances
+```
 Umain = model.U
 Ubias = model.Ubias
 Vmain = model.V
@@ -114,6 +115,7 @@ g.ax_heatmap.set_yticklabels([])
 g.ax_heatmap.set_xlabel("")
 g.ax_heatmap.set_ylabel("")
 plt.show()
+```
 
 - Visualizing the microbial species selected using the VBayesMM mapped on the phylogenetic tree
 
