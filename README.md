@@ -121,6 +121,56 @@ plt.show()
 - Visualizing the microbial species selected using the VBayesMM mapped on the phylogenetic tree
 
 ```
+Umain_mean_gamma_df_IHH = pd.read_csv("examples/datasetA/OSA_IHH_microbial_selection.csv", index_col="Unnamed: 0")
+Umain_mean_gamma_df_AIR = pd.read_csv("examples/datasetA/OSA_AIR_microbial_selection.csv", index_col="Unnamed: 0")
+df_combined = pd.concat([Umain_mean_gamma_df_IHH, Umain_mean_gamma_df_AIR], axis=1, join='inner')
+
+microbe_info = pd.read_csv("examples/datasetA/Microbiome_OSA_data_processed.csv", index_col="#OTU ID")
+df_combined = pd.concat([df_combined, microbe_info["ID"]], axis=1, join='inner')
+df_combined = df_combined.set_index('ID')
+df_combined.columns = ["IHH", "AIR"]
+
+# 1) Identify indices of the top 50 by IHH and top 50 by AIR
+top50_ihh_idx = df_combined.nlargest(50, "IHH").index
+top50_air_idx = df_combined.nlargest(50, "AIR").index
+index_to_pos = {idx: pos for pos, idx in enumerate(df_combined.index)}
+
+# 2) Create a color list for all points, default "blue"
+colors = ["black"] * len(df_combined)
+
+# 3) Mark top-50 IHH as red
+for idx in top50_ihh_idx:
+    pos = index_to_pos[idx]  # convert string => integer row
+    colors[pos] = "red"
+
+# 4) Mark top-50 AIR as purple
+#    If a point is in both, it gets overwritten as purple
+for idx in top50_air_idx:
+    pos = index_to_pos[idx] 
+    colors[pos] = "purple"
+
+# 5) Single scatter plot
+plt.figure(figsize=(10,10), dpi=100)
+plt.scatter(df_combined["IHH"], df_combined["AIR"], c=colors, s=50)
+
+for i in top50_ihh_idx:
+    x_val = df_combined.loc[i, "IHH"]
+    y_val = df_combined.loc[i, "AIR"]
+    plt.text(x_val, y_val, str(i), color="red", fontsize=8)
+
+for i in top50_air_idx:
+    x_val = df_combined.loc[i, "IHH"]
+    y_val = df_combined.loc[i, "AIR"]
+    plt.text(x_val, y_val, str(i), color="purple", fontsize=8)
+
+plt.xlabel("IHH")
+plt.ylabel("AIR")
+plt.title("Scatter plot with top 50 highlighted")
+plt.show()
+```
+<img src="examples/datasetA/Probabilty_selection.png" width="500" height="500">
+
+```
 library(phyloseq)
 library(phytools)
 library(ape)
