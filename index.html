@@ -196,6 +196,23 @@
             background: linear-gradient(135deg, var(--utokyo-light-blue), var(--utokyo-blue));
         }
 
+        /* Alternative design with gold accent */
+        .btn-utokyo-gold {
+            background: linear-gradient(135deg, var(--utokyo-blue), var(--utokyo-dark-blue));
+            color: white;
+            backdrop-filter: blur(10px);
+            border: 2px solid var(--utokyo-gold);
+            box-shadow: 0 4px 15px rgba(0, 63, 127, 0.4);
+            position: relative;
+        }
+
+        .btn-utokyo-gold:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 63, 127, 0.5);
+            border-color: #ffed4a;
+            background: linear-gradient(135deg, var(--utokyo-light-blue), var(--utokyo-blue));
+        }
+
         .btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
@@ -1339,7 +1356,7 @@
             <h1>VBayesMM</h1>
             <p>Variational Bayesian Neural Network to Prioritize Important Relationships of High-Dimensional Microbiome Multiomics Data</p>
             <div class="cta-buttons">
-                <a href="https://www.s.u-tokyo.ac.jp/en/press/10840/" class="btn btn-utokyo">
+                <a href="https://www.s.u-tokyo.ac.jp/en/press/10840/" class="btn btn-utokyo-gold">
                     <i class="fas fa-university"></i> PRESS RELEASES
                 </a>
                 <a href="https://doi.org/10.1093/bib/bbaf300" class="btn btn-secondary">
