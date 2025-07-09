@@ -29,6 +29,14 @@
             min-height: 100vh;
         }
 
+        /* University of Tokyo Colors */
+        :root {
+            --utokyo-blue: #003f7f;
+            --utokyo-dark-blue: #002a5c;
+            --utokyo-light-blue: #0066cc;
+            --utokyo-gold: #ffd700;
+        }
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -172,6 +180,20 @@
             color: #667eea;
             border: 2px solid #667eea;
             backdrop-filter: blur(10px);
+        }
+
+        .btn-utokyo {
+            background: linear-gradient(135deg, var(--utokyo-blue), var(--utokyo-dark-blue));
+            color: white;
+            backdrop-filter: blur(10px);
+            border: none;
+            box-shadow: 0 4px 15px rgba(0, 63, 127, 0.4);
+        }
+
+        .btn-utokyo:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 63, 127, 0.5);
+            background: linear-gradient(135deg, var(--utokyo-light-blue), var(--utokyo-blue));
         }
 
         .btn:hover {
@@ -1317,8 +1339,8 @@
             <h1>VBayesMM</h1>
             <p>Variational Bayesian Neural Network to Prioritize Important Relationships of High-Dimensional Microbiome Multiomics Data</p>
             <div class="cta-buttons">
-                <a href="https://www.s.u-tokyo.ac.jp/en/press/10840/" class="btn btn-primary">
-                    <i class="fab fa-github"></i> PRESS RELEASES
+                <a href="https://www.s.u-tokyo.ac.jp/en/press/10840/" class="btn btn-utokyo">
+                    <i class="fas fa-university"></i> PRESS RELEASES
                 </a>
                 <a href="https://doi.org/10.1093/bib/bbaf300" class="btn btn-secondary">
                     <i class="fas fa-file-alt"></i> Read Paper
