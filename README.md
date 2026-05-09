@@ -1,4 +1,4 @@
-# <img src="Logo.png" width="150" height="250"> VBayesMM: Variational Bayesian microbiome multiomics
+# VBayesMM: Variational Bayesian microbiome multiomics <img src="Logo.png" width="150" height="250">
 
 
 ## Publication
